@@ -35,7 +35,7 @@ CREATE TABLE information (
   id SERIAL NOT NULL,
   informationDescription TEXT,
   jobTitle VARCHAR(255),
-  image VARCHAR(255) DEFAULT "https://static.vecteezy.com/system/resources/thumbnails/009/734/564/small/default-avatar-profile-icon-of-social-media-user-vector.jpg",
+  image VARCHAR(255) DEFAULT 'https://static.vecteezy.com/system/resources/thumbnails/009/734/564/small/default-avatar-profile-icon-of-social-media-user-vector.jpg',
   cv VARCHAR(255),
   user_id INT,
   majority_id INT,
@@ -51,19 +51,19 @@ CREATE TABLE majority(
   id SERIAL NOT NULL,
   majorityName VARCHAR(255),
   PRIMARY KEY (id)
-)
+);
 
 CREATE TABLE skills(
   id SERIAL NOT NULL,
   skillName VARCHAR(255),
   PRIMARY KEY (id)
-)
+);
 
 CREATE TABLE status(
     id SERIAL NOT NULL,
     statusName VARCHAR(255),
     PRIMARY KEY (id)
-)
+);
 
 
 CREATE TABLE projects (
@@ -91,8 +91,8 @@ CREATE TABLE freelancerProjects (
   user_id INT,
   is_deleted SMALLINT DEFAULT 0,
   FOREIGN KEY (user_id) REFERENCES users(id),
-  FOREIGN KEY (project_id) REFERENCES projects(id),
-  FOREIGN KEY (freelancerProjectStatus_id) REFERENCES status(id)
+  FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE,
+  FOREIGN KEY (freelancerProjectStatus_id) REFERENCES status(id),
   PRIMARY KEY (id)
 );
 
@@ -101,7 +101,7 @@ CREATE TABLE jobOffer (
   budget INT,
   workday INT,
   jobOfferStatus_id INT NOT NULL,
- jobOfferDescription TEXT,
+  jobOfferDescription TEXT,
   project_id INT,
   user_id INT,
   is_deleted SMALLINT DEFAULT 0,
