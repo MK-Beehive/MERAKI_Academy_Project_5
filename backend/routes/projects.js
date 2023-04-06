@@ -1,6 +1,7 @@
-const { Router } = require("express");
+ const { Router } = require("express");
 
-const projectsRouter = Router();
+ const projectsRouter = Router();
+
 
 const {  addproject,  getAllprojects,  getallProjectsforUser,  getprojectsByStatus,
 } = require("../controllers/projects");
@@ -16,4 +17,5 @@ const {  addproject,  getAllprojects,  getallProjectsforUser,  getprojectsByStat
 //   projectsRouter.delete("/:project_id", deleteproject);
 
 
-module.exports = projectsRouter;
+
+ module.exports = projectsRouter;
