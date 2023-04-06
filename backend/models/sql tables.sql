@@ -39,13 +39,21 @@ CREATE TABLE information (
   cv VARCHAR(255),
   user_id INT,
   majority_id INT,
-  skills_id INT,
   is_deleted SMALLINT DEFAULT 0,
   FOREIGN KEY (user_id) REFERENCES users(id),
   FOREIGN KEY (majority_id) REFERENCES majority(id),
-  FOREIGN KEY (skills_id) REFERENCES skills(id),
   PRIMARY KEY (id)
 );
+
+CREATE TABLE user_skills (
+  id SERIAL NOT NULL,
+  user_id INT,
+  skill_id INT,
+  FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (skill_id) REFERENCES skills(id),
+  PRIMARY KEY (id)
+)
+
 
 CREATE TABLE majority(
   id SERIAL NOT NULL,
@@ -64,7 +72,6 @@ CREATE TABLE status(
     statusName VARCHAR(255),
     PRIMARY KEY (id)
 );
-
 
 CREATE TABLE projects (
   id SERIAL NOT NULL,
