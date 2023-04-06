@@ -1,19 +1,21 @@
-// const { Router } = require("express");
+ const { Router } = require("express");
 
-// const projectsRouter = Router();
-
-// const {  addproject,  getAllprojects,  getallprojectsforuser,  getprojectsByStatus,
-//     getproject,  UpdateProject,  UpdateProjectStatus,/*deleteProduct*/} = require("../controllers/projects");
+ const projectsRouter = Router();
 
 
-//   projectsRouter.post("/", addproject);
-//   projectsRouter.get("/", getAllprojects);
-//   projectsRouter.get("/:user_id", getallprojectsforuser);
-//   projectsRouter.get("/:status_id", getprojectsByStatus);
+const {  addproject,  getAllprojects,  getallProjectsforUser,  getprojectsByStatus,
+} = require("../controllers/projects");
+
+// getproject,  UpdateProject,  UpdateProjectStatus,deleteproject
+  projectsRouter.post("/", addproject);
+  projectsRouter.get("/", getAllprojects);
+  projectsRouter.get("/:user_id", getallProjectsforUser);
+  projectsRouter.get("/status/:status_id", getprojectsByStatus);
 //   projectsRouter.get("/:project_id", getproject);
 //   projectsRouter.put("/:project_id", UpdateProject);
 //   projectsRouter.put("/:project_id/status", UpdateProjectStatus);
-//   // projectsRouter.delete("/:project_id", deleteProduct);
+//   projectsRouter.delete("/:project_id", deleteproject);
 
 
-// module.exports = projectsRouter;
+
+ module.exports = projectsRouter;
