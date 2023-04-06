@@ -105,7 +105,7 @@ CREATE TABLE jobOffer (
   project_id INT,
   user_id INT,
   is_deleted SMALLINT DEFAULT 0,
-  FOREIGN KEY (project_id) REFERENCES projects(id),
+  FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE,
   FOREIGN KEY (user_id) REFERENCES users(id),
   FOREIGN KEY (jobOfferStatus_id) REFERENCES status(id),
   PRIMARY KEY (id)
