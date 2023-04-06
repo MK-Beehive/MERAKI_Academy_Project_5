@@ -1,0 +1,4 @@
+//information user querys
+`INSERT INTO information (informationDescription,jobTitle,image,cv,user_id,majority_id,skills_id) VALUES ($1,$2,$3,$4,$5,$6,$7) RETURING *`
+
+//INSERT INTO information (informationDescription,jobTitle,image,cv,user_id,majority_id,skills_id) VALUES ('hello it's me','software engineer','https://images.unsplash.com/photo-1472214103451-9374bd1c798e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGljfGVufDB8fDB8fA%3D%3D&w=1000&q=80','https://images.unsplash.com/photo-1472214103451-9374bd1c798e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGljfGVufDB8fDB8fA%3D%3D&w=1000&q=80',,$5,$6,$7) RETURING *
