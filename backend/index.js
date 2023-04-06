@@ -1,7 +1,6 @@
 const express = require("express");
 require("dotenv").config()
 const cors = require("cors");
-require("dotenv").config();
 
 require("./models/db")
 
@@ -12,7 +11,9 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
-require("./models/db");
+//batool routes//
+const usersRouter = require("./routes/users")
+app.use("/users",usersRouter);
 
 
 
@@ -53,12 +54,12 @@ require("./models/db");
 
 //===sahar projectRouts FreelancerProjects ===========
 
-const projectsRouter = require("./routes/projects");
-const FreelancerProjectsRouter = require("./routes/FreelancerProjects");
+// const projectsRouter = require("./routes/projects");
+// const FreelancerProjectsRouter = require("./routes/FreelancerProjects");
 
 
-app.use("/projects", projectsRouter);
-app.use("/FreelancerProjects", FreelancerProjectsRouter);
+// app.use("/projects", projectsRouter);
+// app.use("/FreelancerProjects", FreelancerProjectsRouter);
 
 //==========================End for sahar==============
 
@@ -99,10 +100,10 @@ app.use("/FreelancerProjects", FreelancerProjectsRouter);
 
 
 
-const infouserRouter = require("./routes/infouser")
+// const infouserRouter = require("./routes/infouser")
 
 
-app.use("/infouser",infouserRouter )
+// app.use("/infouser",infouserRouter )
 
 
 
