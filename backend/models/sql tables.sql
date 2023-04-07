@@ -31,14 +31,7 @@ CREATE TABLE users(
   PRIMARY KEY (id)
 );
 
-CREATE TABLE user_skills (
-  id SERIAL NOT NULL,
-  user_id INT,
-  skill_id INT,
-  FOREIGN KEY (user_id) REFERENCES users(id),
-    FOREIGN KEY (skill_id) REFERENCES skills(id),
-  PRIMARY KEY (id)
-)
+
 CREATE TABLE information (
   id SERIAL NOT NULL,
   informationDescription TEXT,
@@ -127,11 +120,3 @@ CREATE TABLE projects (
   PRIMARY KEY (id)
 );
 
-CREATE TABLE user_skills (
-  id SERIAL NOT NULL,
-  user_id INT,
-  skill_id INT,
-  FOREIGN KEY (user_id) REFERENCES users(id),
-    FOREIGN KEY (skill_id) REFERENCES skills(id),
-  PRIMARY KEY (id)
-)
