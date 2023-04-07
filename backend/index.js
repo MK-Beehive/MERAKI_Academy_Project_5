@@ -34,8 +34,6 @@ app.use("/projects", projectsRouter);
 
 //============================    End for sahar  ===========================
 
-// Handles any other endpoints [unassigned - endpoints]
-
 
 
 
