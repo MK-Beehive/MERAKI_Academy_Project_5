@@ -20,7 +20,9 @@ pool.query(`INSERT INTO jobOffer (budget,workday,jobOfferStatus_id,jobOfferDescr
 
 const getoffer  = (req,res)=>{
     const idproject = req.params.id
-pool.query(`SELECT jobOffer.workday,jobOffer.budget,jobOffer.jobofferdescription, users.firstName, information.image,majority.majorityName, status.statusName FROM jobOffer INNER JOIN users ON joboffer.user_id=users.id INNER JOIN information ON joboffer.user_id=information.user_id INNER JOIN majority ON joboffer.user_id=information.user_id INNER JOIN status ON joboffer.jobofferstatus_id=status.id WHERE project_id= ${idproject}`).then((result)=>{
+    //INNER JOIN majority ON joboffer.user_id=information.user_id INNER JOIN status ON joboffer.jobofferstatus_id=status.id
+    //majority.majorityName, status.statusName 
+pool.query(`SELECT jobOffer.id, jobOffer.workday,jobOffer.budget,jobOffer.jobofferdescription, users.firstName, information.image,majority.majorityName, status.statusName  FROM jobOffer INNER JOIN users ON joboffer.user_id=users.id INNER JOIN information ON joboffer.user_id=information.user_id INNER JOIN majority ON information.majority_id=majority.id INNER JOIN status ON joboffer.jobofferstatus_id=status.id WHERE project_id= ${idproject}`).then((result)=>{
     res.json({success: true,
         massage: "GET all offers successfully",
         result:  result.rows}).status(200)
@@ -49,12 +51,35 @@ pool.query(`UPDATE jobOffer SET budget=COALESCE($1,budget),workday=COALESCE($2,w
 }
 
 const updatestatus = (req,res)=>{
-
+const idOffer = req.params.id
+const {jobOfferStatus_id} = req.body
+const placeholder= [jobOfferStatus_id]
+pool.query(`UPDATE jobOffer SET jobOfferStatus_id=$1 WHERE id =${idOffer} RETURNING *;`, placeholder).then((result)=>{
+    res.json({success: true,
+    message: "information updated successfully",
+    info:  result.rows}).status(200)
+    }).catch((err)=>{
+        res.json({success: false,
+        massage: "Server error",
+        err: err}).status(500)
+    })
 }
- 
 
+const deleteoffer = (req,res)=>{
+    const idOffer = req.params.id
+pool.query(`DELETE FROM jobOffer WHERE id=${idOffer}RETURNING *;`)
+.then((result)=>{
+    res.json({success: true,
+    message: "information updated successfully",
+    info:  result.rows}).status(200)
+    }).catch((err)=>{
+        res.json({success: false,
+            massage: "Server error",
+        err: err}).status(500)
+    })
+}
 
-module.exports = {creatoffer,getoffer, updateOffer,updatestatus}
+module.exports = {creatoffer,getoffer, updateOffer,updatestatus,deleteoffer}
 
 
 
