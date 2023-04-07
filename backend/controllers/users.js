@@ -37,7 +37,6 @@ const login = (req, res) => {
             if (response) {
               const payload = {
                 userId: result.rows[0].id,
-                country: result.rows[0].country,
                 role: result.rows[0].role_id,
               };
               const options = { expiresIn: "24h" };
@@ -102,9 +101,35 @@ const deleteUserById = async (req,res) => {
 }
 }
 
+
+const updateUserById = async (req, res) => {
+  try {
+    const userId = req.params.id;
+    const { firstName, lastName, email, password } = req.body;
+    const encryptedPassword = await bcrypt.hash(password, saltRounds); // hash the new password
+    const query = `UPDATE users SET firstName = $1, lastName = $2, email = $3, password = $4  WHERE id =$5 RETURNING *`;
+    const data = [firstName, lastName, email, encryptedPassword, userId]; // use the hashed password
+    const result = await pool.query(query, data);
+    if (result.rows.length) {
+      res.status(200).json({ user: result.rows[0], message: "User updated successfully" });
+    } else {
+      res.status(404).json({ message: "User not found" });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+
+
+
+
   module.exports = {
     register,
     login,
     getAllUsers,
-    deleteUserById
+    deleteUserById,
+    updateUserById
+
   };
