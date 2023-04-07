@@ -18,7 +18,10 @@ app.use(express.json());
 //batool routes//
 const usersRouter = require("./routes/users")
 app.use("/users",usersRouter);
-
+const rolesRouter = require("./routes/roles")
+app.use("/roles",rolesRouter);
+const skillsRouter = require("./routes/skills")
+app.use("/skills",skillsRouter);
 //==================== sahar projectRouts FreelancerProjects ===========
 
 const projectsRouter = require("./routes/projects");
@@ -33,7 +36,7 @@ app.use("/projects", projectsRouter);
 
 // Handles any other endpoints [unassigned - endpoints]
 
-const infouserRouter = require("./routes/infouser");
+// const infouserRouter = require("./routes/infouser");
 
 
 

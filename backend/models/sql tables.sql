@@ -45,7 +45,7 @@ CREATE TABLE information (
   jobTitle VARCHAR(255),
   image VARCHAR(255) DEFAULT 'https://static.vecteezy.com/system/resources/thumbnails/009/734/564/small/default-avatar-profile-icon-of-social-media-user-vector.jpg',
   cv VARCHAR(255),
-  user_id INT,
+  user_id INT UNIQUE,
   majority_id INT,
   is_deleted SMALLINT DEFAULT 0,
   FOREIGN KEY (user_id) REFERENCES users(id),
