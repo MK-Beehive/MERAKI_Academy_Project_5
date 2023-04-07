@@ -31,10 +31,6 @@ app.use("/projects", projectsRouter);
 
 //============================    End for sahar  ===========================
 
-// Handles any other endpoints [unassigned - endpoints]
-
-const infouserRouter = require("./routes/infouser");
-
 
 
 //ebehal routes
