@@ -36,7 +36,6 @@ app.use("/projects", projectsRouter);
 
 // Handles any other endpoints [unassigned - endpoints]
 
-// const infouserRouter = require("./routes/infouser");
 
 
 

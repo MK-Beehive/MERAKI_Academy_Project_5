@@ -99,7 +99,7 @@ CREATE TABLE projects (
 );
 
 
-CREATE TABLE freelancerProjects (
+  CREATE TABLE freelancerProjects (
   id SERIAL NOT NULL,
   freelancerProjectStatus_id INT NOT NULL,
   project_id INT,
@@ -111,7 +111,7 @@ CREATE TABLE freelancerProjects (
   PRIMARY KEY (id)
 );
 
-CREATE TABLE jobOffer (
+  CREATE TABLE jobOffer (
   id SERIAL NOT NULL,
   budget INT,
   workday INT,
@@ -120,6 +120,7 @@ CREATE TABLE jobOffer (
   project_id INT,
   user_id INT,
   is_deleted SMALLINT DEFAULT 0,
+  created_at TIMESTAMP DEFAULT NOW(),
   FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE,
   FOREIGN KEY (user_id) REFERENCES users(id),
   FOREIGN KEY (jobOfferStatus_id) REFERENCES status(id),
