@@ -1,11 +1,11 @@
 const pool = require ("../models/db")
-// console.log(pool)
+
 const addinfoUser  = (req,res)=>{
-    const iduser = req.params.id
-    console.log(iduser)
-    const {informationDescription,jobTitle,image,cv,user_id,majority_id} = req.body
-const query = `INSERT INTO information (informationDescription,jobTitle,image,cv,user_id,majority_id) VALUES ($1,$2,$3,$4,$5,$6) RETURNING*`
-const placeholder = [informationDescription,jobTitle,image,cv,user_id,majority_id]
+const iduser = req.params.id
+const {informationdescription,jobTitle,image,cv,user_id,majority_id} = req.body
+const placeholder = [informationdescription,jobTitle,image||'https://static.vecteezy.com/system/resources/thumbnails/009/734/564/small/default-avatar-profile-icon-of-social-media-user-vector.jpg',cv,iduser,majority_id]
+const query = `INSERT INTO information (informationdescription,jobTitle,image,cv,user_id,majority_id) VALUES ($1,$2,$3,$4,$5,$6)  RETURNING*`
+
     pool.query(query,placeholder).then((result)=>{
         res.json({success: true,
             massage: "add informayion's user successfully",
@@ -20,9 +20,10 @@ const placeholder = [informationDescription,jobTitle,image,cv,user_id,majority_i
 
 const updateInfo  =(req,res)=>{
     const iduser = req.params.id
-    const {informationDescription,jobTitle,image,cv,majority_id,skills_id} = req.body
-    const placeholder = [informationDescription||null,jobTitle||null,image||'https://static.vecteezy.com/system/resources/thumbnails/009/734/564/small/default-avatar-profile-icon-of-social-media-user-vector.jpg',cv || null,majority_id|| null,skills_id||null]
-    pool.query(`UPDATE information SET informationDescription=COALESCE($1,informationDescription),jobTitle=COALESCE($2,jobTitle),image=COALESCE($3,image),cv=COALESCE($4,cv),majority_id=COALESCE($5,majority_id),skills_id=COALESCE($6,skills_id) WHERE id =${iduser} RETURNING *;`,placeholder).then((result)=>{
+    console.log(iduser)
+    const {informationdescription,jobTitle,image,cv,majority_id,skills_id} = req.body
+    const placeholder = [informationdescription||null,jobTitle||null,image||'https://static.vecteezy.com/system/resources/thumbnails/009/734/564/small/default-avatar-profile-icon-of-social-media-user-vector.jpg',cv || null,majority_id|| null]
+    pool.query(`UPDATE information SET informationdescription=COALESCE($1,informationdescription),jobTitle=COALESCE($2,jobTitle),image=COALESCE($3,image),cv=COALESCE($4,cv),majority_id=COALESCE($5,majority_id) WHERE id =${iduser} RETURNING *;`,placeholder).then((result)=>{
     res.json({success: true,
     message: "information updated successfully",
     info:  result.rows}).status(200)
@@ -34,7 +35,6 @@ const updateInfo  =(req,res)=>{
 }
 const getinfoUser  = (req,res)=>{
     const iduser = req.params.id
-    console.log(iduser)
     pool.query(`SELECT information.*,majority.majorityName,users.firstName,users.lastName  FROM information INNER JOIN majority ON information.majority_id = majority.id INNER JOIN users ON information.user_id = users.id  WHERE information.user_id = ${iduser} AND users.is_deleted=0`)
 .then((result)=>{
     res.json({success: true,
