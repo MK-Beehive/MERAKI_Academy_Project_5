@@ -35,7 +35,7 @@ const updateInfo  =(req,res)=>{
 }
 const getinfoUser  = (req,res)=>{
     const iduser = req.params.id
-    pool.query(`SELECT information.*,majority.majorityName,users.firstName,users.lastName  FROM information INNER JOIN majority ON information.majority_id = majority.id INNER JOIN users ON information.user_id = users.id  WHERE information.user_id = ${iduser} AND users.is_deleted=0`)
+    pool.query(`SELECT information.*,majority.majorityName,users.firstName,users.lastName  FROM information INNER JOIN majority ON information.majority_id = majority.id INNER JOIN users ON information.user_id = users.id WHERE information.user_id = ${iduser} AND users.is_deleted=0`)
 .then((result)=>{
     res.json({success: true,
         message: "all info is loaded",
