@@ -22,6 +22,8 @@ const rolesRouter = require("./routes/roles")
 app.use("/roles",rolesRouter);
 const skillsRouter = require("./routes/skills")
 app.use("/skills",skillsRouter);
+const majoritesRouter = require("./routes/majorites")
+app.use("/majorites",majoritesRouter);
 //==================== sahar projectRouts FreelancerProjects ===========
 
 const projectsRouter = require("./routes/projects");
