@@ -66,16 +66,25 @@ const addSkillForUser = (req, res) => {
 
 
 
+
   const getAllSkillsForUser = (req, res) => {
     const userId = req.params.userId;
-    const query = `SELECT skills.skillName FROM user_skills  INNER JOIN skills  ON skills.id = user_skills.skill_id WHERE user_skills.user_id = $1`;
+    const query = `
+      SELECT users.firstName, skills.skillName, projects.title AS projectName, jobOffer.jobOfferDescription
+      FROM user_skills 
+      INNER JOIN skills ON skills.id = user_skills.skill_id 
+      INNER JOIN users ON users.id = user_skills.user_id 
+      LEFT JOIN projects ON projects.user_id = users.id 
+      LEFT JOIN jobOffer ON jobOffer.user_id = users.id 
+      WHERE user_skills.user_id = $1
+    `;
     const data = [userId];
     pool
       .query(query, data)
       .then((result) => {
         res.status(200).json({
           success: true,
-          message: `Skills retrieved successfully for user ${userId}`,
+          message: `Skills, projects, and job offers retrieved successfully for user ${userId}`,
           result: result.rows,
         });
       })
