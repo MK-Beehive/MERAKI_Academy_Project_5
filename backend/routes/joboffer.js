@@ -1,7 +1,11 @@
 const { Router } = require("express");
 
 const jobOfferRouter = Router();
-const {creatoffer} = require("../controllers/joboffer");
+const {creatoffer,getoffer,updateOffer,updatestatus} = require("../controllers/joboffer");
 
-jobOfferRouter.post("/",creatoffer)
+jobOfferRouter.post("/:id",creatoffer)
+jobOfferRouter.get("/:id",getoffer)
+jobOfferRouter.put("/:id", updateOffer)
+jobOfferRouter.put("/status/:id", updatestatus)
+
 module.exports = jobOfferRouter;
