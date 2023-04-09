@@ -3,6 +3,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const saltRounds = parseInt(process.env.SALT);
 
+
 const register = async (req, res) => {
   const { firstName, lastName, email, password, role_id } = req.body;
 
@@ -15,12 +16,30 @@ const register = async (req, res) => {
     encryptedPassword,
     role_id,
   ];
-  pool.query(query, data).then((result) => {
-    res.status(200).json({success:true,message:"Account created"});
-})
-.catch((error) => {
-    res.status(409).json({success:false,message:"This email already exists",error:error})
-})
+  pool.query(query, data)
+    .then((result) => {
+      const { id, role_id } = result.rows[0];
+      const payload = {
+        userId: id,
+        role: role_id,
+      };
+      const options = { expiresIn: "24h" };
+      const secret = process.env.SECRET;
+      const token = jwt.sign(payload, secret, options);
+      if (token) {
+        res.status(200).json({
+          success: true,
+          message: "Account created and user logged in",
+          token,
+          userId: id
+        });
+      } else {
+        throw Error;
+      }
+    })
+    .catch((error) => {
+      res.status(409).json({ success: false, message: "This email already exists", error: error })
+    });
 };
 
 const login = (req, res) => {
@@ -47,7 +66,8 @@ const login = (req, res) => {
                   success: true,
                   message: `Valid login credentials`,
                   token,
-                  userId:result.rows[0].id
+                  userId:result.rows[0].id,
+                  user: result.rows[0]
                 });
               } else {
                 throw Error;
