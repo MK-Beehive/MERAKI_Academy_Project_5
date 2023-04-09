@@ -9,6 +9,7 @@ const addproject = (req, res) => {
     status_id,
     majority_id,
     user_id,
+    cv
   } = req.body;
 
   const values = [
@@ -19,9 +20,10 @@ const addproject = (req, res) => {
     status_id,
     majority_id,
     user_id,
+    cv
   ];
 
-  const query = `INSERT INTO projects (title , projectDescription , projectPrice , timeExpected , status_id ,  majority_id , user_id) VALUES ($1,$2,$3,$4,$5,$6,$7) RETURNING *`;
+  const query = `INSERT INTO projects (title , projectDescription , projectPrice , timeExpected , status_id ,  majority_id , user_id , cv) VALUES ($1,$2,$3,$4,$5,$6,$7,$8) RETURNING *`;
 
   pool
     .query(query, values)
@@ -42,8 +44,8 @@ const addproject = (req, res) => {
 };
 
 const getAllprojects = (req, res) => {
-  const query = `SELECT projects.* ,majority.majorityname , status.statusname , users.firstname	,users.lastname FROM projects  inner join status on projects.status_id =  status.id inner  join majority on projects.majority_id =  majority.id 
-    inner join users  on projects.user_id =  users.id   where projects.is_deleted=0 ;`;
+  const query = `SELECT projects.* ,majority.majorityname , status.statusname , users.firstname	,users.lastname, information.image FROM projects  inner join status on projects.status_id =  status.id inner  join majority on projects.majority_id =  majority.id 
+    inner join users  on projects.user_id =  users.id  INNER JOIN information ON information.user_id=users.id  where projects.is_deleted=0 ;`;
 
   pool
     .query(query)

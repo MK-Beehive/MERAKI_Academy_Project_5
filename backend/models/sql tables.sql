@@ -41,12 +41,14 @@ CREATE TABLE information (
   user_id INT UNIQUE,
   majority_id INT,
   is_deleted SMALLINT DEFAULT 0,
+  rate INT,
   FOREIGN KEY (user_id) REFERENCES users(id),
   FOREIGN KEY (majority_id) REFERENCES majority(id),
   PRIMARY KEY (id)
 );
 
-
+ alter table information
+  add column rate Int;
 
 
 CREATE TABLE majority(
@@ -71,6 +73,7 @@ CREATE TABLE projects (
   id SERIAL NOT NULL,
   title VARCHAR(255) ,
   projectDescription TEXT,
+  cv TEXT,
   projectPrice INT,
   timeExpected INT,
   status_id INT NOT NULL,
@@ -112,6 +115,7 @@ CREATE TABLE projects (
   FOREIGN KEY (jobOfferStatus_id) REFERENCES status(id),
   PRIMARY KEY (id)
 );
+
 CREATE TABLE user_skills (
   id SERIAL NOT NULL,
   user_id INT,
@@ -119,4 +123,4 @@ CREATE TABLE user_skills (
   FOREIGN KEY (user_id) REFERENCES users(id),
     FOREIGN KEY (skill_id) REFERENCES skills(id),
   PRIMARY KEY (id)
-)
+

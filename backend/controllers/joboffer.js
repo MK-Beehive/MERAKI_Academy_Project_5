@@ -53,8 +53,7 @@ pool.query(`UPDATE jobOffer SET budget=COALESCE($1,budget),workday=COALESCE($2,w
 const updatestatus = (req,res)=>{
 const idOffer = req.params.id
 const {jobOfferStatus_id} = req.body
-const placeholder= [jobOfferStatus_id]
-pool.query(`UPDATE jobOffer SET jobOfferStatus_id=$1 WHERE id =${idOffer} RETURNING *;`, placeholder).then((result)=>{
+pool.query(`UPDATE jobOffer SET jobOfferStatus_id=${jobOfferStatus_id} WHERE id =${idOffer} RETURNING *;`).then((result)=>{
     res.json({success: true,
     message: "information updated successfully",
     info:  result.rows}).status(200)

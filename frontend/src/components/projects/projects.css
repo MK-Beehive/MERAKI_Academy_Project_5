@@ -1,0 +1,48 @@
+.projects{
+    display: flex;
+    flex-direction: row;
+}
+.projectcard{
+    display: flex;
+    flex-direction: column; 
+ 
+}
+.projectcard1{
+    display: flex;
+    flex-direction: column; 
+    border: 1px solid black;
+    width: 800px;
+    box-shadow: 2px 2px 1px 1px rgba(83, 83, 74, 0.459);
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-left: 40px;
+}
+
+.statucwithtitle{
+    display: flex;
+    flex-direction: row; 
+    margin-top: 10px;
+    margin-bottom: 10px;
+  
+}
+
+.titelproj{
+    margin-left: 10px;
+    font-size: 25px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    background-color: transparent;
+    border: none;
+    
+}
+.statusproj{
+    margin-left: 20px;
+    font-size: 25px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; 
+  
+    background-color: rgb(71, 172, 71);
+    border-radius: 5px;
+    border: none;
+   
+
+
+}
