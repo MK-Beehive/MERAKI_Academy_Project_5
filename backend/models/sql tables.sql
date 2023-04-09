@@ -41,12 +41,14 @@ CREATE TABLE information (
   user_id INT UNIQUE,
   majority_id INT,
   is_deleted SMALLINT DEFAULT 0,
+  rate INT,
   FOREIGN KEY (user_id) REFERENCES users(id),
   FOREIGN KEY (majority_id) REFERENCES majority(id),
   PRIMARY KEY (id)
 );
 
-
+ alter table information
+  add column rate Int;
 
 
 CREATE TABLE majority(
