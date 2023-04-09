@@ -4,7 +4,7 @@ const skillsRouter=express.Router();
 
 skillsRouter.post("/", createSkills);
 skillsRouter.get("/", getAllSkills);
-skillsRouter.post("/user", addSkillForUser); 
+skillsRouter.post("/:userId", addSkillForUser); 
 skillsRouter.get("/:userId", getAllSkillsForUser)
 
 

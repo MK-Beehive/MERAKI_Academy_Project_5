@@ -43,9 +43,10 @@ const getAllSkills = (req, res) => {
 
 
 const addSkillForUser = (req, res) => {
-  const { userId, skillId } = req.body;
+  const userId=req.params.userId
+  const { skill_id } = req.body;
   const query = `INSERT INTO user_skills (user_id, skill_id) VALUES ($1, $2) RETURNING *`;
-  const data = [userId, skillId];
+  const data = [ userId,skill_id];
   pool
     .query(query, data)
     .then((result) => {

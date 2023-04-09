@@ -123,4 +123,4 @@ CREATE TABLE user_skills (
   FOREIGN KEY (user_id) REFERENCES users(id),
     FOREIGN KEY (skill_id) REFERENCES skills(id),
   PRIMARY KEY (id)
-)
+
