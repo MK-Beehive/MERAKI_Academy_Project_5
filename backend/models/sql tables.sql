@@ -71,6 +71,7 @@ CREATE TABLE projects (
   id SERIAL NOT NULL,
   title VARCHAR(255) ,
   projectDescription TEXT,
+  cv TEXT,
   projectPrice INT,
   timeExpected INT,
   status_id INT NOT NULL,
@@ -113,3 +114,11 @@ CREATE TABLE projects (
   PRIMARY KEY (id)
 );
 
+CREATE TABLE user_skills (
+  id SERIAL NOT NULL,
+  user_id INT,
+  skill_id INT,
+  FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (skill_id) REFERENCES skills(id),
+  PRIMARY KEY (id)
+)
