@@ -26,12 +26,17 @@ const register = async (req, res) => {
 const login = (req, res) => {
     const password = req.body.password;
     const email = req.body.email;
+
+
     const query = `SELECT * FROM users WHERE email = $1 AND is_deleted = 0`;
     const data = [email.toLowerCase()];
     pool
       .query(query, data)
       .then((result) => {
+  
         if (result.rows.length) {
+
+        
           bcrypt.compare(password, result.rows[0].password, (err, response) => {
             if (err) res.json(err);
             if (response) {
@@ -47,7 +52,8 @@ const login = (req, res) => {
                   success: true,
                   message: `Valid login credentials`,
                   token,
-                  userId:result.rows[0].id
+                  userId:result.rows[0].id,
+                  user: result.rows[0]
                 });
               } else {
                 throw Error;
@@ -129,7 +135,33 @@ const updateUserById = async (req, res) => {
 };
 
 
+const getallFreelancers = (req, res) => {
 
+  const query = `select * from users inner join information  on users.id = information.user_id   inner join  majority  on    information.majority_id = majority.id   where users.is_deleted = 0  and users.role_id = 1 ;`;
+
+  pool
+    .query(query)
+    .then((result) => {
+      if (result.rows.length != 0) {
+        res.status(201).json({
+          success: true,
+          message: `All Freelancers user:`,
+          result: result.rows,
+        });
+      } else {
+        res.status(404).json({
+          success: false,
+          message: `no Freelancer `,
+        });
+      }
+    })
+    .catch((err) => {
+      res.status(500).json({
+        success: false,
+        message: "Server error",
+      });
+    });
+};
 
 
   module.exports = {
@@ -137,6 +169,7 @@ const updateUserById = async (req, res) => {
     login,
     getAllUsers,
     deleteUserById,
-    updateUserById
+    updateUserById,
+    getallFreelancers
 
   };

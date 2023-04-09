@@ -1,0 +1,13 @@
+.img{
+    width: 3rem;
+    height: 3rem;
+}
+.img img{
+    width: 2rem;
+    height: 2rem;
+}
+.freelancerinfo{
+border: 1px solid black;
+    width: 90%;
+    height: 10rem;
+}

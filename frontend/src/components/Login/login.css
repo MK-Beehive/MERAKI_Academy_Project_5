@@ -1,0 +1,134 @@
+.loginregister{
+    width: 100vw;
+ position: relative;
+     display : flex ;
+    justify-content: center;
+    align-items: center;
+  /* background-image: url("../../images/background.jpg"); */
+ height: 80vh;
+ }
+ .login-div{
+ 
+ padding-right: 5px;
+ border-right: 1px solid black;
+ width:300px;
+ height: 300px;
+ }
+ 
+ .changeLoginRegister{
+     width:300px;
+     height: 300px;
+     /* background-color: rgba(0, 0, 0, 0.1);
+     border-bottom-right-radius: 1rem;
+     border-top-right-radius: 1rem; */
+     padding-left: 5px;
+     display : flex ;
+     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+ 
+ 
+ }
+ /* .changeLoginRegister:hover{
+ transform: scaleY(1.1) ;
+ } */
+ .changeLoginRegister button {
+     font-size: large;
+     width:250px;
+     height: 30px;
+ }
+ .login-div input {
+     border: none;
+     border-bottom: 1px solid black;
+     width:250px;
+     height: 30px;
+     font-size: 1rem;
+ }
+ 
+ .login-div input:focus {
+  
+     border-bottom: 2px dashed green;
+  
+ }
+ .login-div button {
+  font-size: large;
+     width:250px;
+     height: 30px;
+ }
+ 
+ @media  (max-width : 900px) {
+     
+     .loginregister{
+ 
+         display : flex ;
+         flex-direction: column;
+        justify-content: center;
+        align-items: center;
+     
+     }
+     .login-div{
+ 
+         padding-bottom: 5px;
+         border-bottom: 1px solid black;
+         border-right: none;
+         width:300px;
+         height: 400px;
+         }
+ }
+ 
+ .error{
+     color: red;
+ }
+ 
+ 
+ .imgcorner{
+ position: absolute;
+ bottom: 0%;
+ right: -1%;
+ width: 15rem;
+ height: 15rem;
+ animation: swing 3s  linear forwards;
+ }
+ 
+ .imgcorner2{
+     position: absolute;
+     bottom: -3%;
+     left: 2%;
+     width: 15rem;
+     height: 15rem;
+     animation: swing 3s  linear forwards;
+     }
+     
+     .imgcorner3{
+         position: absolute;
+         top: -3%;
+         left: -2%;
+         width: 15rem;
+         height: 15rem;
+         transform: rotateZ(50deg);
+         /* animation: swing 3s  linear forwards; */
+         }
+         
+ 
+ 
+ @keyframes swing {
+     
+ 
+         0%{
+ 
+       transform: rotateZ(0deg);
+       opacity: 1;
+         }
+       70%{
+ 
+         transform: rotateZ(50deg);
+         opacity: 1;
+       }
+       100%{
+         opacity: 1;
+         transform: rotateZ(40deg);
+         
+       }
+       
+ 
+ }
