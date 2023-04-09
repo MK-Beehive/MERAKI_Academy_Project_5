@@ -2,9 +2,9 @@ const pool = require ("../models/db")
 
 const addinfoUser  = (req,res)=>{
 const iduser = req.params.id
-const {informationdescription,jobTitle,image,cv,user_id,majority_id} = req.body
-const placeholder = [informationdescription,jobTitle,image||'https://static.vecteezy.com/system/resources/thumbnails/009/734/564/small/default-avatar-profile-icon-of-social-media-user-vector.jpg',cv,iduser,majority_id]
-const query = `INSERT INTO information (informationdescription,jobTitle,image,cv,user_id,majority_id) VALUES ($1,$2,$3,$4,$5,$6)  RETURNING*`
+const {informationdescription,jobTitle,image,cv,user_id,majority_id,rate} = req.body
+const placeholder = [informationdescription,jobTitle,image||'https://static.vecteezy.com/system/resources/thumbnails/009/734/564/small/default-avatar-profile-icon-of-social-media-user-vector.jpg',cv,iduser,majority_id,rate]
+const query = `INSERT INTO information (informationdescription,jobTitle,image,cv,user_id,majority_id,rate) VALUES ($1,$2,$3,$4,$5,$6,$7)  RETURNING*`
 
     pool.query(query,placeholder).then((result)=>{
         res.json({success: true,
