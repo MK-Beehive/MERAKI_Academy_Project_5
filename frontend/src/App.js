@@ -2,6 +2,8 @@
 import "./App.css";
 
 import Register from "./components/Register";
+import Login from "./components/Login";
+
 
 
 import { Routes, Route, Link, useParams,useNavigate } from "react-router-dom";
@@ -26,12 +28,12 @@ function App() {
 <Routes>
 <Route path="/" element={<Home/>}/>
 <Route path="/projects" element={<Projects/>}/>
- 
- <Route path={"/"} element={<Register/>} />
+<Route path="/Join" element={<Login/>}/>
+ <Route path="/Register" element={<Register/>} />
     
 </Routes>
 
-<Footer/>
+<Footer className="footer"/>
     </div>
 
   );

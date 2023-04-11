@@ -5,6 +5,7 @@
 }
 .navbar{
     display: flex;
+    justify-content: space-between;
     flex-direction: row;
     background-color: rgb(255, 255, 255);
     /* width: 100%; */
@@ -72,16 +73,30 @@ font-family:'Times New Roman', Times, serif;
     margin-top: 10px;
     cursor: pointer;
 }
+.Links{
 
+    display: flex;
+    flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 1rem;
+
+
+
+}
 .projectlink{
     text-decoration: none;
-    margin-left: 60px;
+    /* margin-left: 60px; */
     font-size: 20px;
-    margin-top: 15Px;
+    /* margin-top: 15Px; */
     color: rgb(0, 0, 0);
   font-family:'Times New Roman', Times, serif;
+  margin: 1rem;
 }
 
 .projectlink:hover{
     color: rgb(255, 217, 0);   
+}
+a button {
+    background: none;
 }

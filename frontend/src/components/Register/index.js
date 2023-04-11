@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
@@ -25,7 +25,22 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 // =================================================================
 
+
+import {googleUser} from "../redux/reducers/auth/index"; //==sahar
+
+
 const Register = () => {
+
+  //===sahar === get google user to register 
+
+  const [ googleUserRegister, setgoogleUserRegister] = useState(false);
+
+  const state = useSelector((state) => {
+    return {
+      auth: state.auth,
+    };
+  });
+  //=============
   const theme = createTheme();
 
   const [firstName, setFirstName] = useState("");
@@ -47,9 +62,44 @@ const Register = () => {
   });
 
   // =================================================================
+ 
+
+   useEffect(() => {
+    console.log("useEffect++++++++++++++++++++++++++++",state.auth.googleUser)
+    
+   
+        if(state.auth.isgoogleUser && state.auth.googleUser){
+          setFirstName(state.auth.googleUser.firstname);
+        setLastName(state.auth.googleUser.lastname);
+        setEmail(state.auth.googleUser.email);
+        setPassword(state.auth.googleUser.password);
+         setSelectedRole(state.auth.googleUser.role_id)
+           setgoogleUserRegister(true)
+          
+            
+         }
+         return () => {
+      
+        }
+      
+      }, [])
+
+
+
+
 
   const addNewUser = async (e) => {
-    e.preventDefault();
+ 
+    console.log("######################",lastName)
+
+    console.log("#######################",email)
+
+    console.log("######################",password)
+
+
+    
+
+    // e.preventDefault();
     try {
       const result = await axios.post("http://localhost:5000/users/register", {
         firstName,
@@ -78,7 +128,7 @@ const Register = () => {
             lastname: loginResult.data.user.lastname,
             role_id : loginResult.data.user.role_id,                    
             }))
-                   navigate("/dashboard");
+                   navigate("/");
         }
       } else throw Error;
     } catch (error) {
@@ -93,11 +143,14 @@ const Register = () => {
   const [value,setValue] = useState('')
 
 
+  
+  
 
   // =================================================================
 
   return (
     <>
+
       {!isLoggedIn ? (
         <>
           <ThemeProvider theme={theme}>

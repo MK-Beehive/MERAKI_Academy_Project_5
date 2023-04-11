@@ -7,9 +7,8 @@ import authReducer from "./reducers/auth/index" //sahar -- auth s
 
 export default configureStore({
 reducer:{
-    auth:authRrducer,
-
-project: projectReducer
+    auth:authReducer,
+    project: projectReducer
 
 
 
