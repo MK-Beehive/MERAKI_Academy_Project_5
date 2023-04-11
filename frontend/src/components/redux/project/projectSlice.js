@@ -7,6 +7,21 @@ const projectSlice = createSlice({
        
             console.log(action.payload)
             state.project = action.payload
+
+            
+},
+setProjectByUser: (state, action) => {
+    const userId = action.payload.userId;
+    const projects = state.project.filter((project) => project.user_id === userId);
+    state.project = action.payload;
+    // console.log("projectoo: ",action.payload);
+
+  },
+}
+})
+
+export const {setProject,setProjectByUser } = projectSlice.actions
+
 },
 setMajority: (state,action)=>{
     console.log(action.payload)
@@ -19,4 +34,5 @@ setproject:  (state,action)=>{
 })
 
 export const {setProject,setMajority,setstatusproject,setproject} = projectSlice.actions
+
 export default projectSlice.reducer

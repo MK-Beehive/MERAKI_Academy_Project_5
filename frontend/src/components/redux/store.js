@@ -1,16 +1,21 @@
 import { configureStore } from "@reduxjs/toolkit";
 
 import projectReducer from "./project/projectSlice"
+
+import skillReducer from "./skills/skillsSlice"
+
 import authRrducer from "./reducers/auth/index"
+
 
 
 
 export default configureStore({
 reducer:{
-    auth:authRrducer,
+ auth:authReducer,
 
-project: projectReducer
+project: projectReducer,
 
+skill:skillReducer,
 
 
 }
