@@ -22,7 +22,7 @@ const Login = () => {
     const [result, setresult] = useState(false);
     const [isValidemail, setisValidemail] = useState(true);
      const [isValidpass, setisValidpass] = useState(true)
-
+const navigate=useNavigate()
     const loginFun = () => {
         axios
             .post("http://localhost:5000/users/login", { email, password })
@@ -155,7 +155,7 @@ const Login = () => {
     <div>   
         <h3>Don't have an account? </h3>             
         <button onClick={()=>{
-            // navigate("/register")
+            navigate("/register")
         }}> Creat Account </button><br/>
         <p><span>*
 Terms & conditions.</span>

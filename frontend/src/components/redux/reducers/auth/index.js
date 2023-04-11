@@ -33,6 +33,7 @@ export const authSlice = createSlice({
             console.log('setUserdata_____________________',action.payload)            
             state.userdata=action.payload;
             localStorage.setItem("userdata",JSON.stringify(  action.payload));
+            // localStorage.setItem("userdata",(action.payload));
 
         },
         setLogout:(state,action)=>{

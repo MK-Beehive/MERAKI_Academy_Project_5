@@ -42,8 +42,9 @@ const Register = () => {
   const dispatch = useDispatch();
   //   const history = useNavigate();
   const navigate = useNavigate();
-  const { isLoggedIn } = useSelector((state) => {
-    return { isLoggedIn: state.auth.isLoggedIn };
+  const { isLoggedIn, } = useSelector((state) => {
+    return { isLoggedIn: state.auth.isLoggedIn,
+    }
   });
 
   // =================================================================
@@ -61,7 +62,7 @@ const Register = () => {
       if (result.data.success) {
         setStatus(true);
         setMessage(result.data.message);
-        // Log the user in and redirect them to the dashboard page
+        // Log the user in and redirect them to the home page
         const loginResult = await axios.post(
           "http://localhost:5000/users/login",
           {
@@ -78,7 +79,9 @@ const Register = () => {
             lastname: loginResult.data.user.lastname,
             role_id : loginResult.data.user.role_id,                    
             }))
-                   navigate("/dashboard");
+            dispatch(setUserInfo(loginResult.data.info[0]))
+
+                   navigate("/home");
         }
       } else throw Error;
     } catch (error) {
