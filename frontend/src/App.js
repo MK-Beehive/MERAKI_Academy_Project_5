@@ -9,6 +9,7 @@ import Navbar from "./components/navbar/Navbar";
 import Footer from "./components/footer/Footer";
 import Projects from "./components/projects/Projects";
 import Home from "./components/home/Home";
+import Addproject from "./components/addproject/Addproject";
 
 
 
@@ -26,8 +27,8 @@ function App() {
 <Routes>
 <Route path="/" element={<Home/>}/>
 <Route path="/projects" element={<Projects/>}/>
- 
  <Route path={"/"} element={<Register/>} />
+ <Route path="addproject" element={<Addproject/>}/>
     
 </Routes>
 

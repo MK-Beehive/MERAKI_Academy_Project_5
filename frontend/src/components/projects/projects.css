@@ -10,11 +10,11 @@
 .projectcard1{
     display: flex;
     flex-direction: column; 
-    border: 1px solid black;
-    width: 800px;
-    box-shadow: 2px 2px 1px 1px rgba(83, 83, 74, 0.459);
+    /* border: 1px solid black; */
+    width: 950px;
+    box-shadow: 2px 2px 2px 2px rgba(83, 83, 74, 0.459);
     border-radius: 5px;
-    margin-top: 10px;
+    margin-top: 20px;
     margin-left: 40px;
 }
 
@@ -36,13 +36,117 @@
 }
 .statusproj{
     margin-left: 20px;
-    font-size: 25px;
+    font-size: 15px;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; 
-  
     background-color: rgb(71, 172, 71);
     border-radius: 5px;
     border: none;
+    font-weight: bold;
+}
+
+.projectDescrption{
+
+    background-color: transparent;
+    border: none;
+    margin-right: 400px;
+    margin-top: 20px;
+       
+}
+
+.magortiwithaddoffer{
+    display: flex;
+    flex-direction: row;
+}
+.projectmajorti{
+    inline-size: 100px;
+    margin-top: 20px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    font-size: 15px;
+    font-family: 'Times New Roman', Times, serif;
+    border: none;
+    font-weight:550;
+    height: 45px;
+}
+
+.addoffer{
    
+    inline-size: 100px;
+    margin-top: 20px;
+    margin-left: 550px;
+    margin-bottom: 10px;
+      /* background-color: rgb(255, 136, 0); */
+    border-radius: 5px;
+    font-size: 15px;
+    font-family: 'Times New Roman', Times, serif;
+    border: none;
+    font-weight:550;
+    height: 40px; 
+    cursor: pointer;
+    box-shadow: 2px 2px 2px 2px rgba(112, 99, 76, 0.322);
+ 
+}
+.filterside{
+    color: black;
+    margin-left: 20px;
+    width: 250px;
+    box-shadow: 2px 2px 2px 2px rgba(83, 83, 74, 0.459);
+    border-radius: 5px;
+    margin-top: 70px;
+    height: 500px;
+    font-size: 20px;
+    text-align: left;
+    padding: 5px;
+font-family: 'Times New Roman', Times, serif;
+}
 
+.hr{
+    inline-size: 150px;
+    margin-left: 50px;
+}
+.title{
+    color: black;
+font-family:monospace;
+font-weight: bold;
+font-size: 15px;
+}
+.hrunder{
+    inline-size: 150px; 
+}
+.hr1{
+    inline-size: 130px;
 
+}
+.list{
+    width: 200px;
+    height: 30px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 1px 1px rgba(83, 83, 74, 0.459);
+    font-size: 15px;
+    font-weight: bold;
+}
+.price{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-left: 5px;
+    margin-right: 10px;
+}
+.inputscale{
+    inline-size: 230px;
+}
+.dollar{
+font-size: 15px;
+font-weight: bolder;
+}
+.backmore{
+    margin-top: 10px;
+ padding: 5px;
+ margin-left: 8px;
+ box-shadow: 1px 1px 1px 1px rgba(83, 83, 74, 0.459);
+background-color: rgba(106, 106, 112, 0.349);
+border: none;
+cursor: pointer;
+border-radius: 5px;
 }
