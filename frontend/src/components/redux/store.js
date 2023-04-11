@@ -11,11 +11,10 @@ import authRrducer from "./reducers/auth/index"
 
 export default configureStore({
 reducer:{
- auth:authReducer,
 
-project: projectReducer,
-
-skill:skillReducer,
+    auth:authReducer,
+    project: projectReducer,
+    skill:skillReducer,
 
 
 }

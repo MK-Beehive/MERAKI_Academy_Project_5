@@ -2,7 +2,7 @@ const pool = require("../models/db");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const saltRounds = parseInt(process.env.SALT);
-
+const { OAuth2Client } = require('google-auth-library');
 
 const register = async (req, res) => {
   const { firstName, lastName, email, password, role_id } = req.body;
@@ -52,12 +52,16 @@ const login = (req, res) => {
     pool
       .query(query, data)
       .then((result) => {
-  
+      console.log("result",result.rows)
+      console.log("result",password)
+
         if (result.rows.length) {
 
         
           bcrypt.compare(password, result.rows[0].password, (err, response) => {
             if (err) res.json(err);
+          console.log("result",response)
+
             if (response) {
               const payload = {
                 userId: result.rows[0].id,
@@ -80,7 +84,7 @@ const login = (req, res) => {
             } else {
               res.status(403).json({
                 success: false,
-                message: `The email doesn’t exist or the password you’ve entered is incorrect`,
+                message: `   The email doesn’t exist or the password you’ve entered is incorrect`,
               });
             }
           });
@@ -183,12 +187,80 @@ const getallFreelancers = (req, res) => {
 };
 
 
+
+const tokenjwt = (req, res) => {
+
+  const { client_id, jwtToken } = req.body;
+
+  async function verify(client_id, jwtToken) {
+    const client = new OAuth2Client(client_id);
+    // Call the verifyIdToken to
+    // varify and decode it
+    const ticket = await client.verifyIdToken({
+        idToken: jwtToken,
+        audience: client_id,
+    });
+    // Get the JSON with all the user info
+    res.status(201).json({
+       
+       result: ticket.getPayload(),
+    })
+    // const payload = ticket.getPayload();
+    // This is a JSON object that contains
+    // all the user info
+
+    // return payload;
+}
+
+ verify(client_id, jwtToken )
+
+        
+};
+
+const members =(req,res) =>{
+ 
+    const email = req.body.email;
+
+
+    const query = `SELECT * FROM users WHERE email = $1 AND is_deleted = 0`;
+    const data = [email.toLowerCase()];
+    pool
+      .query(query, data)
+      .then((result) => {
+  
+        if (result.rows.length) {
+                 res.status(200).json({
+                  success: true,
+                  message:true,
+                 
+                });
+              } else {
+                res.status(200).json({
+                  success: true,
+                  message:false,
+              })
+            }
+
+          })
+      .catch((err) => {
+        res.status(403).json({
+          success: false,
+          message:
+            "The email doesn’t exist ",
+          err,
+        });
+      });
+  };
+
+
   module.exports = {
     register,
     login,
     getAllUsers,
     deleteUserById,
     updateUserById,
-    getallFreelancers
+    getallFreelancers,
+    tokenjwt,
+    members
 
   };

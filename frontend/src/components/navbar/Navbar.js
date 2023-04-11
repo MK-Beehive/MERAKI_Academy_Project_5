@@ -3,9 +3,21 @@ import "./navbar.css"
 import lottie from 'lottie-web';
 import { defineElement } from 'lord-icon-element';
 import { Routes, Route, Link, useParams ,useNavigate, json } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+
+
+import { setLogin,setUserId,setLogout ,setUserInfo,setUserdata} from "../redux/reducers/auth/index";
+
+
 
 
 const Navbar = () => {
+
+
+      
+  const dispatch = useDispatch(); //==sahar ==to call logout function 
+
+
   const Navigate = useNavigate();
   defineElement(lottie.loadAnimation);
   return (
@@ -46,9 +58,24 @@ const Navbar = () => {
       </svg>
     </button>
     </div>
-    <Link className="projectlink" to="/projects">Projects</Link>
-   <Link className="projectlink" to="./addproject">Add Project</Link>
-     
+
+    <div className='Links'>
+     <Link className="projectlink" to="/projects">Projects</Link>
+       {/* ==sahar==Login==LogOut=== */}
+     <Link className="projectlink" to="/join">Join</Link>
+     <a className="projectlink" ><span  onClick={()=>{
+                dispatch(setLogout())
+                Navigate("/")
+               }
+            }>
+              Logout
+     </span></a>
+
+     </div>
+
+   
+   <Link className="projectlink" to="/addproject">Add Project</Link>
+
     </div>
     <hr width="100%"  />
     </div>

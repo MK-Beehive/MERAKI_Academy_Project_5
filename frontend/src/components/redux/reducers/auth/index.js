@@ -8,7 +8,9 @@ export const authSlice = createSlice({
        token:(localStorage.getItem("token") || null),
        userinfo:(localStorage.getItem("userinfo") || null),
        userdata:(localStorage.getItem("userdata") || null),
-       isLoggedIn:(localStorage.getItem("token") ? true : false)
+       isLoggedIn:(localStorage.getItem("token") ? true : false),
+       isgoogleUser:false,
+       googleUser: null
     },
     reducers:{
         setLogin:(state,action)=>{
@@ -36,6 +38,13 @@ export const authSlice = createSlice({
             // localStorage.setItem("userdata",(action.payload));
 
         },
+        googleUser:(state,action)=>{
+            console.log('------googleUserAUTH-----',action.payload)            
+            state.isgoogleUser=true;
+            state.googleUser=action.payload;
+            //localStorage.setItem("userdata",JSON.stringify(  action.payload));
+
+        },
         setLogout:(state,action)=>{
             console.log('setLogout_____________________',action.payload)
             state.token =null;
@@ -51,7 +60,7 @@ export const authSlice = createSlice({
     
     })
     
-    export const {setLogin,setUserId,setLogout ,setUserInfo ,setUserdata}= authSlice.actions
+    export const {setLogin,setUserId,setLogout ,setUserInfo ,setUserdata,googleUser}= authSlice.actions
     
 
     export default authSlice.reducer
