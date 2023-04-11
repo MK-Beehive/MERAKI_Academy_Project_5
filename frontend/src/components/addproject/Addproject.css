@@ -1,0 +1,58 @@
+.postprojectpage
+{
+    display: flex;
+    flex-direction: row;
+    
+}
+
+
+.postproject{
+    display: flex;
+    flex-direction: column;
+  margin-left: 30px;
+   
+}
+
+.buget{
+    display: flex;
+    flex-direction: row;
+    
+}
+/* .headline{
+    font-size: 20px;
+    margin-right: 100px;
+}
+.inputadd{
+    inline-size: 500px;
+} */
+.inputadd{
+    height: 50px;
+    width: 800px;
+}
+.inputadd1{
+    height: 250px;
+    width: 800px;
+}
+.inputadd2{
+    height: 30px;
+    width: 320px;
+  margin-right: 10px;
+}
+.priceanday{
+    display: flex;
+    flex-direction: row; 
+}
+.day{
+    display: flex;
+    flex-direction: column; 
+    margin: 0 auto;
+ 
+}
+
+
+.addbutton{
+    inline-size: 200px;
+    margin: 0 auto;
+    height: 30px;
+    cursor: pointer;
+}
