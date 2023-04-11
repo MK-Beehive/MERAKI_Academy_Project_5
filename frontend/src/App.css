@@ -2,13 +2,13 @@
     text-align: center;
      margin: 0;
     padding: 0;
-    font-family: Cursive;
+    font-family: 'Times New Roman', Times, serif;
    overflow-x: hidden;
  
-
+/* color: rgb(255, 230, 10); */
 }
 
-button{
+/* button{
     font-family: Cursive;
    
   border: none;
@@ -16,8 +16,8 @@ button{
   font-size: 1rem;
   transition: transform.4s;
   cursor: pointer;
-}
-button:active{
+} */
+/* button:active{
     transform: translate(4px);
     box-shadow: 0px 0px 1px rgba(0,0,0,.2);
     border-bottom:none;
@@ -44,7 +44,7 @@ button:hover{
     input[type=number]:focus{
     outline: none;
                
-    }
+    } */
 
    
 

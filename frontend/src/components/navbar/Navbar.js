@@ -58,6 +58,7 @@ const Navbar = () => {
       </svg>
     </button>
     </div>
+
     <div className='Links'>
      <Link className="projectlink" to="/projects">Projects</Link>
        {/* ==sahar==Login==LogOut=== */}
@@ -71,6 +72,10 @@ const Navbar = () => {
      </span></a>
 
      </div>
+
+   
+   <Link className="projectlink" to="/addproject">Add Project</Link>
+
     </div>
     <hr width="100%"  />
     </div>

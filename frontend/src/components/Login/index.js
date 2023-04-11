@@ -29,6 +29,7 @@ const Login = () => {
     const [result, setresult] = useState(false);
     const [isValidemail, setisValidemail] = useState(true);
      const [isValidpass, setisValidpass] = useState(true)
+
      const [selectedRole, setSelectedRole] = useState(1); // 1 is the default value for 
 const [googleuser, setgoogleuser] = useState(false)
 const [ googleuserdata, setgoogleuserdata] = useState({})
@@ -38,6 +39,9 @@ const [gotologin, setgotologin] = useState(false)
 
 console.log("googleuserdata-inside----------",googleuserdata)
 
+
+
+const navigate=useNavigate()
 
     const loginFun = () => {
       console.log("email, password___________", email, password);
@@ -79,7 +83,7 @@ console.log("googleuserdata-inside----------",googleuserdata)
                     console.log("error", err);
                     //  setresult(true)
                 });
-            //=================================          
+         
                
             });
             }).then(()=>{
@@ -293,7 +297,7 @@ console.log("googleuserdata-inside----------",googleuserdata)
     <div>   
         <h3>Don't have an account? </h3>             
         <button onClick={()=>{
-            // navigate("/register")
+            navigate("/register")
         }}> Creat Account </button><br/>
         <p><span>*
 Terms & conditions.</span>
