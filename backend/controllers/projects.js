@@ -44,8 +44,10 @@ const addproject = (req, res) => {
 };
 
 const getAllprojects = (req, res) => {
+  const num = req.query.limit
+  console.log(num)
   const query = `SELECT projects.* ,majority.majorityname , status.statusname , users.firstname	,users.lastname, information.image FROM projects  inner join status on projects.status_id =  status.id inner  join majority on projects.majority_id =  majority.id 
-    inner join users  on projects.user_id =  users.id  INNER JOIN information ON information.user_id=users.id  where projects.is_deleted=0 ;`;
+    inner join users  on projects.user_id =  users.id  INNER JOIN information ON information.user_id=users.id  where projects.is_deleted=0 LIMIT ${num}  ;`;
 
   pool
     .query(query)

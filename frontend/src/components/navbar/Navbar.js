@@ -47,6 +47,7 @@ const Navbar = () => {
     </button>
     </div>
     <Link className="projectlink" to="/projects">Projects</Link>
+   <Link className="projectlink" to="./addproject">Add Project</Link>
      
     </div>
     <hr width="100%"  />
