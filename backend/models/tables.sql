@@ -18,3 +18,19 @@ INSERT INTO user_skills (user_id, skill_id) VALUES (1, 1) RETURNING *;
 
 //INSERT INTO information (informationDescription,jobTitle,image,cv,user_id,majority_id,skills_id) VALUES ('hello it's me','software engineer','https://images.unsplash.com/photo-1472214103451-9374bd1c798e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGljfGVufDB8fDB8fA%3D%3D&w=1000&q=80','https://images.unsplash.com/photo-1472214103451-9374bd1c798e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGljfGVufDB8fDB8fA%3D%3D&w=1000&q=80',,$5,$6,$7) RETURING *
 
+
+
+
+
+INSERT INTO experiance( experianceName) VALUES ('Junior'),('Senior'),('Principal'),('Mid-level')
+INSERT INTO majority( majorityName) VALUES ('software'),('design')
+
+ alter table information
+  add column experiance_id INT;
+
+
+   alter table information
+ add  FOREIGN KEY (experiance_id) REFERENCES experiance (id);
+
+  alter table information
+    ALTER COLUMN rate TYPE NUMERIC(2,1);

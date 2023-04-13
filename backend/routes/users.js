@@ -9,7 +9,7 @@ userRouter.get("/",getAllUsers)
 userRouter.delete("/:id", deleteUserById)
 userRouter.put("/:id", updateUserById);
 //==sahar======
-userRouter.get("/freelancers",getallFreelancers)
+userRouter.post("/freelancers",getallFreelancers)
 userRouter.post("/tokenjwt",tokenjwt)
 userRouter.post("/members",members)
 

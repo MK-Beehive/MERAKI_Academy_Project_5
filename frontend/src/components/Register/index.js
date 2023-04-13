@@ -2,7 +2,14 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
-import { setLogin, setUserId, setFName,setUserInfo,setUserdata} from "../redux/reducers/auth/index";
+import {
+  googleUser,
+  setLogin,
+  setUserId,
+  setFName,
+  setUserInfo,
+  setUserdata,
+} from "../redux/reducers/auth/index";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -25,15 +32,10 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 // =================================================================
 
-
-import {googleUser} from "../redux/reducers/auth/index"; //==sahar
-
-
 const Register = () => {
+  //===sahar === get google user to register
 
-  //===sahar === get google user to register 
-
-  const [ googleUserRegister, setgoogleUserRegister] = useState(false);
+  const [googleUserRegister, setgoogleUserRegister] = useState(false);
 
   const state = useSelector((state) => {
     return {
@@ -47,9 +49,9 @@ const Register = () => {
   const [lastName, setLastName] = useState("");
 
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [password, setPassword] = useState(""); 
   //   const role_id = 1;
-  const [selectedRole, setSelectedRole] = useState(1); // 1 is the default value for 
+  const [selectedRole, setSelectedRole] = useState(1); // 1 is the default value for
 
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState(false);
@@ -57,84 +59,69 @@ const Register = () => {
   const dispatch = useDispatch();
   //   const history = useNavigate();
   const navigate = useNavigate();
-  const { isLoggedIn, } = useSelector((state) => {
-    return { isLoggedIn: state.auth.isLoggedIn,
-    }
+  const { isLoggedIn } = useSelector((state) => {
+    return { isLoggedIn: state.auth.isLoggedIn };
   });
 
   // =================================================================
- 
 
-   useEffect(() => {
-    console.log("useEffect++++++++++++++++++++++++++++",state.auth.googleUser)
-    
-   
-        if(state.auth.isgoogleUser && state.auth.googleUser){
-          setFirstName(state.auth.googleUser.firstname);
-        setLastName(state.auth.googleUser.lastname);
-        setEmail(state.auth.googleUser.email);
-        setPassword(state.auth.googleUser.password);
-         setSelectedRole(state.auth.googleUser.role_id)
-           setgoogleUserRegister(true)
-          
-            
-         }
-         return () => {
-      
-        }
-      
-      }, [])
+  useEffect(() => {
+    console.log("useEffect++++++++++++++++++++++++++++", state.auth.googleUser);
 
-
-
-
+    if (state.auth.isgoogleUser && state.auth.googleUser && !isLoggedIn) {
+      addNewUser();
+    }
+  }, []);
 
   const addNewUser = async (e) => {
- 
-    console.log("######################",lastName)
+    console.log("######################", lastName);
 
-    console.log("#######################",email)
+    console.log("#######################", email);
 
-    console.log("######################",password)
+    console.log("######################", password);
 
-
-    
-
-    // e.preventDefault();
+    if (e) {
+      e.preventDefault();
+    }
     try {
+      console.log("++++++++++++++++++++++++++",state.auth.googleUser.role_id)
       const result = await axios.post("http://localhost:5000/users/register", {
-        firstName,
-        lastName,
-        email,
-        password,
-        role_id: selectedRole,
+            //===== sahar === here to check if the user is a google user it will use the information from google user redux else it will use the local useState
+        firstName: state.auth.googleUser.firstname   ||  firstName ,           
+        lastName:   state.auth.googleUser.lastname || lastName ,
+        email:   state.auth.googleUser.email ||  email ,
+        password:   state.auth.googleUser.password || password ,
+        role_id:   state.auth.googleUser.role_id || selectedRole ,
       });
       if (result.data.success) {
-        setStatus(true);
-        setMessage(result.data.message);
+        // setStatus(true);
+        // setMessage(result.data.message);
         // Log the user in and redirect them to the home page
         const loginResult = await axios.post(
           "http://localhost:5000/users/login",
           {
-            email,
-            password,
+            email: email || state.auth.googleUser.email,
+            password: password || state.auth.googleUser.password,
           }
         );
         if (loginResult.data) {
+          setStatus(true);
+          setMessage(result.data.message);
+          dispatch(googleUser(null));
           dispatch(setLogin(loginResult.data.token));
           dispatch(setUserId(loginResult.data.userId));
-          dispatch(setUserdata({ 
-            email : loginResult.data.user.email, 
-            firstname : loginResult.data.user.firstname,
-            lastname: loginResult.data.user.lastname,
-            role_id : loginResult.data.user.role_id,                    
-            }))
+          dispatch(
+            setUserdata({
+              email: loginResult.data.user.email,
+              firstname: loginResult.data.user.firstname,
+              lastname: loginResult.data.user.lastname,
+              role_id: loginResult.data.user.role_id,
+            })
+          );
 
-                   navigate("/");
+          // dispatch(setUserInfo(loginResult.data.info[0]));
 
-            dispatch(setUserInfo(loginResult.data.info[0]))
-
-
+          navigate("/");
         }
       } else throw Error;
     } catch (error) {
@@ -146,18 +133,13 @@ const Register = () => {
       setMessage("Error happened while register, please try again");
     }
   };
-  const [value,setValue] = useState('')
-
-
-  
-  
+  const [value, setValue] = useState("");
 
   // =================================================================
 
   return (
     <>
-
-      {!isLoggedIn ? (
+      {/* {!isLoggedIn ? ( */}
         <>
           <ThemeProvider theme={theme}>
             <Grid container component="main" sx={{ height: "100vh" }}>
@@ -256,26 +238,26 @@ const Register = () => {
                           autoComplete="new-password"
                           onChange={(e) => setPassword(e.target.value)}
                         />
-                        
-                          <RadioGroup
-                            aria-label="registerAs"
-                            name="registerAs"
-                            value={selectedRole}
-                            onChange={(e) =>
-                              setSelectedRole(Number(e.target.value))
-                            }
-                          >
-                            <FormControlLabel
-                              value="1"
-                              control={<Radio />}
-                              label="Client"
-                            />
-                            <FormControlLabel
-                              value="2"
-                              control={<Radio />}
-                              label="Freelancer"
-                            />
-                          </RadioGroup>
+
+                        <RadioGroup
+                          aria-label="registerAs"
+                          name="registerAs"
+                          value={selectedRole}
+                          onChange={(e) =>
+                            setSelectedRole(Number(e.target.value))
+                          }
+                        >
+                          <FormControlLabel
+                            value="1"
+                            control={<Radio />}
+                            label="Client"
+                          />
+                          <FormControlLabel
+                            value="2"
+                            control={<Radio />}
+                            label="Freelancer"
+                          />
+                        </RadioGroup>
                       </Grid>
                     </Grid>
                     <Button
@@ -286,7 +268,7 @@ const Register = () => {
                     >
                       Sign Up
                     </Button>
-                    
+
                     <Grid container justifyContent="flex-start">
                       <Grid item>
                         <Link to="/login" variant="body2">
@@ -310,11 +292,10 @@ const Register = () => {
                   <p>{message}</p>
                 </div>
               )}
-         
         </>
-      ) : (
+      {/* ) : (
         <p>Logout First</p>
-      )}
+      )} */}
     </>
   );
 };

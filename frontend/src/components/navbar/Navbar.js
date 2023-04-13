@@ -59,7 +59,7 @@ const Navbar = () => {
     </button>
     </div>
 
-    <div className='Links'>
+    <div className='Links'> 
      <Link className="projectlink" to="/projects">Projects</Link>
        {/* ==sahar==Login==LogOut=== */}
      <Link className="projectlink" to="/join">Join</Link>
@@ -70,11 +70,13 @@ const Navbar = () => {
             }>
               Logout
      </span></a>
+     <Link className="projectlink" to="/freelancer">Freelancers</Link>
 
+     <Link className="projectlink" to="/addproject">Add Project</Link>
      </div>
 
    
-   <Link className="projectlink" to="/addproject">Add Project</Link>
+
 
     </div>
     <hr width="100%"  />

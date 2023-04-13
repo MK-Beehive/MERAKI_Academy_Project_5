@@ -17,22 +17,22 @@ setProjectByUser: (state, action) => {
     // console.log("projectoo: ",action.payload);
 
   },
+  setMajority: (state,action)=>{
+      console.log(action.payload)
+      state.majority = action.payload
+  },
+  setproject:  (state,action)=>{
+      state.project.push(action.payload) 
+  },
+
+
+
 }
 })
 
-export const {setProject,setProjectByUser } = projectSlice.actions
 
-},
-setMajority: (state,action)=>{
-    console.log(action.payload)
-    state.majority = action.payload
-},
-setproject:  (state,action)=>{
-    state.project.push(action.payload) 
-},
-}
-})
 
-export const {setProject,setMajority,setstatusproject,setproject} = projectSlice.actions
+
+export const {setProject,setMajority,setstatusproject,setproject,setProjectByUser} = projectSlice.actions
 
 export default projectSlice.reducer

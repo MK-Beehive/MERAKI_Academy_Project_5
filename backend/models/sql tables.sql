@@ -40,10 +40,13 @@ CREATE TABLE information (
   cv VARCHAR(255),
   user_id INT UNIQUE,
   majority_id INT,
+  experiance_id INT,
   is_deleted SMALLINT DEFAULT 0,
-  rate INT,
+
   FOREIGN KEY (user_id) REFERENCES users(id),
   FOREIGN KEY (majority_id) REFERENCES majority(id),
+  FOREIGN KEY (experiance_id) REFERENCES experiance(id),
+
   PRIMARY KEY (id)
 );
 
@@ -54,6 +57,12 @@ CREATE TABLE information (
 CREATE TABLE majority(
   id SERIAL NOT NULL,
   majorityName VARCHAR(255),
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE experiance(
+  id SERIAL NOT NULL,
+  experianceName VARCHAR(255),
   PRIMARY KEY (id)
 );
 
@@ -123,4 +132,7 @@ CREATE TABLE user_skills (
   FOREIGN KEY (user_id) REFERENCES users(id),
     FOREIGN KEY (skill_id) REFERENCES skills(id),
   PRIMARY KEY (id)
+
+)
+
 

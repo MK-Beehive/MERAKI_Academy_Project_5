@@ -88,6 +88,7 @@
  
 }
 .filterside{
+   
     color: black;
     margin-left: 20px;
     width: 250px;
@@ -98,7 +99,7 @@
     font-size: 20px;
     text-align: left;
     padding: 5px;
-font-family: 'Times New Roman', Times, serif;
+      font-family: 'Times New Roman', Times, serif;
 }
 
 .hr{

@@ -10,6 +10,7 @@ const addinfoUser = (req, res) => {
     user_id,
     majority_id,
     rate,
+    experiance_id
   } = req.body;
   const placeholder = [
     informationdescription,
@@ -20,8 +21,9 @@ const addinfoUser = (req, res) => {
     iduser,
     majority_id,
     rate,
+    experiance_id
   ];
-  const query = `INSERT INTO information (informationdescription,jobTitle,image,cv,user_id,majority_id,rate) VALUES ($1,$2,$3,$4,$5,$6,$7)  RETURNING*`;
+  const query = `INSERT INTO information (informationdescription,jobTitle,image,cv,user_id,majority_id,rate,experiance_id) VALUES ($1,$2,$3,$4,$5,$6,$7,$8)  RETURNING*`;
 
   pool
     .query(query, placeholder)
