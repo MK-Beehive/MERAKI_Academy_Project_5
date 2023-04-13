@@ -22,12 +22,13 @@ const addproject = (req, res) => {
     user_id,
     cv
   ];
-
+console.log(values)
   const query = `INSERT INTO projects (title , projectDescription , projectPrice , timeExpected , status_id ,  majority_id , user_id , cv) VALUES ($1,$2,$3,$4,$5,$6,$7,$8) RETURNING *`;
 
   pool
     .query(query, values)
     .then((result) => {
+      console.log(result)
       res.status(201).json({
         success: true,
         message: "project created successfully",
@@ -35,6 +36,7 @@ const addproject = (req, res) => {
       });
     })
     .catch((err) => {
+      console.log(err)
       res.status(500).json({
         success: false,
         message: "server Error",
@@ -44,11 +46,11 @@ const addproject = (req, res) => {
 };
 
 const getAllprojects = (req, res) => {
-  const num = req.query.limit
+  const num = req.query.offset
   console.log(num)
-  const query = `SELECT projects.* ,majority.majorityname , status.statusname , users.firstname	,users.lastname, information.image FROM projects  inner join status on projects.status_id =  status.id inner  join majority on projects.majority_id =  majority.id 
-    inner join users  on projects.user_id =  users.id  INNER JOIN information ON information.user_id=users.id  where projects.is_deleted=0 LIMIT ${num}  ;`;
-
+  const query = `SELECT projects.* ,majority.majorityname , status.statusname,users.role_id   FROM projects  inner join status on projects.status_id =  status.id inner  join majority on projects.majority_id =  majority.id INNER JOIN users ON projects.user_id = users.id   where projects.is_deleted=0 ORDER BY projects.id DESC LIMIT 4 OFFSET ${num}  ;`;
+  //ORDER BY projects.id DESC
+    // LIMIT 4 OFFSET ${num}
   pool
     .query(query)
     .then((result) => {
@@ -59,6 +61,7 @@ const getAllprojects = (req, res) => {
       });
     })
     .catch((err) => {
+      console.log(err)
       res.status(500).json({
         success: false,
         message: "Server error",
@@ -101,7 +104,7 @@ const getprojectsByStatus = (req, res) => {
   console.log("status_id============", status_id);
 
   const query = `SELECT projects.* ,majority.majorityname , status.statusname , users.firstname	,users.lastname FROM projects  inner join status on projects.status_id =  status.id inner  join majority on projects.majority_id =  majority.id 
-    inner join users  on projects.user_id =  users.id   where projects.is_deleted=0 and projects.status_id = $1 ;`;
+    inner join users  on projects.user_id =  users.id   where projects.is_deleted=0 and projects.status_id = $1  ;`;
 
   pool
     .query(query, [status_id])

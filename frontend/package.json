@@ -5,9 +5,12 @@
   "dependencies": {
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
+    "@mui/base": "^5.0.0-alpha.125",
     "@mui/icons-material": "^5.11.16",
     "@mui/joy": "^5.0.0-alpha.74",
-    "@mui/material": "^5.11.16",
+    "@mui/material": "^5.12.0",
+    "@mui/x-data-grid": "^6.1.0",
+    "@mui/x-date-pickers": "^6.1.0",
     "@react-oauth/google": "^0.9.0",
     "@reduxjs/toolkit": "^1.9.3",
     "@testing-library/jest-dom": "^5.16.5",
@@ -20,11 +23,7 @@
     "lord-icon-element": "^4.1.0",
     "lottie-web": "^5.10.2",
     "npm": "^9.6.4",
-
-
     "paginationjs": "^2.6.0",
-
-
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-google-button": "^0.7.2",
@@ -32,6 +31,7 @@
     "react-router-dom": "^6.10.0",
     "react-scripts": "5.0.1",
     "react-slideshow-image": "^4.2.1",
+    "reactjs-popup": "^2.0.5",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

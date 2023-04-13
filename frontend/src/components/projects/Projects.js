@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route, Link, useParams ,useNavigate, json } from "react-router-dom";
+import { DataGrid } from '@mui/x-data-grid';
 import "./projects.css";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
@@ -10,13 +11,14 @@ import {
 } from "../redux/project/projectSlice";
 
 const Projects = () => {
+
   const navigate = useNavigate()
   const [allproject, setallproject] = useState([]);
   const [check1, setcheck1] = useState(false);
   const [filterprice, setfilterprice] = useState(10000);
   const [pajination, setpajination] = useState(3);
  const [startpoint, setstartpoint] = useState(0)
- const [endpoint, setendpoint] = useState(4)
+ const [endpoint, setendpoint] = useState(0)
   const dispatch = useDispatch();
   const state = useSelector((state) => {
     return {
@@ -28,21 +30,20 @@ const Projects = () => {
 
   //get all projects
   const getprogects = () => {
- if(endpoint===0){
-
- }else{
+console.log(endpoint)
+// ?offset=${endpoint}
       axios
-      .get(`http://localhost:5000/projects?limit=${endpoint}`)
+      .get(`http://localhost:5000/projects?offset=${endpoint}`)
       .then((result) => {
-      console.log(endpoint, startpoint)
-        console.log(  result.data.result.slice(startpoint, endpoint))
-          setallproject(  result.data.result.slice(startpoint, endpoint));
-          dispatch(setProject(  result.data.result.slice(startpoint, endpoint)));
+        console.log(result.data.result)
+          setallproject(result.data.result);
+          dispatch(setProject(result.data.result));
       })
+      
       .catch((err) => {
         console.log(err);
      });
-    }};
+    };
   //get all majortiy
   const getMajority = () => {
     axios
@@ -59,7 +60,7 @@ const Projects = () => {
   useEffect(() => {
     getprogects();
     getMajority();
-  }, []);
+  }, [endpoint]);
 
   const handelchange = (e) => {
     if (e == "All") {
@@ -204,12 +205,14 @@ More than 1 month
       
         <p className="title">All Projects</p> <hr className="hrunder"></hr>
         {allproject.map((project, i) => {
+          
           if (project.projectprice <= filterprice) {
+            console.log(project)
             return (
               <div className="projectcard1" key={i}>
                 <div className="statucwithtitle">
                   <button className="titelproj">{project.title}</button>
-                  {project.statusname === "Inprocess" && (
+                  {project.status_id === 4 && (
                     <button
                       className="statusproj"
                       style={{ background: "rgb(0, 90, 173)" }}
@@ -217,7 +220,7 @@ More than 1 month
                       {project.statusname}
                     </button>
                   )}
-                  {project.statusname === "open" && (
+                  {project.status_id === 1 && (
                     <button
                       className="statusproj"
                       style={{ background: "rgb(33, 235, 67)" }}
@@ -225,15 +228,15 @@ More than 1 month
                       {project.statusname}
                     </button>
                   )}
-                  {project.statusname === "canceled" && (
+                  {/* {project.statusname === "canceled" && (
                     <button
                       className="statusproj"
                       style={{ background: "rgb(170, 24, 24)" }}
                     >
                       {project.statusname}
                     </button>
-                  )}
-                  {project.statusname === "completed" && (
+                  )} */}
+                  {project.status_id === 5 && (
                     <button
                       className="statusproj"
                       style={{ background: "rgb(24, 99, 170)" }}
@@ -249,7 +252,7 @@ More than 1 month
                   <button className="projectmajorti">
                     {project.majorityname}
                   </button>
-                  {project.statusname=='open'&&<button className="addoffer">
+                  {project.statusname=='open'&& project.role_id== 1 && <button className="addoffer">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="22"
@@ -265,58 +268,31 @@ More than 1 month
                     </svg>
                     Addoffer
                   </button>}
+                 
                   
                 </div>
               </div>
             );
           }
         })}
-        <button
-          className="backmore"
-          onClick={() => {
-            setendpoint(endpoint+4)
-            setstartpoint(startpoint+4)
-            // setpajination(pajination + 3);
-            getprogects();
-          }}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            fill="black"
-            class="bi bi-arrow-left"
-            viewBox="0 0 16 16"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"
-            />
-          </svg>
-        </button>
-        <button
-          className="backmore"
-          onClick={() => {
-            // setpajination(pajination - 3);
-            setendpoint(endpoint-4)
-            setstartpoint(startpoint-4)
-            getprogects();
-          }}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            fill="black"
-            class="bi bi-arrow-right"
-            viewBox="0 0 16 16"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"
-            />
-          </svg>
-        </button>
+  
+
+        <button onClick={()=>{
+          setendpoint(0)
+      
+        }}>1</button>
+        <button onClick={()=>{
+          setendpoint(4)
+   
+        }}>2</button>
+        <button onClick={()=>{
+            setendpoint(8)
+     
+        }}>3</button>
+        <button onClick={()=>{
+            setendpoint(12)
+        }}>4</button>
+
       </div>
     </div>
   );

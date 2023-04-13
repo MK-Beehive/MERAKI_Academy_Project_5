@@ -4,10 +4,10 @@ export const authSlice = createSlice({
     name:"auth",
     
     initialState:{
-      userId:(localStorage.getItem("userId") || null),
+       userId:(localStorage.getItem("userId") || null),
        token:(localStorage.getItem("token") || null),
        userinfo:(localStorage.getItem("userinfo") || null),
-       userdata:(localStorage.getItem("userdata") || null),
+       userdata:(JSON.parse(localStorage.getItem("userdata")) || null),
        isLoggedIn:(localStorage.getItem("token") ? true : false),
        isgoogleUser:false,
        googleUser: null

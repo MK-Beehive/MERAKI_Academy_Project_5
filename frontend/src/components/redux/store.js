@@ -12,7 +12,7 @@ import authRrducer from "./reducers/auth/index"
 export default configureStore({
 reducer:{
 
-    auth:authReducer,
+    auth:authRrducer,
     project: projectReducer,
     skill:skillReducer,
 

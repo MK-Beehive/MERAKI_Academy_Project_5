@@ -100,7 +100,7 @@ const Register = () => {
 
     
 
-    // e.preventDefault();
+    e.preventDefault();
     try {
       const result = await axios.post("http://localhost:5000/users/register", {
         firstName,
@@ -129,10 +129,9 @@ const Register = () => {
             lastname: loginResult.data.user.lastname,
             role_id : loginResult.data.user.role_id,                    
             }))
-
+            dispatch(setUserInfo(loginResult.data.info[0]))
                    navigate("/");
 
-            dispatch(setUserInfo(loginResult.data.info[0]))
 
 
         }
