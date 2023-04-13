@@ -8,7 +8,7 @@ setSkillByUser: (state, action) => {
     const userId = action.payload.userId;
     const skills = state.skill.filter((s) => s.user_id === userId);
     state.skill = action.payload;
-    console.log("projectoo: ",action.payload);
+    console.log("skills by user: ",action.payload);
 
   },
 }

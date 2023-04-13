@@ -13,7 +13,6 @@ import Projects from "./components/projects/Projects";
 import Home from "./components/home/Home";
 import Login from "./components/Login";
 import Profile from "./components/Profile";
-
 import Addproject from "./components/addproject/Addproject";
 
 
@@ -39,6 +38,7 @@ function App() {
 
 
 
+
    <Route path="/profile" element={<Profile/>} />
 
 
@@ -49,7 +49,7 @@ function App() {
 
 </Routes>
 
-<Footer className="footer"/>
+{/* <Footer className="footer"/> */}
     </div>
 
   );

@@ -14,7 +14,7 @@ setProjectByUser: (state, action) => {
     const userId = action.payload.userId;
     const projects = state.project.filter((project) => project.user_id === userId);
     state.project = action.payload;
-    // console.log("projectoo: ",action.payload);
+    console.log("projectoo: ",action.payload);
 
   },
   setMajority: (state,action)=>{
@@ -27,6 +27,8 @@ setproject:  (state,action)=>{
 },
 }
 })
+
+
 
 export const {setProject,setMajority,setstatusproject,setproject,setProjectByUser} = projectSlice.actions
 
