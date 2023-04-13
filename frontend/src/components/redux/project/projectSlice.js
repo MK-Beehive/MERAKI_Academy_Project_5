@@ -18,20 +18,15 @@ setProjectByUser: (state, action) => {
 
   },
   setMajority: (state,action)=>{
-      console.log(action.payload)
-      state.majority = action.payload
-  },
-  setproject:  (state,action)=>{
-      state.project.push(action.payload) 
-  },
-
-
-
+    console.log(action.payload)
+    state.majority = action.payload
+},
+setproject:  (state,action)=>{
+    console.log(action.payload.project[0])
+    state.project= (action.payload.project[0]) 
+},
 }
 })
-
-
-
 
 export const {setProject,setMajority,setstatusproject,setproject,setProjectByUser} = projectSlice.actions
 

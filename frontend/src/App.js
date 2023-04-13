@@ -5,6 +5,7 @@ import Register from "./components/Register";
 
 
 
+
 import { Routes, Route, Link, useParams,useNavigate } from "react-router-dom";
 import Navbar from "./components/navbar/Navbar";
 import Footer from "./components/footer/Footer";
@@ -12,7 +13,6 @@ import Projects from "./components/projects/Projects";
 import Home from "./components/home/Home";
 import Login from "./components/Login";
 import Profile from "./components/Profile";
-
 import Addproject from "./components/addproject/Addproject";
 import Freelancer from "./components/Freelancer";
 
@@ -40,17 +40,18 @@ function App() {
 
 
 
+
    <Route path="/profile" element={<Profile/>} />
 
 
 
- <Route path="addproject" element={<Addproject/>}/>
+ <Route path="/addproject" element={<Addproject/>}/>
 
     
 
 </Routes>
 
-<Footer className="footer"/>
+{/* <Footer className="footer"/> */}
     </div>
 
   );

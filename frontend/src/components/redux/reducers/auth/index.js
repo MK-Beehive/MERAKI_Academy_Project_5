@@ -4,10 +4,10 @@ export const authSlice = createSlice({
     name:"auth",
     
     initialState:{
-      userId:(localStorage.getItem("userId") || null),
+       userId:(localStorage.getItem("userId") || null),
        token:(localStorage.getItem("token") || null),
        userinfo:(localStorage.getItem("userinfo") || null),
-       userdata:(localStorage.getItem("userdata") || null),
+       userdata:(JSON.parse(localStorage.getItem("userdata")) || null),
        isLoggedIn:(localStorage.getItem("token") ? true : false),
        isgoogleUser:false,
        googleUser: null
@@ -17,7 +17,7 @@ export const authSlice = createSlice({
             console.log('setLogin_____________________',action.payload)
             state.token =action.payload;
             state.isLoggedIn=true;
-            localStorage.setItem("token",JSON.stringify( action.payload));
+            localStorage.setItem("token",( action.payload));
         },
         setUserId:(state,action)=>{
             console.log('setUserId_____________________',action.payload)            
@@ -34,7 +34,7 @@ export const authSlice = createSlice({
         setUserdata:(state,action)=>{
             console.log('setUserdata_____________________',action.payload)            
             state.userdata=action.payload;
-            localStorage.setItem("userdata",JSON.stringify(  action.payload));
+            localStorage.setItem("userdata",JSON.stringify(action.payload));
             // localStorage.setItem("userdata",(action.payload));
 
         },

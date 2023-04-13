@@ -34,25 +34,21 @@ CREATE TABLE users(
 
 CREATE TABLE information (
   id SERIAL NOT NULL,
-  informationDescription TEXT,
-  jobTitle VARCHAR(255),
+  informationDescription TEXT DEFAULT 'No Description for The User',
+  jobTitle VARCHAR(255) DEFAULT 'NO Job Title' ,
   image VARCHAR(255) DEFAULT 'https://static.vecteezy.com/system/resources/thumbnails/009/734/564/small/default-avatar-profile-icon-of-social-media-user-vector.jpg',
-  cv VARCHAR(255),
+  cv VARCHAR(255) DEFAULT NULL,
   user_id INT UNIQUE,
   majority_id INT,
   experiance_id INT,
   is_deleted SMALLINT DEFAULT 0,
+  rate NUMERIC,
 
   FOREIGN KEY (user_id) REFERENCES users(id),
   FOREIGN KEY (majority_id) REFERENCES majority(id),
-  FOREIGN KEY (experiance_id) REFERENCES experiance(id),
-
+  FOREIGN KEY (experiance_id) REFERENCES experiance (id),
   PRIMARY KEY (id)
 );
-
- alter table information
-  add column rate Int;
-
 
 CREATE TABLE majority(
   id SERIAL NOT NULL,
@@ -133,6 +129,14 @@ CREATE TABLE user_skills (
     FOREIGN KEY (skill_id) REFERENCES skills(id),
   PRIMARY KEY (id)
 
-)
 
+CREATE TABLE notification(
+  id SERIAL NOT NULL,
+  notificationMessage VARCHAR(255),
+   user_id INT,
+    project_id INT,
+  FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE,
+  PRIMARY KEY (id)
+);
 

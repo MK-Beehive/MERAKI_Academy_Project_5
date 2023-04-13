@@ -369,6 +369,41 @@ const members =(req,res) =>{
   };
 
 
+  const getuserbyrole = (req,res)=>{
+
+    pool.query(`SELECT users.*, information.*, experiance.experianceName, majority.majorityName  FROM users INNER JOIN information ON users.id=information.user_id INNER JOIN experiance ON 
+    experiance.id= information.experiance_id INNER JOIN majority ON majority.id= information.majority_id
+    WHERE role_id=2`).then((result)=>{
+     res.json(result.rows)
+    }).catch((err)=>{
+      res.json(err)
+    })
+  }
+
+  const postnotification  = (req,res)=>{
+const userId = req.params.id
+console.log(userId)
+const {messageNotifction, project_id } = req.body
+const placholder = [messageNotifction,project_id,userId]
+pool.query(`INSERT INTO notification (notificationMessage,project_id,user_id) VALUES ($1,$2,$3) RETURNING * `,placholder).then((result)=>{
+  console.log(result.rows)
+  res.json(result.rows)
+}).catch((err)=>{
+  console.log(err)
+  res.json(err)
+})
+  }
+
+  const getnotieficationBYuserId  = (req,res)=>{
+    const userId = req.params.id
+pool.query(`SELECT * FROM notification WHERE user_id =${userId}`).then((result)=>{
+  console.log(result.rows)
+  res.json(result.rows)
+}).catch((err)=>{
+  res.json(err)
+})
+  }
+
   module.exports = {
     register,
     login,
@@ -377,6 +412,8 @@ const members =(req,res) =>{
     updateUserById,
     getallFreelancers,
     tokenjwt,
-    members
+    members,getuserbyrole,
+    postnotification,
+    getnotieficationBYuserId
 
   };
