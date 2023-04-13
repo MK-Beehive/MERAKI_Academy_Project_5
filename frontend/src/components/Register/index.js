@@ -2,7 +2,13 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
-import { setLogin, setUserId, setFName,setUserInfo,setUserdata} from "../redux/reducers/auth/index";
+import {
+  setLogin,
+  setUserId,
+  setFName,
+  setUserInfo,
+  setUserdata,
+} from "../redux/reducers/auth/index";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -20,20 +26,17 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
-
+import "./style.css";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 // =================================================================
 
-
-import {googleUser} from "../redux/reducers/auth/index"; //==sahar
-
+import { googleUser } from "../redux/reducers/auth/index"; //==sahar
 
 const Register = () => {
+  //===sahar === get google user to register
 
-  //===sahar === get google user to register 
-
-  const [ googleUserRegister, setgoogleUserRegister] = useState(false);
+  const [googleUserRegister, setgoogleUserRegister] = useState(false);
 
   const state = useSelector((state) => {
     return {
@@ -49,92 +52,117 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   //   const role_id = 1;
-  const [selectedRole, setSelectedRole] = useState(1); // 1 is the default value for 
-
+  const [selectedRole, setSelectedRole] = useState(1); // 1 is the default value for
+  const [informationdescription, setInformationDescription] = useState("");
+  const [cv, setCv] = useState("");
+  const [jobTitle, setJobTitle] = useState("");
+  const [majority_id, setMajority_id] = useState(1);
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState(false);
   const [showLogin, setShowLogin] = useState(false); // state to toggle showing the Login component
   const dispatch = useDispatch();
   //   const history = useNavigate();
   const navigate = useNavigate();
-  const { isLoggedIn, } = useSelector((state) => {
-    return { isLoggedIn: state.auth.isLoggedIn,
-    }
+  const { isLoggedIn, userinfo } = useSelector((state) => {
+    return { isLoggedIn: state.auth.isLoggedIn, userinfo: state.auth.userinfo };
   });
 
   // =================================================================
- 
 
-   useEffect(() => {
-    console.log("useEffect++++++++++++++++++++++++++++",state.auth.googleUser)
-    
-   
-        if(state.auth.isgoogleUser && state.auth.googleUser){
-          setFirstName(state.auth.googleUser.firstname);
-        setLastName(state.auth.googleUser.lastname);
-        setEmail(state.auth.googleUser.email);
-        setPassword(state.auth.googleUser.password);
-         setSelectedRole(state.auth.googleUser.role_id)
-           setgoogleUserRegister(true)
-          
-            
-         }
-         return () => {
-      
-        }
-      
-      }, [])
+  useEffect(() => {
+    console.log("useEffect++++++++++++++++++++++++++++", state.auth.googleUser);
 
-
-
-
+    if (state.auth.isgoogleUser && state.auth.googleUser) {
+      setFirstName(state.auth.googleUser.firstname);
+      setLastName(state.auth.googleUser.lastname);
+      setEmail(state.auth.googleUser.email);
+      setPassword(state.auth.googleUser.password);
+      setSelectedRole(state.auth.googleUser.role_id);
+      setgoogleUserRegister(true);
+      addNewUser();
+    }
+  }, []);
 
   const addNewUser = async (e) => {
- 
-    console.log("######################",lastName)
+    console.log("######################", lastName);
 
-    console.log("#######################",email)
+    console.log("#######################", email);
 
-    console.log("######################",password)
+    console.log("######################", password);
 
-
-    
-
-    // e.preventDefault();
+    if (e) {
+      e.preventDefault();
+    }
+    console.log(e);
     try {
       const result = await axios.post("http://localhost:5000/users/register", {
-        firstName,
-        lastName,
-        email,
-        password,
-        role_id: selectedRole,
+        firstName: state.auth.googleUser.firstname || firstName,
+        lastName: state.auth.googleUser.lastname || lastName,
+        email: state.auth.googleUser.email || email,
+        password: state.auth.googleUser.password || password,
+        role_id: state.auth.googleUser.role_id || selectedRole,
       });
       if (result.data.success) {
-        setStatus(true);
-        setMessage(result.data.message);
-        // Log the user in and redirect them to the home page
-        const loginResult = await axios.post(
-          "http://localhost:5000/users/login",
+        const userId = result.data.userId;
+        const infoResult = await axios.post(
+          `http://localhost:5000/infouser/${userId}`,
           {
-            email,
-            password,
+            informationdescription: "",
+            jobTitle: "",
+            image:
+              "https://static.vecteezy.com/system/resources/thumbnails/009/734/564/small/default-avatar-profile-icon-of-social-media-user-vector.jpg",
+            cv: "",
+            user_id: userId,
+            majority_id: 0,
+            rate: 0,
           }
         );
-        if (loginResult.data) {
-          dispatch(setLogin(loginResult.data.token));
-          dispatch(setUserId(loginResult.data.userId));
-          dispatch(setUserdata({ 
-            email : loginResult.data.user.email, 
-            firstname : loginResult.data.user.firstname,
-            lastname: loginResult.data.user.lastname,
-            role_id : loginResult.data.user.role_id,                    
-            }))
+        if (infoResult.data.success) {
+          setStatus(true);
+          setMessage("Registration successful");
+          dispatch(setUserInfo(infoResult.data.result[0]));
+          localStorage.setItem(
+            "userinfo",
+            JSON.stringify(infoResult.data.result[0])
+          );
+          // console.log("iiii---->",infoResult.data.result);
+          const loginResult = await axios.post(
+            "http://localhost:5000/users/login",
+            {
+              email: email || state.auth.googleUser.email,
+              password: password || state.auth.googleUser.password,
+            }
+          );
+          if (loginResult.data) {
+            dispatch(setLogin(loginResult.data.token));
+            dispatch(setUserId(loginResult.data.userId));
+            dispatch(
+              setUserdata({
+                email: loginResult.data.user.email,
+                firstname: loginResult.data.user.firstname,
+                lastname: loginResult.data.user.lastname,
+                role_id: loginResult.data.user.role_id,
+              })
+            );
+            // dispatch(setUserInfo(loginResult.data.info[0]))
+            localStorage.setItem(
+              "userId",
+              JSON.stringify(loginResult.data.userId)
+            );
+            localStorage.setItem("token", loginResult.data.token);
+            localStorage.setItem(
+              "userdata",
+              JSON.stringify({
+                email: loginResult.data.user.email,
+                firstname: loginResult.data.user.firstname,
+                lastname: loginResult.data.user.lastname,
+                role_id: loginResult.data.user.role_id,
+              })
+            );
+            // localStorage.setItem("userinfo", JSON.stringify(infoResult.data.result[0]));
 
-                   navigate("/");
-
-            dispatch(setUserInfo(loginResult.data.info[0]))
-
-
+            navigate("/");
+          }
         }
       } else throw Error;
     } catch (error) {
@@ -146,23 +174,19 @@ const Register = () => {
       setMessage("Error happened while register, please try again");
     }
   };
-  const [value,setValue] = useState('')
-
-
-  
-  
+  const [value, setValue] = useState("");
 
   // =================================================================
 
   return (
     <>
-
       {!isLoggedIn ? (
         <>
-          <ThemeProvider theme={theme}>
-            <Grid container component="main" sx={{ height: "100vh" }}>
-              <CssBaseline />
-              <Grid
+          <div className="reg">
+            <ThemeProvider theme={theme}>
+              <Grid container component="main" sx={{ height: "100vh" }}>
+                <CssBaseline />
+                {/* <Grid
                 item
                 xs={false}
                 sm={4}
@@ -178,85 +202,85 @@ const Register = () => {
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                 }}
-              />
-              <Grid
-                item
-                xs={12}
-                sm={8}
-                md={5}
-                component={Paper}
-                elevation={6}
-                square
-              >
-                <Box
-                  sx={{
-                    marginTop: 8,
-                    marginLeft: 1,
-                    marginRight: 1,
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                  }}
+              /> */}
+                <Grid
+                  item
+                  xs={12}
+                  sm={8}
+                  md={5}
+                  component={Paper}
+                  elevation={6}
+                  square
                 >
-                  <Avatar sx={{ m: 1, bgcolor: "#ffea00" }}>
-                    <LockOutlinedIcon />
-                  </Avatar>
-                  <Typography component="h1" variant="h5">
-                    Sign up
-                  </Typography>
                   <Box
-                    component="form"
-                    noValidate
-                    onSubmit={addNewUser}
-                    sx={{ mt: 3 }}
+                    sx={{
+                      marginTop: 8,
+                      marginLeft: 1,
+                      marginRight: 1,
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                    }}
                   >
-                    <Grid container spacing={2}>
-                      <Grid item xs={12} sm={6}>
-                        <TextField
-                          autoComplete="given-name"
-                          name="firstName"
-                          required
-                          fullWidth
-                          id="firstName"
-                          label="First Name"
-                          onChange={(e) => setFirstName(e.target.value)}
-                          autoFocus
-                        />
-                      </Grid>
-                      <Grid item xs={12} sm={6}>
-                        <TextField
-                          required
-                          fullWidth
-                          id="lastName"
-                          label="Last Name"
-                          name="lastName"
-                          autoComplete="family-name"
-                          onChange={(e) => setLastName(e.target.value)}
-                        />
-                      </Grid>
-                      <Grid item xs={12}>
-                        <TextField
-                          required
-                          fullWidth
-                          id="email"
-                          label="Email Address"
-                          name="email"
-                          autoComplete="email"
-                          onChange={(e) => setEmail(e.target.value)}
-                        />
-                      </Grid>
-                      <Grid item xs={12}>
-                        <TextField
-                          required
-                          fullWidth
-                          name="password"
-                          label="Password"
-                          type="password"
-                          id="password"
-                          autoComplete="new-password"
-                          onChange={(e) => setPassword(e.target.value)}
-                        />
-                        
+                    <Avatar sx={{ m: 1, bgcolor: "#ffea00" }}>
+                      <LockOutlinedIcon />
+                    </Avatar>
+                    <Typography component="h1" variant="h5">
+                      Sign up
+                    </Typography>
+                    <Box
+                      component="form"
+                      noValidate
+                      onSubmit={addNewUser}
+                      sx={{ mt: 3 }}
+                    >
+                      <Grid container spacing={2}>
+                        <Grid item xs={12} sm={6}>
+                          <TextField
+                            autoComplete="given-name"
+                            name="firstName"
+                            required
+                            fullWidth
+                            id="firstName"
+                            label="First Name"
+                            onChange={(e) => setFirstName(e.target.value)}
+                            autoFocus
+                          />
+                        </Grid>
+                        <Grid item xs={12} sm={6}>
+                          <TextField
+                            required
+                            fullWidth
+                            id="lastName"
+                            label="Last Name"
+                            name="lastName"
+                            autoComplete="family-name"
+                            onChange={(e) => setLastName(e.target.value)}
+                          />
+                        </Grid>
+                        <Grid item xs={12}>
+                          <TextField
+                            required
+                            fullWidth
+                            id="email"
+                            label="Email Address"
+                            name="email"
+                            autoComplete="email"
+                            onChange={(e) => setEmail(e.target.value)}
+                          />
+                        </Grid>
+                        <Grid item xs={12}>
+                          <TextField
+                            required
+                            fullWidth
+                            name="password"
+                            label="Password"
+                            type="password"
+                            id="password"
+                            autoComplete="new-password"
+                            onChange={(e) => setPassword(e.target.value)}
+                          />
+
                           <RadioGroup
                             aria-label="registerAs"
                             name="registerAs"
@@ -276,29 +300,30 @@ const Register = () => {
                               label="Freelancer"
                             />
                           </RadioGroup>
+                        </Grid>
                       </Grid>
-                    </Grid>
-                    <Button
-                      type="submit"
-                      fullWidth
-                      variant="contained"
-                      sx={{ mt: 3, mb: 2, bgcolor: "#ffea00" }}
-                    >
-                      Sign Up
-                    </Button>
-                    
-                    <Grid container justifyContent="flex-start">
-                      <Grid item>
-                        <Link to="/login" variant="body2">
-                          Already have an account? Sign in
-                        </Link>
+                      <Button
+                        type="submit"
+                        fullWidth
+                        variant="contained"
+                        sx={{ mt: 3, mb: 2, bgcolor: "#ffea00" }}
+                      >
+                        Sign Up
+                      </Button>
+
+                      <Grid container justifyContent="flex-start">
+                        <Grid item>
+                          <Link to="/login" variant="body2">
+                            Already have an account? Sign in
+                          </Link>
+                        </Grid>
                       </Grid>
-                    </Grid>
+                    </Box>
                   </Box>
-                </Box>
+                </Grid>
               </Grid>
-            </Grid>
-          </ThemeProvider>
+            </ThemeProvider>
+          </div>
           {status
             ? message && (
                 <div className="SuccessMessage">
@@ -310,7 +335,6 @@ const Register = () => {
                   <p>{message}</p>
                 </div>
               )}
-         
         </>
       ) : (
         <p>Logout First</p>

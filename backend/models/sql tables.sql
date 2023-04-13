@@ -34,14 +34,14 @@ CREATE TABLE users(
 
 CREATE TABLE information (
   id SERIAL NOT NULL,
-  informationDescription TEXT,
-  jobTitle VARCHAR(255),
+  informationDescription TEXT DEFAULT 'No Description for The User',
+  jobTitle VARCHAR(255) DEFAULT 'NO Job Title' ,
   image VARCHAR(255) DEFAULT 'https://static.vecteezy.com/system/resources/thumbnails/009/734/564/small/default-avatar-profile-icon-of-social-media-user-vector.jpg',
-  cv VARCHAR(255),
+  cv VARCHAR(255) DEFAULT NULL,
   user_id INT UNIQUE,
   majority_id INT,
   is_deleted SMALLINT DEFAULT 0,
-  rate INT,
+  rate INT DEFAULT 0,
   FOREIGN KEY (user_id) REFERENCES users(id),
   FOREIGN KEY (majority_id) REFERENCES majority(id),
   PRIMARY KEY (id)
