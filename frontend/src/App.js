@@ -14,6 +14,7 @@ import Home from "./components/home/Home";
 import Login from "./components/Login";
 import Profile from "./components/Profile";
 import Addproject from "./components/addproject/Addproject";
+import Freelancer from "./components/Freelancer";
 
 
 
@@ -23,15 +24,16 @@ function App() {
     <div className="App">
       <header className="App-header">
 
-      
+   
 
       <Navbar/>
 
       </header>
 
 <Routes>
-<Route path="/home" element={<Home/>}/>
+<Route path="/" element={<Home/>}/>
 <Route path="/projects" element={<Projects/>}/>
+<Route path="/freelancer" element={<Freelancer/>}/>
 
 <Route path="/Join" element={<Login/>}/>
  <Route path="/Register" element={<Register/>} />
@@ -43,7 +45,7 @@ function App() {
 
 
 
- <Route path="addproject" element={<Addproject/>}/>
+ <Route path="/addproject" element={<Addproject/>}/>
 
     
 

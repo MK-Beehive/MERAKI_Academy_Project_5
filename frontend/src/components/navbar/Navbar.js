@@ -91,7 +91,7 @@ if(result.data.length===0){
     </button>
     </div>
 
-    <div className='Links'>
+    <div className='Links'> 
      <Link className="projectlink" to="/projects">Projects</Link>
        {/* ==sahar==Login==LogOut=== */}
      <Link className="projectlink" to="/join">Join</Link>
@@ -102,11 +102,13 @@ if(result.data.length===0){
             }>
               Logout
      </span></a>
+
+     <Link className="projectlink" to="/freelancer">Freelancers</Link>
+
      <Link className="projectlink" to="/addproject">Add Project</Link>
      </div>
 
    
- 
 
     </div>
     <hr width="100%"  />

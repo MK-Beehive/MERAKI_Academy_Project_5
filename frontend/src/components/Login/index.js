@@ -104,7 +104,7 @@ const navigate=useNavigate()
       .then((payload) => {
            console.log("payload",payload)
            const   payloademail = payload.data.result.email
-           const payloadpassword= payload.data.result.jti 
+           const payloadpassword= payload.data.result.email 
         console.log("result",payloademail)
 
            axios

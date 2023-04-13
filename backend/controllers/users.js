@@ -159,17 +159,124 @@ const updateUserById = async (req, res) => {
 
 
 const getallFreelancers = (req, res) => {
+const {filter ,filtervalue} =req.body
 
-  const query = `select * from users inner join information  on users.id = information.user_id   inner join  majority  on    information.majority_id = majority.id   where users.is_deleted = 0  and users.role_id = 1 ;`;
+  const {limit , offset } = req.query
+  console.log("filter ,filtervalue", filter ,filtervalue ,req.body)
+  let placholder ;
+  let query;
+  let queryCount;
+  const  placholder1 = [limit,offset]
+  const  placholder2 =  [limit,offset,filtervalue]
+
+
+const  query1 = `select   users.firstName, users.lastName, users.email, users.password, users.role_id ,information.id ,information.informationdescription,    information.jobTitle,    information.image,    information.cv,    information.user_id,    information.majority_id,    information.rate,    information.experiance_id ,experiance.experianceName ,majority.majorityName from users  inner join information  on users.id = information.user_id  
+ inner join experiance on experiance.id = information.experiance_id  
+ inner join  majority  on    information.majority_id = majority.id 
+ 
+ where  
+ ( users.is_deleted = 0  and users.role_id = 2  and   information.majority_id =$3 )  or 
+ ( users.is_deleted = 0  and users.role_id = 2  and  information.experiance_id=$3) or ( users.is_deleted = 0  and users.role_id = 2 )
+ 
+ limit $1 offset $2 ;`
+
+const query2 = `select   users.firstName, users.lastName, users.email, users.password, users.role_id ,information.id , 
+ information.informationdescription,    information.jobTitle,    information.image,    information.cv,    information.user_id,    information.majority_id,    information.rate,    information.experiance_id ,experiance.experianceName  ,majority.majorityName
+ from users 
+  inner join information  on users.id = information.user_id  
+  inner join experiance on experiance.id = information.experiance_id  
+  inner join  majority  on    information.majority_id = majority.id 
+ 
+  where users.is_deleted = 0  and users.role_id = 2  
+  and information.majority_id =$3
+   limit $1 offset $2 ;`
+
+   const  query3 = `select   users.firstName, users.lastName, users.email, users.password, users.role_id ,information.id ,
+   information.informationdescription,    information.jobTitle,    information.image,    information.cv,    information.user_id,    information.majority_id,    information.rate,    information.experiance_id ,experiance.experianceName  ,majority.majorityName
+   from users 
+    inner join information  on users.id = information.user_id  
+    inner join experiance on experiance.id = information.experiance_id  
+    inner join  majority  on    information.majority_id = majority.id 
+   
+    where users.is_deleted = 0  and users.role_id = 2  
+    and information.experiance_id=$3
+     limit $1 offset $2 ;`
+
+     const queryCount1 = `select  COUNT(*) as countFreelancers from  ( select   users.firstName, users.lastName, users.email, users.password, users.role_id ,information.id ,
+      information.informationdescription,    information.jobTitle,    information.image,    information.cv,    information.user_id,    information.majority_id,    information.rate,    information.experiance_id ,experiance.experianceName  
+      from users 
+       inner join information  on users.id = information.user_id  
+       inner join experiance on experiance.id = information.experiance_id  
+       inner join  majority  on    information.majority_id = majority.id 
+      
+        where users.is_deleted = 0  and users.role_id = 2 
+    
+    ) newtable;`;
+    const queryCount2 = `select  COUNT(*) as countFreelancers from  ( select   users.firstName, users.lastName, users.email, users.password, users.role_id ,information.id ,
+      information.informationdescription,    information.jobTitle,    information.image,    information.cv,    information.user_id,    information.majority_id,    information.rate,    information.experiance_id ,experiance.experianceName  
+      from users 
+       inner join information  on users.id = information.user_id  
+       inner join experiance on experiance.id = information.experiance_id  
+       inner join  majority  on    information.majority_id = majority.id 
+      
+        where users.is_deleted = 0  and users.role_id = 2 
+        and information.majority_id =${filtervalue}
+    ) newtable;`;
+    
+
+    const queryCount3 = `select  COUNT(*) as countFreelancers from  ( select   users.firstName, users.lastName, users.email, users.password, users.role_id ,information.id ,
+      information.informationdescription,    information.jobTitle,    information.image,    information.cv,    information.user_id,    information.majority_id,    information.rate,    information.experiance_id ,experiance.experianceName  
+      from users 
+       inner join information  on users.id = information.user_id  
+       inner join experiance on experiance.id = information.experiance_id  
+       inner join  majority  on    information.majority_id = majority.id 
+      
+        where users.is_deleted = 0  and users.role_id = 2 
+        and information.experiance_id=${filtervalue}
+    ) newtable;`;
+    
+
+
+   
+  if (filter == "ALL" || filtervalue == 0){
+       query=query1
+       placholder = placholder1
+       queryCount=queryCount1
+
+  }else if(filter == 'majority'  &&  filtervalue != 0){
+    console.log("filter == majority &&  filtervalue != 0")
+       query=query2
+      placholder= placholder2
+      queryCount=queryCount2
+
+  }else if(filter == "experiance"  &&  filtervalue != 0){
+       query=query3
+ 
+      placholder=placholder2
+      queryCount=queryCount3
+    
+  }
+
+console.log("getallFreelancers---",offset)
+console.log("getallFreelancers---",filtervalue)
+
+console.log("getallFreelancers---",filter)
 
   pool
-    .query(query)
+    .query(query,placholder)
     .then((result) => {
+
+  
+    
+      pool
+        .query(queryCount)
+        .then((resultqueryCount) => {
       if (result.rows.length != 0) {
         res.status(201).json({
           success: true,
           message: `All Freelancers user:`,
           result: result.rows,
+          count :  resultqueryCount.rows,
         });
       } else {
         res.status(404).json({
@@ -177,6 +284,15 @@ const getallFreelancers = (req, res) => {
           message: `no Freelancer `,
         });
       }
+
+    })
+    .catch((err) => {
+      res.status(500).json({
+        success: false,
+        message: "Server error",
+      });
+    });
+
     })
     .catch((err) => {
       res.status(500).json({

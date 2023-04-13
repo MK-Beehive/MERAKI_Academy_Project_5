@@ -3,6 +3,7 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
 import {
+  googleUser,
   setLogin,
   setUserId,
   setFName,
@@ -31,7 +32,9 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 // =================================================================
 
+
 import { googleUser } from "../redux/reducers/auth/index"; //==sahar
+
 
 const Register = () => {
   //===sahar === get google user to register
@@ -50,21 +53,24 @@ const Register = () => {
   const [lastName, setLastName] = useState("");
 
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [password, setPassword] = useState(""); 
   //   const role_id = 1;
   const [selectedRole, setSelectedRole] = useState(1); // 1 is the default value for
+
   const [informationdescription, setInformationDescription] = useState("");
   const [cv, setCv] = useState("");
   const [jobTitle, setJobTitle] = useState("");
   const [majority_id, setMajority_id] = useState(1);
+
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState(false);
   const [showLogin, setShowLogin] = useState(false); // state to toggle showing the Login component
   const dispatch = useDispatch();
   //   const history = useNavigate();
   const navigate = useNavigate();
-  const { isLoggedIn, userinfo } = useSelector((state) => {
-    return { isLoggedIn: state.auth.isLoggedIn, userinfo: state.auth.userinfo };
+
+  const { isLoggedIn } = useSelector((state) => {
+    return { isLoggedIn: state.auth.isLoggedIn };
   });
 
   // =================================================================
@@ -72,13 +78,7 @@ const Register = () => {
   useEffect(() => {
     console.log("useEffect++++++++++++++++++++++++++++", state.auth.googleUser);
 
-    if (state.auth.isgoogleUser && state.auth.googleUser) {
-      setFirstName(state.auth.googleUser.firstname);
-      setLastName(state.auth.googleUser.lastname);
-      setEmail(state.auth.googleUser.email);
-      setPassword(state.auth.googleUser.password);
-      setSelectedRole(state.auth.googleUser.role_id);
-      setgoogleUserRegister(true);
+    if (state.auth.isgoogleUser && state.auth.googleUser && !isLoggedIn) {
       addNewUser();
     }
   }, []);
@@ -93,16 +93,19 @@ const Register = () => {
     if (e) {
       e.preventDefault();
     }
-    console.log(e);
 
     try {
+      console.log("++++++++++++++++++++++++++",state.auth.googleUser.role_id)
       const result = await axios.post("http://localhost:5000/users/register", {
-        firstName: state.auth.googleUser.firstname || firstName,
-        lastName: state.auth.googleUser.lastname || lastName,
-        email: state.auth.googleUser.email || email,
-        password: state.auth.googleUser.password || password,
-        role_id: state.auth.googleUser.role_id || selectedRole,
+
+            //===== sahar === here to check if the user is a google user it will use the information from google user redux else it will use the local useState
+        firstName: state.auth.googleUser.firstname   ||  firstName ,           
+        lastName:   state.auth.googleUser.lastname || lastName ,
+        email:   state.auth.googleUser.email ||  email ,
+        password:   state.auth.googleUser.password || password ,
+        role_id:   state.auth.googleUser.role_id || selectedRole ,
       });
+    
       if (result.data.success) {
         const userId = result.data.userId;
         const infoResult = await axios.post(
@@ -166,6 +169,7 @@ const Register = () => {
             navigate("/");
           }
 
+
         }
       } else throw Error;
     } catch (error) {
@@ -183,7 +187,9 @@ const Register = () => {
 
   return (
     <>
+
       {!isLoggedIn ? (
+
         <>
           <div className="reg">
             <ThemeProvider theme={theme}>
@@ -225,6 +231,7 @@ const Register = () => {
                       alignItems: "center",
                     }}
                   >
+
                     <Avatar sx={{ m: 1, bgcolor: "#ffea00" }}>
                       <LockOutlinedIcon />
                     </Avatar>
@@ -320,6 +327,7 @@ const Register = () => {
                             Already have an account? Sign in
                           </Link>
                         </Grid>
+
                       </Grid>
                     </Box>
                   </Box>
@@ -341,7 +349,7 @@ const Register = () => {
         </>
       ) : (
         <p>Logout First</p>
-      )}
+      )} 
     </>
   );
 };

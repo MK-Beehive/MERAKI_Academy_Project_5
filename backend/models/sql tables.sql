@@ -42,7 +42,6 @@ CREATE TABLE information (
   majority_id INT,
   experiance_id INT,
   is_deleted SMALLINT DEFAULT 0,
-
   rate NUMERIC,
 
   FOREIGN KEY (user_id) REFERENCES users(id),
@@ -54,6 +53,12 @@ CREATE TABLE information (
 CREATE TABLE majority(
   id SERIAL NOT NULL,
   majorityName VARCHAR(255),
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE experiance(
+  id SERIAL NOT NULL,
+  experianceName VARCHAR(255),
   PRIMARY KEY (id)
 );
 
@@ -124,11 +129,6 @@ CREATE TABLE user_skills (
     FOREIGN KEY (skill_id) REFERENCES skills(id),
   PRIMARY KEY (id)
 
-CREATE TABLE experiance(
-  id SERIAL NOT NULL,
-  experianceName VARCHAR(255),
-  PRIMARY KEY (id)
-);
 
 CREATE TABLE notification(
   id SERIAL NOT NULL,
@@ -139,3 +139,4 @@ CREATE TABLE notification(
     FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE,
   PRIMARY KEY (id)
 );
+
