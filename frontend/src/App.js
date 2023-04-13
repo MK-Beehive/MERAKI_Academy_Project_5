@@ -12,7 +12,6 @@ import Footer from "./components/footer/Footer";
 import Projects from "./components/projects/Projects";
 import Home from "./components/home/Home";
 
-import Login from "./components/Login";
 import Profile from "./components/Profile";
 
 import Addproject from "./components/addproject/Addproject";
@@ -37,6 +36,7 @@ function App() {
 
 <Route path="/Join" element={<Login/>}/>
  <Route path="/Register" element={<Register/>} />
+ <Route path="/login" element={<Login/>} />
 
 
 
@@ -50,7 +50,7 @@ function App() {
 
 </Routes>
 
-<Footer className="footer"/>
+{/* <Footer className="footer"/> */}
     </div>
 
   );

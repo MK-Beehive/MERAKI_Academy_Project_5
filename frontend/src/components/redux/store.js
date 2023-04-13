@@ -4,8 +4,8 @@ import projectReducer from "./project/projectSlice"
 
 import skillReducer from "./skills/skillsSlice"
 
-import authRrducer from "./reducers/auth/index"
-
+import authReducer from "./reducers/auth/index"
+import offerReducer from "./offers/offerSlice"
 
 
 
@@ -15,6 +15,7 @@ reducer:{
     auth:authReducer,
     project: projectReducer,
     skill:skillReducer,
+    offer:offerReducer,
 
 
 }

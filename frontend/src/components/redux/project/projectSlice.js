@@ -14,16 +14,10 @@ setProjectByUser: (state, action) => {
     const userId = action.payload.userId;
     const projects = state.project.filter((project) => project.user_id === userId);
     state.project = action.payload;
-    // console.log("projectoo: ",action.payload);
+    console.log("projectoo: ",action.payload);
 
   },
-}
-})
-
-export const {setProject,setProjectByUser } = projectSlice.actions
-
-},
-setMajority: (state,action)=>{
+  setMajority: (state,action)=>{
     console.log(action.payload)
     state.majority = action.payload
 },
@@ -33,6 +27,10 @@ setproject:  (state,action)=>{
 }
 })
 
-export const {setProject,setMajority,setstatusproject,setproject} = projectSlice.actions
+
+
+
+
+export const {setProject,setMajority,setstatusproject,setproject,setProjectByUser} = projectSlice.actions
 
 export default projectSlice.reducer
