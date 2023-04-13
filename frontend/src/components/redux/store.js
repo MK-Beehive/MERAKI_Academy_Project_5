@@ -12,7 +12,7 @@ import offerReducer from "./offers/offerSlice"
 export default configureStore({
 reducer:{
 
-    auth:authReducer,
+    auth:authRrducer,
     project: projectReducer,
     skill:skillReducer,
     offer:offerReducer,

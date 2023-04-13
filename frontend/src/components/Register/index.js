@@ -94,6 +94,7 @@ const Register = () => {
       e.preventDefault();
     }
     console.log(e);
+
     try {
       const result = await axios.post("http://localhost:5000/users/register", {
         firstName: state.auth.googleUser.firstname || firstName,
@@ -144,7 +145,8 @@ const Register = () => {
                 role_id: loginResult.data.user.role_id,
               })
             );
-            // dispatch(setUserInfo(loginResult.data.info[0]))
+           
+           
             localStorage.setItem(
               "userId",
               JSON.stringify(loginResult.data.userId)
@@ -159,10 +161,11 @@ const Register = () => {
                 role_id: loginResult.data.user.role_id,
               })
             );
-            // localStorage.setItem("userinfo", JSON.stringify(infoResult.data.result[0]));
+     
 
             navigate("/");
           }
+
         }
       } else throw Error;
     } catch (error) {

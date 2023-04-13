@@ -22,12 +22,11 @@ setProjectByUser: (state, action) => {
     state.majority = action.payload
 },
 setproject:  (state,action)=>{
-    state.project.push(action.payload) 
+    console.log(action.payload.project[0])
+    state.project= (action.payload.project[0]) 
 },
 }
 })
-
-
 
 
 

@@ -40,16 +40,16 @@ CREATE TABLE information (
   cv VARCHAR(255) DEFAULT NULL,
   user_id INT UNIQUE,
   majority_id INT,
+  experiance_id INT,
   is_deleted SMALLINT DEFAULT 0,
-  rate INT DEFAULT 0,
+
+  rate NUMERIC,
+
   FOREIGN KEY (user_id) REFERENCES users(id),
   FOREIGN KEY (majority_id) REFERENCES majority(id),
+  FOREIGN KEY (experiance_id) REFERENCES experiance (id),
   PRIMARY KEY (id)
 );
-
- alter table information
-  add column rate Int;
-
 
 CREATE TABLE majority(
   id SERIAL NOT NULL,
@@ -124,3 +124,18 @@ CREATE TABLE user_skills (
     FOREIGN KEY (skill_id) REFERENCES skills(id),
   PRIMARY KEY (id)
 
+CREATE TABLE experiance(
+  id SERIAL NOT NULL,
+  experianceName VARCHAR(255),
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE notification(
+  id SERIAL NOT NULL,
+  notificationMessage VARCHAR(255),
+   user_id INT,
+    project_id INT,
+  FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE,
+  PRIMARY KEY (id)
+);
