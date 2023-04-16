@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 const projectSlice = createSlice({
     name:"project",
-    initialState: {project:[], majority:[], status:[]}, 
+    initialState: {project:[], majority:[], status:[], notification :[] },
     reducers:{
         setProject : (state,action)=>{
        
@@ -25,9 +25,13 @@ setproject:  (state,action)=>{
     console.log(action.payload.project[0])
     state.project= (action.payload.project[0]) 
 },
+setnotification:(state,action)=>{
+    console.log(action.payload)
+    state.notification= (action.payload)
+},
 }
 })
 
-export const {setProject,setMajority,setstatusproject,setproject,setProjectByUser} = projectSlice.actions
+export const {setProject,setMajority,setstatusproject,setproject,setProjectByUser,setnotification} = projectSlice.actions
 
 export default projectSlice.reducer
