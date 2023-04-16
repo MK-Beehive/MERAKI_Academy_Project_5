@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {ref} from ""
+// import {ref} from ""
 import "./Addproject.css";
 import {
   Routes,
@@ -18,7 +18,7 @@ import "reactjs-popup/dist/index.css";
 //================intri data ===========================
 // import Box from '@mui/material/Box';
 import TextField from "@mui/material/TextField";
-import MenuItem from '@mui/material/MenuItem';
+import MenuItem from "@mui/material/MenuItem";
 //==========================================================
 //====================================
 
@@ -162,17 +162,16 @@ function Addproject() {
         console.log(err);
       });
   };
-//======================================================FRAME
-const formHandle  =(e)=>{
-console.log(e)
-e.preventDefault()
-const file = e.target[0].files[0]
+  //======================================================FRAME
+  const formHandle = (e) => {
+    console.log(e);
+    e.preventDefault();
+    const file = e.target[0].files[0];
 
-console.log(file)
-}
+    console.log(file);
+  };
 
-
-//================================================FIREBASE
+  //================================================FIREBASE
 
   return (
     <div className="postprojectpage">
@@ -208,7 +207,7 @@ console.log(file)
         </select>
         <div className="priceanday">
           <div className="day"> */}
-            {/* <p className="headline">
+        {/* <p className="headline">
               cost project $<span style={{ color: "red" }}>*</span>
             </p>
             <input
@@ -218,13 +217,13 @@ console.log(file)
                 setcost(e.target.value);
               }}
             /> */}
-          {/* </div>
+        {/* </div>
           <div className="day"> */}
-            {/* <p className="headline">
+        {/* <p className="headline">
               expected duration<span style={{ color: "red" }}>*</span>
             </p> */}
-            {/* <div className="buget"> */}
-              {/* <input
+        {/* <div className="buget"> */}
+        {/* <input
                 className="inputadd2"
                 type="number"
                 onChange={(e) => {
@@ -234,18 +233,20 @@ console.log(file)
               <p>
                 day<span style={{ color: "red" }}>*</span>
               </p> */}
-            {/* </div> */}
-          {/* </div> */}
-          {/* <br></br> */}
         {/* </div> */}
-
-     
+        {/* </div> */}
+        {/* <br></br> */}
+        {/* </div> */}
 
         <div>
           {/* <Button onClick={handleOpen1}>Open modal</Button> */}
-          <div className="under"> <h2>Add Your Project:<hr ></hr></h2>
+          <div className="under">
+            {" "}
+            <h2>
+              Add Your Project:<hr></hr>
+            </h2>
           </div>
-         
+
           <Modal
             open={open1}
             onClose={handleClose1}
@@ -288,92 +289,79 @@ console.log(file)
             </Box>
           </Modal>
         </div>
-     
 
-      <Box
-        component="form"
-        sx={{
-          "& .MuiTextField-root": { m: 1, width: "100ch" },
-        }}
-        noValidate
-        autoComplete="off"
-      >
-        <div>
-          <TextField
-            onChange={(e) => {
-              console.log(e.target.value);
-              settitle(e.target.value);
-            }}
-            id="outlined-multiline-flexible"
-            label="Title"
-            multiline
-            maxRows={4}
-            color="secondary" 
-            helperText="required*"
-          />
-          <TextField
-            onChange={(e) => {
-              setdiscription(e.target.value);
-            }}
-            id="outlined-multiline-static"
-            label="Description"
-            multiline
-            rows={10}
-            color="secondary" 
-            helperText="required*"
-          />
-        </div>
-      </Box>
+        <Box
+          component="form"
+          sx={{
+            "& .MuiTextField-root": { m: 1, width: "100ch" },
+          }}
+          noValidate
+          autoComplete="off"
+        >
+          <div>
+            <TextField
+              onChange={(e) => {
+                console.log(e.target.value);
+                settitle(e.target.value);
+              }}
+              id="outlined-multiline-flexible"
+              label="Title"
+              multiline
+              maxRows={4}
+              color="secondary"
+              helperText="required*"
+            />
+            <TextField
+              onChange={(e) => {
+                setdiscription(e.target.value);
+              }}
+              id="outlined-multiline-static"
+              label="Description"
+              multiline
+              rows={10}
+              color="secondary"
+              helperText="required*"
+            />
+          </div>
+        </Box>
 
-
-
-
-
-
-      <Box
-      component="form"
-      sx={{
-        '& .MuiTextField-root': { m: 1, width: '49ch' },
-      }}
-      noValidate
-      autoComplete="off"
-    >
-      <div>
-        <TextField onChange={(e) => {
+        <Box
+          component="form"
+          sx={{
+            "& .MuiTextField-root": { m: 1, width: "49ch" },
+          }}
+          noValidate
+          autoComplete="off"
+        >
+          <div>
+            <TextField
+              onChange={(e) => {
                 setcost(e.target.value);
               }}
-          id="outlined-multiline-flexible"
-          label="Budget"
-          multiline
-          maxRows={4}
-          color="secondary" 
-          helperText="required*"
-        
-        />
-        <TextField  onChange={(e) => {
-                  setdaywork(e.target.value);
-                }}
-          type= "number"
-          id="outlined-textarea"
-          label="Work days"
-          placeholder="Work days"
-          multiline
-          color="secondary" 
-          helperText="required*"
-        />
-      </div>
-    
-    </Box>
+              id="outlined-multiline-flexible"
+              label="Budget"
+              multiline
+              maxRows={4}
+              color="secondary"
+              helperText="required*"
+            />
+            <TextField
+              onChange={(e) => {
+                setdaywork(e.target.value);
+              }}
+              type="number"
+              id="outlined-textarea"
+              label="Work days"
+              placeholder="Work days"
+              multiline
+              color="secondary"
+              helperText="required*"
+            />
+          </div>
+        </Box>
 
-
-
-
-
-
-
-   
-   
-   <select className="selecthere"
+        <select
+          className="selecthere"
           onChange={(e) => {
             console.log(e.target.value);
             state.majority.map((majorityall, i) => {
@@ -392,15 +380,11 @@ console.log(file)
             }
           })}
         </select>
-   
-<form onSubmit={formHandle}>
-<input type="file"/>
-<button type="submit">Upload</button>
 
-</form>
-
-
-
+        <form onSubmit={formHandle}>
+          <input type="file" />
+          <button type="submit">Upload</button>
+        </form>
 
         <React.Fragment>
           <Button onClick={handleOpen}>Add Project</Button>
@@ -440,35 +424,8 @@ console.log(file)
             </Box>
           </Modal>
         </React.Fragment>
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-     
-
-
-
-
-
-
-
-
-
-        </div>
-        <div class = "vertical"></div>
-
+      </div>
+      <div class="vertical"></div>
     </div>
   );
 }

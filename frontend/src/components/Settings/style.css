@@ -1,0 +1,29 @@
+.setting-container {
+    display: grid;
+    grid-template-columns: 1fr 6fr 1fr;
+    grid-template-areas: "a b c";
+    height: 100vh; /* Set the container to take up the full height of the viewport */
+  }
+  
+  .left {
+    grid-area: a;
+    height: 100%; /* Set the height of the left column to take up the full height of the container */
+  }
+  
+  .center {
+    grid-area: b;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    margin-top: 2vw;
+    margin-left: 10vw;
+    width: 20%;
+    height: 100%; /* Set the height of the center column to take up the full height of the container */
+  }
+  
+  .right {
+    grid-area: c;
+    height: 100%; /* Set the height of the right column to take up the full height of the container */
+  }
+  
