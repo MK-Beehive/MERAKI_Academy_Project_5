@@ -37,18 +37,18 @@ const Profile = () => {
   const [value, setValue] = useState(0);
   const [size, setSize] = useState("large"); // default is 'middle'
   const navigate = useNavigate();
-  const getUserInfo = async () => {
-    try {
-      const result = await axios.get(
-        `http://localhost:5000/infouser/${userId}`
-      );
-      //   console.log(result.data.info[0].rate);
-      dispatch(setUserInfo(result.data.info));
-      setValue(result.data.info[0].rate);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const getUserInfo = async () => {
+  //   try {
+  //     const result = await axios.get(
+  //       `http://localhost:5000/infouser/${userId}`
+  //     );
+  //     //   console.log(result.data.info[0].rate);
+  //     dispatch(setUserInfo(result.data.info));
+  //     setValue(result.data.info[0].rate);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   const getProjectByUser = async () => {
     try {
@@ -101,10 +101,12 @@ const Profile = () => {
 
   
   useEffect(() => {
-    getUserInfo();
+    // getUserInfo();
+    setValue(userinfo.rate);
     getProjectByUser();
     getSkilltByUser();
     getOfferByUser()
+    console.log(",,,,,,,,,,,,,,,,,,,",userinfo)
     // console.log("USER DATA======= ", Object.values(userdata));
     // console.log("User Data . id======= ", userdata.role_id);
     // console.log("User Data ======= ", userdata);
@@ -118,10 +120,10 @@ const Profile = () => {
             style={{
               width: 300,
             }}
-            cover={<img alt="user image" src={userinfo[0].image} />}
+            cover={<img alt="user image" src={userinfo.image} />}
             actions={[
               <div class="buttons">
-                {isLoggedIn && userId == userinfo[0].user_id && (
+                {isLoggedIn && userId == userinfo.user_id && (
                   <Button
                     type="primary"
                     icon={<SettingOutlined />}
@@ -141,7 +143,7 @@ const Profile = () => {
             ]}
           >
             <Meta
-              title={`${userinfo[0].firstname} ${userinfo[0].lastname}`}
+              title={`${userinfo.firstname} ${userinfo.lastname}`}
               description="  "
             />
 
@@ -233,8 +235,8 @@ Settings
         </div>
         <div className="desc">
           <Card title="Description" bordered={true}>
-            {userinfo[0].informationdescription ? (
-              <p>{userinfo[0].informationdescription}</p>
+            {userinfo.informationdescription ? (
+              <p>{userinfo.informationdescription}</p>
             ) : (
               <p>No description available</p>
             )}

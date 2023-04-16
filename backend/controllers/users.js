@@ -174,9 +174,7 @@ const  query1 = `select   users.firstName, users.lastName, users.email, users.pa
  inner join experiance on experiance.id = information.experiance_id  
  inner join  majority  on    information.majority_id = majority.id 
  
- where  
- ( users.is_deleted = 0  and users.role_id = 2  and   information.majority_id =$3 )  or 
- ( users.is_deleted = 0  and users.role_id = 2  and  information.experiance_id=$3) or ( users.is_deleted = 0  and users.role_id = 2 )
+ where   users.is_deleted = 0  and users.role_id = 2 
  
  limit $1 offset $2 ;`
 

@@ -4,11 +4,8 @@ import { DataGrid } from '@mui/x-data-grid';
 import "./projects.css";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  setProject,
-  setMajority,
-  setstatusproject,
-} from "../redux/project/projectSlice";
+import {  setProject,  setMajority,  setstatusproject,} from "../redux/project/projectSlice";
+import {setSelectedProject  } from "../redux/reducers/selected/index"
 
 const Projects = () => {
 
@@ -25,6 +22,7 @@ const Projects = () => {
       project: state.project.project,
       majority: state.project.majority,
       status: state.project.status,
+      selected:state.selected.selectedProject
     };
   });
 
@@ -209,7 +207,11 @@ More than 1 month
           if (project.projectprice <= filterprice) {
             console.log(project)
             return (
-              <div className="projectcard1" key={i}>
+              <div className="projectcard1" key={i} onClick={()=>{
+                     dispatch(setSelectedProject(project.id))
+                     navigate("/ProjectInside")
+
+              }}>
                 <div className="statucwithtitle">
                   <button className="titelproj">{project.title}</button>
                   {project.status_id === 4 && (
