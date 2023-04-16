@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {ref} from ""
+// import {ref} from ""
 import "./Addproject.css";
 import {
   Routes,
@@ -440,32 +440,6 @@ console.log(file)
             </Box>
           </Modal>
         </React.Fragment>
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-     
-
-
-
-
-
-
-
-
-
         </div>
         <div class = "vertical"></div>
 

@@ -129,7 +129,7 @@ CREATE TABLE user_skills (
     FOREIGN KEY (skill_id) REFERENCES skills(id),
   PRIMARY KEY (id)
 
-
+)
 CREATE TABLE notification(
   id SERIAL NOT NULL,
   notificationMessage VARCHAR(255),

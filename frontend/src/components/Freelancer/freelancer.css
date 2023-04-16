@@ -26,6 +26,7 @@ font-family: 'Times New Roman', Times, serif;
 }
 
 .freelancerinfo1{
+    position: relative;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -33,6 +34,13 @@ font-family: 'Times New Roman', Times, serif;
 
     margin-left: 5%;
 
+}
+.chat{
+    position: absolute;
+    top:0;
+    right: 0;
+    width: 3rem;
+    height: 2rem;
 }
 
 .freelancerinfo2{

@@ -2,14 +2,18 @@ const pool = require("../models/db");
 
 const creatoffer = (req, res) => {
   const idproject = req.params.id;
+  
   const {
     budget,
     workday,
     jobOfferStatus_id,
     jobOfferDescription,
-    project_id,
     user_id,
   } = req.body;
+
+
+
+
   const placeholder = [
     budget,
     workday,
@@ -46,7 +50,7 @@ const getoffer = (req, res) => {
   //majority.majorityName, status.statusName
   pool
     .query(
-      `SELECT jobOffer.id, jobOffer.workday,jobOffer.budget,jobOffer.jobofferdescription, users.firstName, information.image,majority.majorityName, status.statusName  FROM jobOffer INNER JOIN users ON joboffer.user_id=users.id INNER JOIN information ON joboffer.user_id=information.user_id INNER JOIN majority ON information.majority_id=majority.id INNER JOIN status ON joboffer.jobofferstatus_id=status.id WHERE project_id= ${idproject}`
+      `SELECT jobOffer.id, jobOffer.workday,jobOffer.budget,jobOffer.jobofferdescription, users.firstName, information.image, information.jobtitle  ,majority.majorityName, status.statusName  FROM jobOffer INNER JOIN users ON joboffer.user_id=users.id INNER JOIN information ON joboffer.user_id=information.user_id INNER JOIN majority ON information.majority_id=majority.id INNER JOIN status ON joboffer.jobofferstatus_id=status.id WHERE project_id= ${idproject}`
     )
     .then((result) => {
       res
@@ -169,6 +173,8 @@ const getofferByUser = (req, res) => {
         .status(500);
     });
 };
+
+
 
 
 
