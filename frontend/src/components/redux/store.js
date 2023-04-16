@@ -24,8 +24,9 @@ reducer:{
     auth:authReducer,
     project: projectReducer,
     skill:skillReducer,
+    experiances:experiancesReducer,
 
-    experiances:experiancesRrducer,
+
 
 
     offer:offerReducer,

@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { storage } from "../firebase/Firebase";
 
+
 import "./Addproject.css";
 import { FileUploader } from "react-drag-drop-files";
 // import nodemailer from "nodemailer";
@@ -459,6 +460,7 @@ const emailsend = ()=>{
         {/* </form> */}
       </div>
 
+
                   <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2z" />
                 </svg>{" "}
                 can you invite your freelanser to apply his offer
@@ -469,6 +471,7 @@ const emailsend = ()=>{
         </React.Fragment>
         </div>
         <div class = "vertical"></div>
+
 
 
       <div class="vertical">

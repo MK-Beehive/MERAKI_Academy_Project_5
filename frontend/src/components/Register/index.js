@@ -33,8 +33,8 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 // =================================================================
 
 
-// import { googleUser } from "../redux/reducers/auth/index"; //==sahar
 
+// import { googleUser } from "../redux/reducers/auth/index"; //==sahar
 
 const Register = () => {
   //===sahar === get google user to register
@@ -53,7 +53,7 @@ const Register = () => {
   const [lastName, setLastName] = useState("");
 
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState(""); 
+  const [password, setPassword] = useState("");
   //   const role_id = 1;
   const [selectedRole, setSelectedRole] = useState(1); // 1 is the default value for
 
@@ -97,7 +97,7 @@ const Register = () => {
     }
 
     try {
-      // console.log("++++++++++++++++++++++++++",state.auth.googleUser.role_id)
+
       const result = await axios.post("http://localhost:5000/users/register", {
 
             //===== sahar === here to check if the user is a google user it will use the information from google user redux else it will use the local useState
@@ -107,7 +107,7 @@ const Register = () => {
         password:  state.auth.googleUser?.password || password ,
         role_id:   state.auth.googleUser?.role_id || selectedRole ,
       });
-    
+
       if (result.data.success) {
         console.log(",,,,,,,,,,,,,,,,,,,,,",result.data.success)
         const userId = result.data.userId;
@@ -153,8 +153,7 @@ const Register = () => {
                 role_id: loginResult.data.user.role_id,
               })
             );
-           
-           
+
             localStorage.setItem(
               "userId",
               JSON.stringify(loginResult.data.userId)
@@ -169,12 +168,9 @@ const Register = () => {
                 role_id: loginResult.data.user.role_id,
               })
             );
-     
 
             navigate("/");
           }
-
-
         }
       } else throw Error;
     } catch (error) {
@@ -192,9 +188,7 @@ const Register = () => {
 
   return (
     <>
-
       {!isLoggedIn ? (
-
         <>
           <div className="reg">
             <ThemeProvider theme={theme}>
@@ -236,7 +230,6 @@ const Register = () => {
                       alignItems: "center",
                     }}
                   >
-
                     <Avatar sx={{ m: 1, bgcolor: "#ffea00" }}>
                       <LockOutlinedIcon />
                     </Avatar>
@@ -332,7 +325,6 @@ const Register = () => {
                             Already have an account? Sign in
                           </Link>
                         </Grid>
-
                       </Grid>
                     </Box>
                   </Box>
@@ -354,7 +346,7 @@ const Register = () => {
         </>
       ) : (
         <p>Logout First</p>
-      )} 
+      )}
     </>
   );
 };

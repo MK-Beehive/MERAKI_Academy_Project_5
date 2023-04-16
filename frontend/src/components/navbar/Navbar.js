@@ -115,6 +115,7 @@ console.log(checkon)
     </div>
 
     <div className='Links'> 
+    <Link className="prfile" to="/profile">Profile</Link>
      <Link className="projectlink" to="/projects">Projects</Link>
        {/* ==sahar==Login==LogOut=== */}
      <Link className="projectlink" to="/join">Join</Link>
