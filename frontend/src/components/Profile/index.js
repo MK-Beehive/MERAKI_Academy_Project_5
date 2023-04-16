@@ -45,6 +45,7 @@ const Profile = () => {
   const [size, setSize] = useState("large"); // default is 'middle'
   const navigate = useNavigate();
 
+
 console.log("uui",userId);
 /*
   const getUserInfo = async () => {
@@ -61,6 +62,7 @@ console.log("uui",userId);
   };
   */
 console.log("eee",experiances)
+
 
   const getProjectByUser = async () => {
     try {
@@ -139,6 +141,7 @@ console.log(userinfo);
   );
 
   useEffect(() => {
+
     // getUserInfo()
     setValue(userinfo.rate);
 
@@ -147,6 +150,7 @@ console.log(userinfo);
     getSkilltByUser()
     getOfferByUser()
      }, []);
+
 
   return (
     <div className="main">

@@ -33,6 +33,9 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 // =================================================================
 
 
+
+// import { googleUser } from "../redux/reducers/auth/index"; //==sahar
+
 const Register = () => {
   //===sahar === get google user to register
 
@@ -94,6 +97,7 @@ const Register = () => {
     }
 
     try {
+
       const result = await axios.post("http://localhost:5000/users/register", {
 
             //===== sahar === here to check if the user is a google user it will use the information from google user redux else it will use the local useState

@@ -28,6 +28,7 @@ reducer:{
 
 
 
+
     offer:offerReducer,
     
     selected:selectedReducer
