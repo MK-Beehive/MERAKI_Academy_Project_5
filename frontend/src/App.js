@@ -2,7 +2,7 @@
 import "./App.css";
 
 import Register from "./components/Register";
-
+import Settings from "./components/Settings";
 
 
 
@@ -34,7 +34,7 @@ function App() {
 <Route path="/" element={<Home/>}/>
 <Route path="/projects" element={<Projects/>}/>
 <Route path="/freelancer" element={<Freelancer/>}/>
-
+<Route path="/settings/personaldata" element={<Settings/>}/>
 <Route path="/Join" element={<Login/>}/>
  <Route path="/Register" element={<Register/>} />
 
