@@ -135,7 +135,7 @@ const getproject = (req, res) => {
   const project_id = req.params.project_id;
   console.log("project_id============", project_id);
 
-  const query = `SELECT projects.* ,majority.majorityname , status.statusname , users.firstname	,users.lastname FROM projects  inner join status on projects.status_id =  status.id inner  join majority on projects.majority_id =  majority.id  inner join users  on projects.user_id =  users.id   where projects.is_deleted=0 and projects.id =  $1 ;`;
+  const query = `SELECT projects.* ,majority.majorityname , status.statusname , users.firstname	,users.lastname , information.image ,information.rate FROM projects  inner join status on projects.status_id =  status.id inner  join majority on projects.majority_id =  majority.id  inner join users  on projects.user_id =  users.id  inner join information on projects.user_id = information.user_id  where projects.is_deleted=0 and projects.id =  $1 ;`;
 
   pool
     .query(query, [project_id])

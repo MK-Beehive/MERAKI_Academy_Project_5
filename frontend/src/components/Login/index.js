@@ -41,7 +41,7 @@ console.log("googleuserdata-inside----------",googleuserdata)
 
 
 
-const navigate=useNavigate()
+// const navigate=useNavigate()
 
     const loginFun = () => {
       console.log("email, password___________", email, password);
@@ -297,7 +297,7 @@ const navigate=useNavigate()
     <div>   
         <h3>Don't have an account? </h3>             
         <button onClick={()=>{
-            navigate("/register")
+            Navigate("/register")
         }}> Creat Account </button><br/>
         <p><span>*
 Terms & conditions.</span>

@@ -6,7 +6,8 @@ import skillReducer from "./skills/skillsSlice"
 
 
 import authReducer from "./reducers/auth/index"
-import experiancesRrducer from "./reducers/experiances/index"
+import experiancesReducer from "./reducers/experiances/index"
+import selectedReducer from "./reducers/selected/index"
 
 
 
@@ -23,11 +24,13 @@ reducer:{
     auth:authReducer,
     project: projectReducer,
     skill:skillReducer,
+
     experiances:experiancesRrducer,
 
+
     offer:offerReducer,
-
-
+    
+    selected:selectedReducer
 
 }
 })
