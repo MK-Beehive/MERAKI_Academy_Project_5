@@ -32,7 +32,6 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 // =================================================================
 
-// import { googleUser } from "../redux/reducers/auth/index" //==sahar
 
 const Register = () => {
   //===sahar === get google user to register
@@ -87,23 +86,26 @@ const Register = () => {
     console.log("#######################", email);
 
     console.log("######################", password);
+    console.log("######################", e.target.value);
+
 
     if (e) {
       e.preventDefault();
     }
 
     try {
-      console.log("++++++++++++++++++++++++++", state.auth.googleUser.role_id);
       const result = await axios.post("http://localhost:5000/users/register", {
-        //===== sahar === here to check if the user is a google user it will use the information from google user redux else it will use the local useState
-        firstName: state.auth.googleUser.firstname || firstName,
-        lastName: state.auth.googleUser.lastname || lastName,
-        email: state.auth.googleUser.email || email,
-        password: state.auth.googleUser.password || password,
-        role_id: state.auth.googleUser.role_id || selectedRole,
+
+            //===== sahar === here to check if the user is a google user it will use the information from google user redux else it will use the local useState
+        firstName:  state.auth.googleUser?.firstname || firstName ,           
+        lastName:  state.auth.googleUser?.lastname || lastName ,
+        email:  state.auth.googleUser?.email||  email ,
+        password:  state.auth.googleUser?.password || password ,
+        role_id:   state.auth.googleUser?.role_id || selectedRole ,
       });
 
       if (result.data.success) {
+        console.log(",,,,,,,,,,,,,,,,,,,,,",result.data.success)
         const userId = result.data.userId;
         const infoResult = await axios.post(
           `http://localhost:5000/infouser/${userId}`,
@@ -113,12 +115,14 @@ const Register = () => {
             image:
               "https://static.vecteezy.com/system/resources/thumbnails/009/734/564/small/default-avatar-profile-icon-of-social-media-user-vector.jpg",
             cv: "",
-            user_id: userId,
+            // user_id: userId,
             majority_id: 0,
             rate: 0,
           }
         );
         if (infoResult.data.success) {
+        console.log(",,,,,,,,,,,,,,,,,,,,,",infoResult.data.success)
+
           setStatus(true);
           setMessage("Registration successful");
           dispatch(setUserInfo(infoResult.data.result[0]));
@@ -126,11 +130,11 @@ const Register = () => {
             "userinfo",
             JSON.stringify(infoResult.data.result[0])
           );
-          // console.log("iiii---->",infoResult.data.result);
+         console.log("iiii---->",infoResult.data.result);
           const loginResult = await axios.post(
             "http://localhost:5000/users/login",
             {
-              email: email || state.auth.googleUser.email,
+              email:  email || state.auth.googleUser.email,
               password: password || state.auth.googleUser.password,
             }
           );
