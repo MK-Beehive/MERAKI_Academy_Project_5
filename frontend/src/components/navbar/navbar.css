@@ -100,3 +100,24 @@ padding: 1rem;
 a button {
     background: none;
 }
+
+
+.notication1{
+    inline-size: 100px;
+}
+
+.listnotifacrion{
+    inline-size: 350px;  
+}
+
+.noticationnav{
+    display: flex;
+    flex-direction: column;
+
+}
+.buttonnotifaction{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+}

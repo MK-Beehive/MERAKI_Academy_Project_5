@@ -87,35 +87,49 @@
 }
 .invite1{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    line-height: 0px;
+    white-space: 0px; 
+    border: 1px solid rgba(71, 67, 71, 0.459);
+    padding: 5px;
+    margin-top: 2px;
+    
 }
 .invite2{
     display: flex;
     flex-direction: row;
+    line-height: 0px;
+  
+    white-space: 0px; 
+
     
 }
 .invite3{
     display: flex;
     flex-direction: row;
+    line-height: 0px;
+    white-space: 0px; 
 }
 
 .button-8 {
-  background-color: #2f9eee;
-  border-radius: 3px;
+    /* display: flex; */
+    /* flex-direction: column; */
+  background-color: #2148f8;
+  border-radius: 5px;
   border: 1px solid #146dad;
   box-shadow: rgba(255, 255, 255, .7) 0 1px 0 0 inset;
-  box-sizing: border-box;
+  /* box-sizing: border-box; */
   color: #ffffff;
   cursor: pointer;
   display: inline-block;
   font-family: -apple-system,system-ui,"Segoe UI","Liberation Sans",sans-serif;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 400;
   line-height: 1.15385;
-  margin: 0;
+  /* margin: 0; */
   outline: none;
   padding: 8px .8em;
-  position: relative;
+  /* position: relative; */
   text-align: center;
   text-decoration: none;
   user-select: none;
@@ -123,23 +137,54 @@
   touch-action: manipulation;
   vertical-align: baseline;
   white-space: nowrap;
-  width: 80px;
-  height: 40PX;
-  float: right;
+  width: 60px;
+  height: 30PX;
+  font-weight: bold;
+  line-height: 0px;
+    white-space: 0px;
+  margin-top: 10px;
+  /* margin-left: 200px; */
+  /* padding: 5px; */
+  
+  /* float: right; */
 }
 
 .button-8:hover,
 .button-8:focus {
-  background-color: #b3d3ea;
-  color: #2c5777;
+  background-color: #44515a3f;
+  color: #49545c;
 }
 
 .button-8:focus {
-  box-shadow: 0 0 0 4px rgba(0, 149, 255, .15);
+  box-shadow: 0 0 0 4px rgba(97, 151, 190, 0.15);
 }
 
 .button-8:active {
-  background-color: #a0c7e4;
+  background-color: #333f47;
   box-shadow: none;
-  color: #2c5777;
+  color: #607686;
 }
+
+.imginvite{
+    border-radius: 50%;
+    /* margin-left: 20px; */
+}
+.nameinvit{
+    font-size: 18px;
+    font-family: 'Times New Roman', Times, serif;
+
+}
+
+.maginv{
+    line-height: 0px;
+    white-space: 0px;
+}
+.buttoninv{
+    line-height: 0px;
+    white-space: 0px;   
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* float: right; */
+    margin-left: 200px;
+}
+
