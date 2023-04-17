@@ -2,20 +2,21 @@ const pool = require('../models/db');
 const nodemailer = require('nodemailer');
 
 const creatEmail = (req,res)=>{
-    
+    const {user, info, subject,massege} = req.body
+    console.log(req.body)
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-          user: 'beehivefreelance@gmail.com',
+          user: 'hivebeefreelancer@gmail.com',
           pass: 'duluzhxuxkjkampr'
         }
       });
       
       const mailOptions = {
         from: 'beehivefreelance@gmail.com',
-        to: 'ebtehal.abuhassan@gmail.com',
-        subject: 'Subject',
-        text: 'Email content'
+        to: info.email,
+        subject: subject,
+        text: massege
       };
       
       transporter.sendMail(mailOptions, function(error, info){
@@ -23,6 +24,7 @@ const creatEmail = (req,res)=>{
        console.log(error);
         } else {
           console.log('Email sent: ' + info.response);
+          console.log("99")
           // do something useful
         }
       });

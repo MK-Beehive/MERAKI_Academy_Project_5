@@ -89,7 +89,7 @@ const Register = () => {
     console.log("#######################", email);
 
     console.log("######################", password);
-    console.log("######################", e.target.value);
+    // console.log("######################", e.target.value);
 
 
     if (e) {
@@ -120,7 +120,7 @@ const Register = () => {
               "https://static.vecteezy.com/system/resources/thumbnails/009/734/564/small/default-avatar-profile-icon-of-social-media-user-vector.jpg",
             cv: "",
             // user_id: userId,
-            majority_id: 0,
+            majority_id: 5,
             rate: 0,
           }
         );
@@ -352,3 +352,13 @@ const Register = () => {
 };
 
 export default Register;
+
+
+//https://myaccount.google.com/apppasswords?utm_source=google-account&utm_medium=myaccountsecurity&utm_campaign=tsv-settings&rapt=AEjHL4MX8mHf3EaM8sNSFAMxXjHn33L0inC22JTJ2xtlo1iQ9BQxvJId0byQCWdK8OUB_XYKRuPe9KEfKCMBiixYOKXTgky66w
+// UPDATE majority SET is_deleted= 0 WHERE id=1;
+// UPDATE majority SET is_deleted= 0 WHERE id=2;
+// UPDATE majority SET is_deleted= 0 WHERE id=3;
+// UPDATE majority SET is_deleted= 0 WHERE id=4;
+// UPDATE majority SET is_deleted= 1 WHERE id=5;
+// alter table majority
+//   add column is_deleted INT ;

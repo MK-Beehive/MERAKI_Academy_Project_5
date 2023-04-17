@@ -1,8 +1,5 @@
-
 import React, { useState, useEffect, useRef } from "react";
 import { storage } from "../firebase/Firebase";
-
-
 import "./Addproject.css";
 import { FileUploader } from "react-drag-drop-files";
 // import nodemailer from "nodemailer";
@@ -58,6 +55,16 @@ const style = {
 // cv
 const fileTypes = ["JPEG", "PNG", "GIF", "PDF"];
 function Addproject() {
+
+  const state = useSelector((state) => {
+    return {
+      majority: state.project.majority,
+      userId: state.auth.userId,
+      userdata: state.auth.userdata,
+      project: state.project,
+    };
+  });
+
   //======================email servic========================
   const form = useRef();
   const sendEmail = (e) => {
@@ -82,9 +89,15 @@ console.log(e)
 //===============================email email==========================
 
 const emailsend = ()=>{
-  console.log("nnnn")
-  
-  axios.post(`http://localhost:5000/email`,"pp").then((result)=>{
+  let obj = {user: state.userId, info: state.userdata, subject:"Add Project",massege:
+  `Hello  ${state.userdata.firstname} ${state.userdata.lastname},your project added suseccfully, you can follow up the freelances offers by clike on this link http://localhost:3000/projects.
+
+  beehive.com
+  beehive@gmail.com
+  +962 787878787878
+  ` 
+}
+  axios.post(`http://localhost:5000/email`, obj).then((result)=>{
     console.log(result)
   }).then((err)=>{
     console.log(err)
@@ -99,14 +112,7 @@ const emailsend = ()=>{
   const [urlfile, seturlfile] = useState("");
   const [typOffile, settypOffile] = useState("");
   // const storage = getStorage();
-  const state = useSelector((state) => {
-    return {
-      majority: state.project.majority,
-      userId: state.auth.userId,
-      userdata: state.auth.userdata,
-      project: state.project,
-    };
-  });
+ 
 
   console.log(state.project.project.id);
 
@@ -177,8 +183,6 @@ const emailsend = ()=>{
   const [majority, setmajority] = useState([]);
   const [cost, setcost] = useState("");
   const [daywork, setdaywork] = useState("");
-
-  console.log(state.userId, state.userdata.firstname);
   //===========================get majority=================================
   const getMajority = () => {
     axios
@@ -436,7 +440,6 @@ const emailsend = ()=>{
                   class="bi bi-check2-square"
                   viewBox="0 0 16 16"
                 >
-
                   <path d="M3 14.5A1.5 1.5 0 0 1 1.5 13V3A1.5 1.5 0 0 1 3 1.5h8a.5.5 0 0 1 0 1H3a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5V8a.5.5 0 0 1 1 0v5a1.5 1.5 0 0 1-1.5 1.5H3z" />
                   <path d="m8.354 10.354 7-7a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0z" />
                 </svg>
@@ -459,20 +462,6 @@ const emailsend = ()=>{
           </React.Fragment>
         {/* </form> */}
       </div>
-
-
-                  <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2z" />
-                </svg>{" "}
-                can you invite your freelanser to apply his offer
-              </p>
-              <Button onClick={handleClose}>Invite </Button>
-            </Box>
-          </Modal>
-        </React.Fragment>
-        </div>
-        <div class = "vertical"></div>
-
-
 
       <div class="vertical">
         {/* <form ref={form} onSubmit={sendEmail}> */}

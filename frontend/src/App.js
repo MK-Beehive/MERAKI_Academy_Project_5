@@ -1,11 +1,6 @@
-
 import "./App.css";
-
 import Register from "./components/Register";
 import Settings from "./components/Settings";
-
-
-
 import { Routes, Route, Link, useParams,useNavigate } from "react-router-dom";
 import Navbar from "./components/navbar/Navbar";
 import Footer from "./components/footer/Footer";
@@ -17,6 +12,7 @@ import Addproject from "./components/addproject/Addproject";
 import Freelancer from "./components/Freelancer";
 import ProjectInside from "./components/ProjectInside";
 
+import Chatsocket from "./components/socket/Chatsocket"
 
 
 
@@ -52,7 +48,7 @@ function App() {
     
 
 </Routes>
-
+<Chatsocket/>
 {/* <Footer className="footer"/> */}
     </div>
 
