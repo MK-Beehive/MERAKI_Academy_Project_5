@@ -1,3 +1,6 @@
+import {Elements} from '@stripe/react-stripe-js';
+import {loadStripe} from '@stripe/stripe-js';
+import {setselectetUserProfile } from "../redux/reducers/selected/index"
 import React, { useEffect, useState ,useRef} from "react";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
@@ -8,7 +11,7 @@ import { ImAttachment } from "react-icons/im";
 
 import TextField from '@mui/material/TextField';
 import FormControl from '@mui/material/FormControl';
-
+// import {PaymentElement} from '@stripe/react-stripe-js';
 
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
@@ -22,11 +25,30 @@ import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
 
 import { Card } from 'antd';
+import Paymant from "../Paymant";
 const { Meta } = Card;
+
+
+
+
+
+// Make sure to call `loadStripe` outside of a component’s render to avoid
+// recreating the `Stripe` object on every render.
+const stripePromise = loadStripe('pk_test_51Mxn4uFKzpLJBNgHJFMTYVZ78koOA4onNYIcivNeibi2YRNfcaL6pnqgv2f75zycmx3ftAG4u20qx0QtY5yBduSl00aEBwQACh');
+
 
 
 const ProjectInside = () => {
 
+
+
+
+  
+    // const options = {
+    //     // passing the client secret obtained from the server
+    //     clientSecret:'sk_test_51Mxn4uFKzpLJBNgH0BiwJtieg7qcKxI5npgFT2PdhBZlesBaBKenJboyAfIWmbCLrD871z9oD0hQ5VZGnjEQQsAr00bN61uYyi',
+    //   };
+      
     const radioInput = useRef(null); //===refernce to reach redio input 
 
     const style = { //====this one style for the modal popup====
@@ -56,6 +78,7 @@ function ChildModal() {
     };
   
     return (
+        
       <React.Fragment>
         <Button onClick={ ()=>{handleOpen()
         
@@ -67,18 +90,17 @@ function ChildModal() {
         <Modal
           open={open}
           onClose={handleClose}
-          aria-labelledby="child-modal-title"
+          aria-labelledby="paymatn"
           aria-describedby="child-modal-description"
         >
           <Box sx={{ ...style, width: 200 }}>
             <h2 id="child-modal-title">Text in a child modal</h2>
-            <p id="child-modal-description">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-            </p>
+               <Paymant/>
             <Button onClick={handleClose}>Close Child Modal</Button>
           </Box>
         </Modal>
       </React.Fragment>
+      
     );
   }
   const [open, setOpen] = React.useState(false);
@@ -114,6 +136,7 @@ const [rate, setrate] = useState(0)
       majority: state.project.majority,
       status: state.project.status,
       selectedProject: state.selected.selectedProject,
+      selectetUserProfile : state.selected.selectetUserProfile ,
       auth: state.auth,
     };
   });
@@ -164,12 +187,15 @@ const [rate, setrate] = useState(0)
         console.log("error", err);
       });
   }
-
+// options={options}
   return (
+    <Elements stripe={stripePromise}  > 
     <div>
       <div className="project_inside">
         <div className="project_user">
           <div className="projectInsidefilterside" onClick={()=>{
+               console.log(",,,,,,,,,,,,,",selectedProjectdata)
+            dispatch(setselectetUserProfile(selectedProjectdata.user_id))
             Navigate("/profile")
           }}>
 
@@ -266,7 +292,11 @@ const [rate, setrate] = useState(0)
          <AiFillWechat  className="chat_offer"  onClick={()=>{
         // Navigate("/profile")
       }} />
-          <div className="imguser" >
+          <div className="imguser" onClick={()=>{
+                  console.log(".....................",ProjecOffer)
+            dispatch(setselectetUserProfile(ProjecOffer.user_id))
+            Navigate("/profile")
+          }}  >
             <img src={ProjecOffer.image}></img>
           </div>
           <div>
@@ -422,6 +452,7 @@ const [rate, setrate] = useState(0)
         </div>
       </div>
     </div>
+</Elements>
   );
 };
 

@@ -83,9 +83,13 @@ console.log(checkon)
   <div className='logo'><h3 className='beehive' style={{color:'rgb(255, 217, 0)'}}>BEE <span style={{color:'black'}}>HIVE</span>  </h3><img className='picofLogo'  src='https://media.istockphoto.com/id/1338079809/vector/bee-cute-character-with-big-eyes-cartoon-happy-bee.jpg?s=612x612&w=0&k=20&c=C9PNLseWKMZPD6KMpQOa3pkOogGUftOTQAtMfYm4GU8='/>  
   </div>
 
+ 
+
+
+
   <Popover
       content={<a onClick={hide}>Close</a>}
-      title={state.notification.map((noti)=>{
+      title= {state.notification.length===0? <h1>No notification</h1>   :state.notification.map((noti)=>{
         return<div className='noticationnav'><button  className='buttonnotifaction' onClick={()=>{
           Navigate("/projects")
         }}>{noti.notificationmessage}</button></div> 

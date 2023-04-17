@@ -89,7 +89,7 @@ const Register = () => {
     console.log("#######################", email);
 
     console.log("######################", password);
-    console.log("######################", e.target.value);
+    console.log("######################", e.target);
 
 
     if (e) {
@@ -110,6 +110,8 @@ const Register = () => {
 
       if (result.data.success) {
         console.log(",,,,,,,,,,,,,,,,,,,,,",result.data.success)
+        console.log(",,,,,,,,,,,,,,,,,,,,,",result.data)
+       
         const userId = result.data.userId;
         const infoResult = await axios.post(
           `http://localhost:5000/infouser/${userId}`,
@@ -120,7 +122,7 @@ const Register = () => {
               "https://static.vecteezy.com/system/resources/thumbnails/009/734/564/small/default-avatar-profile-icon-of-social-media-user-vector.jpg",
             cv: "",
             // user_id: userId,
-            majority_id: 0,
+            majority_id: 5,
             rate: 0,
           }
         );
