@@ -135,7 +135,9 @@ const updateUserById = async (req, res) => {
   try {
     const userId = req.params.id;
     const { firstName, lastName, email, password } = req.body;
-    const encryptedPassword = await bcrypt.hash(password, saltRounds); // hash the new password
+  
+    const encryptedPassword = password ? await bcrypt.hash(password, saltRounds) : null ; // hash the new password
+   
     const query = `UPDATE users 
     SET 
       firstName = COALESCE($1, firstName), 
@@ -145,6 +147,7 @@ const updateUserById = async (req, res) => {
     WHERE id =$5 
     RETURNING *`;
     const data = [firstName, lastName, email, encryptedPassword, userId]; // use the hashed password
+
     const result = await pool.query(query, data);
     if (result.rows.length) {
       res.status(200).json({ user: result.rows[0], message: "User updated successfully" });

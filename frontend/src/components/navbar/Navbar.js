@@ -85,7 +85,8 @@ console.log(checkon)
 
   <Popover
       content={<a onClick={hide}>Close</a>}
-      title={state.notification.map((noti)=>{
+
+      title={state.notification.length===0? <h1>No notification</h1>   :state.notification.map((noti)=>{
         return<div className='noticationnav'><button  className='buttonnotifaction' onClick={()=>{
           Navigate("/projects")
         }}>{noti.notificationmessage}</button></div> 
