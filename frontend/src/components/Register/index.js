@@ -89,7 +89,9 @@ const Register = () => {
     console.log("#######################", email);
 
     console.log("######################", password);
-    // console.log("######################", e.target.value);
+
+
+
 
 
     if (e) {
@@ -110,6 +112,8 @@ const Register = () => {
 
       if (result.data.success) {
         console.log(",,,,,,,,,,,,,,,,,,,,,",result.data.success)
+        console.log(",,,,,,,,,,,,,,,,,,,,,",result.data)
+       
         const userId = result.data.userId;
         const infoResult = await axios.post(
           `http://localhost:5000/infouser/${userId}`,

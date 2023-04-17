@@ -25,7 +25,7 @@ const { Meta } = Card;
 
 const Profile = () => {
   const dispatch = useDispatch();
-  const { project, offer, userId, userinfo, userdata, skill,experiances ,isLoggedIn, } =
+  const { project, offer, userId, userinfo, userdata, skill,experiances ,isLoggedIn, } = 
     useSelector((state) => {
       return {
         project: state.project.project,
@@ -38,6 +38,8 @@ const Profile = () => {
         experiances:state.experiances.experiances
       };
     });
+
+   
 
     // console.log();
   const [value, setValue] = useState(0);
