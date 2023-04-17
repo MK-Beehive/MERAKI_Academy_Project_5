@@ -89,7 +89,9 @@ const Register = () => {
     console.log("#######################", email);
 
     console.log("######################", password);
-    console.log("######################", e.target);
+
+
+
 
 
     if (e) {
