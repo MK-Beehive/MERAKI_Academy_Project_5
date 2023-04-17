@@ -25,7 +25,7 @@ const { Meta } = Card;
 
 const Profile = () => {
   const dispatch = useDispatch();
-  const { project, offer, userId, userinfo, userdata, skill,experiances ,isLoggedIn, } =
+  const { project, offer, userId, userinfo, userdata, skill,experiances ,isLoggedIn, } = 
     useSelector((state) => {
       return {
         project: state.project.project,
@@ -35,9 +35,11 @@ const Profile = () => {
         skill: state.skill.skill,
         offer: state.offer.offer,
         isLoggedIn: state.auth.isLoggedIn,
-        // experiances:state.experiances.experiances
+        experiances:state.experiances.experiances
       };
     });
+
+   
 
     // console.log();
   const [value, setValue] = useState(0);
@@ -61,7 +63,7 @@ console.log("uui",userId);
     }
   };
   */
-console.log("eee",experiances)
+console.log("eee",skill)
 
 
   const getProjectByUser = async () => {
@@ -105,7 +107,7 @@ console.log(userinfo);
   };
 
 
-
+console.log("firstname",userinfo.firstname);
 
   const getExperianceByUser = async () => {
     // e.preventDefault();
@@ -197,7 +199,7 @@ console.log(userinfo);
               }
             />
            <Typography>{value}</Typography> 
-           {userinfo.experiance_id && (
+           {userdata.role_id==2&&userinfo.experiance_id && (
   <Typography>{userinfo.experiancename}</Typography>
 )}
 

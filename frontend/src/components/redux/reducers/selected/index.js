@@ -4,7 +4,8 @@ export const selectedSlice = createSlice({
     name:"exp",
     
     initialState:{
-        selectedProject:null
+        selectedProject:null,
+        selectetUserProfile:null
     },
     reducers:{
         setSelectedProject:(state,action)=>{
@@ -12,10 +13,16 @@ export const selectedSlice = createSlice({
             state.selectedProject =action.payload;
     
         },
+        setselectetUserProfile:(state,action)=>{
+            console.log('setselectetUserProfile',action.payload)
+            state.selectetUserProfile =action.payload;
+    
+        },
+
     }
     })
     
-export const {setSelectedProject}= selectedSlice.actions
+export const {setSelectedProject ,setselectetUserProfile }= selectedSlice.actions
     
 
     export default selectedSlice.reducer

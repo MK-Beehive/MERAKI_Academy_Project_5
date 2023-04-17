@@ -2,8 +2,10 @@ const pool = require('../models/db');
 const nodemailer = require('nodemailer');
 
 const creatEmail = (req,res)=>{
+
     const {user, info, subject,massege} = req.body
     console.log(req.body)
+
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
@@ -14,9 +16,11 @@ const creatEmail = (req,res)=>{
       
       const mailOptions = {
         from: 'beehivefreelance@gmail.com',
+
         to: info.email,
         subject: subject,
         text: massege
+
       };
       
       transporter.sendMail(mailOptions, function(error, info){
