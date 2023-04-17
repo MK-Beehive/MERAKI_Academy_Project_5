@@ -55,6 +55,16 @@ const style = {
 // cv
 const fileTypes = ["JPEG", "PNG", "GIF", "PDF"];
 function Addproject() {
+
+  const state = useSelector((state) => {
+    return {
+      majority: state.project.majority,
+      userId: state.auth.userId,
+      userdata: state.auth.userdata,
+      project: state.project,
+    };
+  });
+
   //======================email servic========================
   const form = useRef();
   const sendEmail = (e) => {
@@ -79,9 +89,15 @@ console.log(e)
 //===============================email email==========================
 
 const emailsend = ()=>{
-  console.log("nnnn")
-  
-  axios.post(`http://localhost:5000/email`,"pp").then((result)=>{
+  let obj = {user: state.userId, info: state.userdata, subject:"Add Project",massege:
+  `Hello  ${state.userdata.firstname} ${state.userdata.lastname},your project added suseccfully, you can follow up the freelances offers by clike on this link http://localhost:3000/projects.
+
+  beehive.com
+  beehive@gmail.com
+  +962 787878787878
+  ` 
+}
+  axios.post(`http://localhost:5000/email`, obj).then((result)=>{
     console.log(result)
   }).then((err)=>{
     console.log(err)
@@ -96,14 +112,7 @@ const emailsend = ()=>{
   const [urlfile, seturlfile] = useState("");
   const [typOffile, settypOffile] = useState("");
   // const storage = getStorage();
-  const state = useSelector((state) => {
-    return {
-      majority: state.project.majority,
-      userId: state.auth.userId,
-      userdata: state.auth.userdata,
-      project: state.project,
-    };
-  });
+ 
 
   console.log(state.project.project.id);
 
@@ -174,8 +183,6 @@ const emailsend = ()=>{
   const [majority, setmajority] = useState([]);
   const [cost, setcost] = useState("");
   const [daywork, setdaywork] = useState("");
-
-  console.log(state.userId, state.userdata.firstname);
   //===========================get majority=================================
   const getMajority = () => {
     axios

@@ -1,6 +1,7 @@
 const express = require("express");
 const http = require("http");
-const socket = require("socket.io");
+// const socket = require("socket.io");
+const {Server}  = require("socket.io")
 require("dotenv").config()
 const cors = require("cors");
 
@@ -11,11 +12,8 @@ const PORT = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json());
-const server = http.createServer(app);
-const io = socket(server, { cors: { origin: "*" } });
-
-
-
+// const server = http.createServer(app);
+// app.use(cors())
 
 
 //batool routes//
@@ -51,7 +49,8 @@ app.use("/experiance", experianceRouter);
 
 const infouserRouter = require("./routes/infouser")
 const jobOfferRouter = require("./routes/joboffer")
-const emailRouter = require("./routes/email")
+const emailRouter = require("./routes/email");
+// const { Socket } = require("dgram");
 
 app.use("/infouser",infouserRouter)
 app.use("/joboffer",jobOfferRouter)
@@ -59,11 +58,30 @@ app.use("/email",emailRouter)
 
 app.use("*", (req, res) => res.status(404).json("NO content at this path"));
 
-app.listen(PORT, () => {
+ const server = app.listen(PORT, () => {
   console.log(`Server listening at http://localhost:${PORT}`);
 });
+const io = new Server(server, {
+  cors:{
+    origin:"*",
+    method: ["GET","POST"]
+  }
+})
 
-io.on("connection", (socket) => {
-  // `socket.id` is the id assigned to the user that connected
+
+ io.on("connection", (socket) => {
   console.log(`${socket.id} is connected`);
+
+  socket.on(("JOIN_ROOM"), (data)=>{
+    console.log(data)
+    socket.join(data)
+  })
+
+  // socket.on(("SEND_MESSAGE"),(data)=>{
+  //   socket.to(data.room).emit("RECEIVE_MESSAGE", data.content)
+  // })
+
+  // socket.on(("disconnect", ()=>{
+  //   console.log("user left")
+  // }))
 });
