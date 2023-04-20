@@ -143,10 +143,9 @@ console.log("firstname",userinfo.firstname);
   );
 
   useEffect(() => {
-
     // getUserInfo()
     setValue(userinfo.rate);
-
+    
     getExperianceByUser()
     getProjectByUser()
     getSkilltByUser()
@@ -206,6 +205,7 @@ console.log("firstname",userinfo.firstname);
           </Card>
           
         </div>
+        {userdata.role_id === 2 && (
         <div className="skill">
           <Card title={`Skills`} bordered={true}>
             {uniqueSkills.map((skillName) => (
@@ -216,7 +216,9 @@ console.log("firstname",userinfo.firstname);
             ))}
           </Card>
         </div>
+        )}
       </div>
+        
 
       <div className="center">
         <div className="pr">

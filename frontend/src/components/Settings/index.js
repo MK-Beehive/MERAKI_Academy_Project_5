@@ -11,7 +11,7 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { UserOutlined } from "@ant-design/icons";
 import { Input } from "antd";
-
+import {useNavigate,useLocation} from "react-router-dom"
 import Box from "@mui/material/Box";
 
 const Settings = () => {
@@ -28,8 +28,14 @@ const Settings = () => {
   const [updatedFirstname, setUpdatedFirstname] = useState(userdata.firstname);
   const [updatedLastname, setUpdatedLastname] = useState(userdata.lastname);
   const [updatedEmail, setUpdatedEmail] = useState(userdata.email);
-  const [updatedExperianceId, setUpdatedExperianceId] = useState(userinfo.experiance_id);
+  // const [updatedExperianceId, setUpdatedExperianceId] = useState(userinfo.experiance_id);
   console.log("***********************************",userinfo.experiance_id);
+  const [selectedKey, setSelectedKey] = useState("sub1");
+  const navigate = useNavigate();
+  const location = useLocation();
+  const handleItemClick = (key) => {
+    setSelectedKey(key);
+    };
 
 // const [role_id,setRole_id] = useState(userdata.role_id)
   console.log("experiances)))))))", experiances);
@@ -53,7 +59,7 @@ const Settings = () => {
       console.log("UPDATET FN",updatedFirstname);
       console.log("UPDATET LN",updatedLastname);
       console.log("UPDATET EMAIL",updatedEmail);
-      console.log("UPDATED EXPERIANCE ID", updatedExperianceId);
+      // console.log("UPDATED EXPERIANCE ID", updatedExperianceId);
 
       const response = await axios.put(
         `http://localhost:5000/users/${userId}`,
@@ -104,12 +110,15 @@ console.log(userinfo.firstname);
 
   useEffect(() => {
     getAllExperiances();
-  }, []);
+    const path = location.pathname;
+    if (path.includes("personalData")) setSelectedKey("sub1");
+    else if (path.includes("bioandskills")) setSelectedKey("sub2");
+    }, [location.pathname]);
 
   return (
     <div className="setting-container">
       <div className="setting">
-        <SettingBar />
+        <SettingBar selectedKey={selectedKey} onItemClick={handleItemClick} />
       </div>
       <div className="center">
         <div className="image-container">
@@ -155,34 +164,9 @@ console.log(userinfo.firstname);
             />
           </div>
           <br />
-          {userdata.role_id == 2 && (
-            <div className="experiance">
-              <Box sx={{ minWidth: 120 }}>
-                <FormControl fullWidth>
-                  <InputLabel
-                    variant="standard"
-                    htmlFor="uncontrolled-native"
-                  ></InputLabel>
-                  <NativeSelect
-                    defaultValue={userinfo.experiancename}
-                    inputProps={{
-                      name: "experiance",
-                      id: "uncontrolled-native",
-                    }}
-                  >
-                    {experiances.map((exp) => (
-                      <option key={exp.id} value={exp.experiancename}>
-                        {exp.experiancename}
-                      </option>
-                    ))}
-                    {/* <option value={10}>Ten</option>
-                  <option value={20}>Twenty</option>
-                  <option value={30}>Thirty</option> */}
-                  </NativeSelect>
-                </FormControl>
-              </Box>
-            </div>
-          )}
+          
+      
+          
         </Box>
 
         {/* <img src={userinfo} /> */}

@@ -98,8 +98,42 @@ const addSkillForUser = (req, res) => {
       });
   };
 
-
+  const softDeleteSkillForUser = (req, res) => {
+    const userId = req.params.userId;
+    const skillId = req.params.skillId;
+    const query = `
+      UPDATE user_skills
+      SET is_deleted = 1
+      WHERE user_id = $1 AND skill_id = $2
+      RETURNING *
+    `;
+    const data = [userId, skillId];
+    pool
+      .query(query, data)
+      .then((result) => {
+        if (result.rows.length > 0) {
+          res.status(200).json({
+            success: true,
+            message: `Skill ${skillId} has been soft deleted for user ${userId}`,
+            result: result.rows[0],
+          });
+        } else {
+          res.status(404).json({
+            success: false,
+            message: `Skill ${skillId} not found for user ${userId}`,
+          });
+        }
+      })
+      .catch((err) => {
+        res.status(500).json({
+          success: false,
+          message: `Server error`,
+          err: err,
+        });
+      });
+  };
+  
 
 module.exports = {
-  createSkills,getAllSkills,getAllSkillsForUser,addSkillForUser
+  createSkills,getAllSkills,getAllSkillsForUser,addSkillForUser,softDeleteSkillForUser
 };

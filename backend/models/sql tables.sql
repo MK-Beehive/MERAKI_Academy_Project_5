@@ -22,7 +22,7 @@ CREATE TABLE role_permission (
 CREATE TABLE users(
   id SERIAL NOT NULL,
   firstName VARCHAR(255) NOT NULL,
-  lastName VARCHAR(255) ,
+  lastName VARCHAR(255),
   email VARCHAR(255) UNIQUE NOT NULL,
   password VARCHAR(255) NOT NULL,
   role_id INT NOT NULL,
@@ -31,11 +31,10 @@ CREATE TABLE users(
   PRIMARY KEY (id)
 );
 
-
 CREATE TABLE information (
   id SERIAL NOT NULL,
   informationDescription TEXT DEFAULT 'No Description for The User',
-  jobTitle VARCHAR(255) DEFAULT 'NO Job Title' ,
+  jobTitle VARCHAR(255) DEFAULT 'NO Job Title',
   image VARCHAR(255) DEFAULT 'https://static.vecteezy.com/system/resources/thumbnails/009/734/564/small/default-avatar-profile-icon-of-social-media-user-vector.jpg',
   cv VARCHAR(255) DEFAULT NULL,
   user_id INT UNIQUE,
@@ -43,7 +42,6 @@ CREATE TABLE information (
   experiance_id INT,
   is_deleted SMALLINT DEFAULT 0,
   rate NUMERIC,
-
   FOREIGN KEY (user_id) REFERENCES users(id),
   FOREIGN KEY (majority_id) REFERENCES majority(id),
   FOREIGN KEY (experiance_id) REFERENCES experiance (id),
@@ -69,14 +67,14 @@ CREATE TABLE skills(
 );
 
 CREATE TABLE status(
-    id SERIAL NOT NULL,
-    statusName VARCHAR(255),
-    PRIMARY KEY (id)
+  id SERIAL NOT NULL,
+  statusName VARCHAR(255),
+  PRIMARY KEY (id)
 );
 
 CREATE TABLE projects (
   id SERIAL NOT NULL,
-  title VARCHAR(255) ,
+  title VARCHAR(255),
   projectDescription TEXT,
   cv TEXT,
   projectPrice INT,
@@ -92,8 +90,7 @@ CREATE TABLE projects (
   PRIMARY KEY (id)
 );
 
-
-  CREATE TABLE freelancerProjects (
+CREATE TABLE freelancerProjects (
   id SERIAL NOT NULL,
   freelancerProjectStatus_id INT NOT NULL,
   project_id INT,
@@ -105,7 +102,7 @@ CREATE TABLE projects (
   PRIMARY KEY (id)
 );
 
-  CREATE TABLE jobOffer (
+CREATE TABLE jobOffer (
   id SERIAL NOT NULL,
   budget INT,
   workday INT,
@@ -126,17 +123,31 @@ CREATE TABLE user_skills (
   user_id INT,
   skill_id INT,
   FOREIGN KEY (user_id) REFERENCES users(id),
-    FOREIGN KEY (skill_id) REFERENCES skills(id),
+  FOREIGN KEY (skill_id) REFERENCES skills(id),
   PRIMARY KEY (id)
-
-)
-CREATE TABLE notification(
+) CREATE TABLE notification(
   id SERIAL NOT NULL,
   notificationMessage VARCHAR(255),
-   user_id INT,
-    project_id INT,
+  user_id INT,
+  project_id INT,
   FOREIGN KEY (user_id) REFERENCES users(id),
-    FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE,
+  FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE,
   PRIMARY KEY (id)
 );
 
+CREATE TABLE balance(
+  id SERIAL NOT NULL,
+  initialBalance NUMERIC,
+  ourBalance NUMERIC,
+  FreeLancerBalance NUMERIC,
+  freelancerUser INT,
+  clientUser INT,
+  status_id INT,
+  project_id INT,
+  FOREIGN KEY (project_id) REFERENCES projects(id) ,
+FOREIGN KEY (freelancerUser) REFERENCES users(id),
+  FOREIGN KEY (clientUser) REFERENCES users(id),
+  FOREIGN KEY (freelancerUser) REFERENCES users(id),
+  FOREIGN KEY (status_id) REFERENCES status(id),
+  PRIMARY KEY (id)
+)

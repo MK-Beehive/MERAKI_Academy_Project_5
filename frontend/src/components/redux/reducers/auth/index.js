@@ -6,7 +6,7 @@ export const authSlice = createSlice({
     initialState:{
        userId:(localStorage.getItem("userId") || null),
        token:(localStorage.getItem("token") || null),
-    //    userinfo:(JSON.parse(localStorage.getItem("userinfo")) || null),
+       userinfo:(JSON.parse(localStorage.getItem("userinfo")) || null),
        userdata:(JSON.parse(localStorage.getItem("userdata")) || null),
        isLoggedIn:(localStorage.getItem("token") ? true : false),
        isgoogleUser:false,
