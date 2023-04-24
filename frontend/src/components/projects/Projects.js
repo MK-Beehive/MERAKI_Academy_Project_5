@@ -214,7 +214,7 @@ More than 1 month
               }}>
                 <div className="statucwithtitle">
                   <button className="titelproj">{project.title}</button>
-                  {project.status_id === 4 && (
+                  {project.status_id === 2 && (
                     <button
                       className="statusproj"
                       style={{ background: "rgb(0, 90, 173)" }}

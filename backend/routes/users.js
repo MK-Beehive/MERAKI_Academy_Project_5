@@ -1,6 +1,6 @@
 const express = require('express')
 const {register,login,getAllUsers,deleteUserById,
-    updateUserById,getallFreelancers,tokenjwt,members,getuserbyrole,postnotification,getnotieficationBYuserId} = require("../controllers/users")
+    updateUserById,getallFreelancers,tokenjwt,members,getuserbyrole,postnotification,getnotieficationBYuserId,getOneUserByID} = require("../controllers/users")
 const userRouter=express.Router();
 
 userRouter.post("/register", register)
@@ -17,6 +17,7 @@ userRouter.get("/notifcation/:id", getnotieficationBYuserId)
 userRouter.post("/freelancers",getallFreelancers)
 userRouter.post("/tokenjwt",tokenjwt)
 userRouter.post("/members",members)
+userRouter.get("/user/:id",getOneUserByID)
 
 //=============
 module.exports = userRouter;

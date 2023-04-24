@@ -77,6 +77,7 @@ useEffect(() => {
 
 console.log(checkon)
   // defineElement(lottie.loadAnimation);
+  console.log("vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv",state.notification.length)
   return (
     <div className='navbarall'>
 <div className='navbar'>
@@ -86,10 +87,10 @@ console.log(checkon)
  
 
 
-
+  
   <Popover
       content={<a onClick={hide}>Close</a>}
-
+    
       title={state.notification.length===0? <h1>No notification</h1>   :state.notification.map((noti)=>{
 
         return<div className='noticationnav'><button  className='buttonnotifaction' onClick={()=>{
