@@ -428,15 +428,49 @@ pool.query(`INSERT INTO notification (notificationMessage,project_id,user_id) VA
 })
   }
 
+
+const sendMessagenotification = (req,res)=>{
+  const {chatnotification,room_id,user_id,sender_id} = req.body
+  const placholder = [chatnotification,room_id,user_id,sender_id]
+  pool.query(`INSERT INTO chatnotification (chatnotification,room_id,user_id,sender_id) VALUES ($1,$2,$3,$4) RETURNING * `,placholder).then((result)=>{
+    console.log(result.rows)
+    res.json(result.rows)
+  }).catch((err)=>{
+    console.log(err)
+    res.json(err)
+  })
+}
+
+
   const getnotieficationBYuserId  = (req,res)=>{
     const userId = req.params.id
 pool.query(`SELECT * FROM notification WHERE user_id =${userId}`).then((result)=>{
-  console.log(result.rows)
   res.json(result.rows)
 }).catch((err)=>{
   res.json(err)
 })
   }
+
+
+  // console.log(result.rows)
+  // if(result.rows.length===0){
+  //   pool.query(`SELECT * FROM notification WHERE sender_id =${userId}`).then((result)=>{
+  //     res.json(result.rows)
+  //   }).catch((err)=>{
+  //     res.json(err)
+  //   })
+  // }
+
+
+const getmessagenotification  = (req,res)=>{
+  const userId = req.params.id
+  pool.query(`SELECT * FROM chatnotification WHERE user_id =${userId} ORDER BY id DESC`).then((result)=>{
+    console.log(result.rows)
+    res.json(result.rows)
+  }).catch((err)=>{
+    res.json(err)
+  })
+}
 
   module.exports = {
     register,
@@ -449,6 +483,12 @@ pool.query(`SELECT * FROM notification WHERE user_id =${userId}`).then((result)=
     members,getuserbyrole,
     postnotification,
     getnotieficationBYuserId,
+
+    sendMessagenotification,
+    getmessagenotification,
+  
+
     getOneUserByID
+
 
   };

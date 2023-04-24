@@ -1,6 +1,11 @@
 import {Elements} from '@stripe/react-stripe-js';
 import {loadStripe} from '@stripe/stripe-js';
+
+
+import {setinfouserOfoffer} from "../redux/offers/offerSlice"
+
 import {setselectetUserProfile  , setselectedoffer_id} from "../redux/reducers/selected/index"
+
 import React, { useEffect, useState ,useRef} from "react";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
@@ -286,7 +291,9 @@ const [rate, setrate] = useState(0)
 
         <div className="offer_info">
          <AiFillWechat  className="chat_offer"  onClick={()=>{
-        // Navigate("/profile")
+          console.log(ProjecOffer)
+          dispatch(setinfouserOfoffer(ProjecOffer))
+           Navigate("/chat")
       }} />
           <div className="imguser" onClick={()=>{
                   console.log(".....................",ProjecOffer)
