@@ -37,7 +37,7 @@ function App() {
 <Route path="/Join" element={<Login/>}/>
  <Route path="/Register" element={<Register/>} />
  <Route path="/ProjectInside" element={<ProjectInside/>} />
-
+<Route path = "/chat" element={<Chatsocket/>}/>
  
 
 
@@ -50,7 +50,7 @@ function App() {
     
 
 </Routes>
-<Chatsocket/>
+{/* <Chatsocket/> */}
 {/* <Footer className="footer"/> */}
     </div>
 

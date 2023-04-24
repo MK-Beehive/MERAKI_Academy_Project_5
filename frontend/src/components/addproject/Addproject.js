@@ -4,20 +4,18 @@ import "./Addproject.css";
 import { FileUploader } from "react-drag-drop-files";
 // import nodemailer from "nodemailer";
 import emailjs from "@emailjs/browser";
-
-import {
-  Routes,
-  Route,
-  Link,
-  useParams,
-  useNavigate,
-  json,
-} from "react-router-dom";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { setproject, setMajority } from "../redux/project/projectSlice";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
+
+//========================================
+import PropTypes from 'prop-types';
+import LinearProgress from '@mui/material/LinearProgress';
+import Typography from '@mui/material/Typography';
+// import Box from '@mui/material/Box';
+//========================================
 
 //================intri data ===========================
 // import Box from '@mui/material/Box';
@@ -89,7 +87,7 @@ console.log(e)
 //===============================email email==========================
 
 const emailsend = ()=>{
-  let obj = {user: state.userId, info: state.userdata, subject:"Add Project",massege:
+  let obj = {info: state.userdata, subject:"Add Project",massege:
   `Hello  ${state.userdata.firstname} ${state.userdata.lastname},your project added suseccfully, you can follow up the freelances offers by clike on this link http://localhost:3000/projects.
 
   beehive.com
@@ -256,7 +254,7 @@ const emailsend = ()=>{
   return (
     <div className="postprojectpage">
       <div className="postproject">
-        <div>
+        <div className="background">
           {/* <Button onClick={handleOpen1}>Open modal</Button> */}
           <div className="under">
             {" "}
@@ -265,13 +263,14 @@ const emailsend = ()=>{
             </h2>
           </div>
 
-          <Modal
+          <Modal className="allcomp"
             open={open1}
             onClose={handleClose1}
             aria-labelledby="parent-modal-title"
             aria-describedby="parent-modal-description"
           >
-            <Box sx={{ ...style, width: 400 }}>
+            <Box sx={{ ...style, width: "30%" }}>
+              <div className="box-contents" style={{maxWidth:"100%"}} >
               <p>Invite Freelancer</p>
               <hr></hr>
               {freelanser &&
@@ -279,20 +278,33 @@ const emailsend = ()=>{
                   console.log(user);
                   return (
                     <div className="invite1">
-                      <div className="invite2">
-                        <img className="imginvite" src={user.image} />
-                        <p className="nameinvit">
-                          {user.firstname}
-                          {user.lastname}
-                          <br></br>
-                          <p className="maginv">{user.majorityname}</p>
-                        </p>
-                      </div>
+
+                        <div className="first1">  
+                        
+                         <img className="imginvite" src={user.image} />
+                         </div>
+                    <div  className="first2">  
+                    <div className="first-and-last-names">
+                         <div  className="firstname"> {user.firstname}</div>
+                         <div  className="firstlast"> {user.lastname}</div>
+                         </div>
+                          <div className="maginv">{user.majorityname}</div>
+                         </div>
+                       
+                      
                       <div className="buttoninv"> {checkdone.includes(user.user_id) ? (
-                        "done"
+                        <button
+                        className={changebutton}
+                        onClick={() => {
+                          console.log(user.user_id);
+                          handelnotification(user.user_id);
+                        }}
+                      >
+                        invite
+                      </button>
                       ) : (
                         <button
-                          className={changebutton}
+                          className="button-22"
                           onClick={() => {
                             console.log(user.user_id);
                             handelnotification(user.user_id);
@@ -302,10 +314,10 @@ const emailsend = ()=>{
                         </button>
                       )}</div>
                      
-                      
-                    </div>
+                     </div>
                   );
                 })}
+                </div>
             </Box>
           </Modal>
         </div>
@@ -313,12 +325,12 @@ const emailsend = ()=>{
         <Box
           component="form"
           sx={{
-            "& .MuiTextField-root": { m: 1, width: "100ch" },
+            "& .MuiTextField-root": { m: 1, width: "108%" },
           }}
           noValidate
           autoComplete="off"
         >
-          <div>
+          <div className="bugdayyy">
             <TextField
               onChange={(e) => {
                 console.log(e.target.value);
@@ -345,23 +357,23 @@ const emailsend = ()=>{
           </div>
         </Box>
 
-        <Box
+        <Box 
           component="form"
           sx={{
-            "& .MuiTextField-root": { m: 1, width: "49ch" },
+            "& .MuiTextField-root": { m: 0.5, width: "108%" },
           }}
           noValidate
           autoComplete="off"
         >
-          <div>
-            <TextField
+          <div className="bugday">
+            <TextField className="bug"
               onChange={(e) => {
                 setcost(e.target.value);
               }}
               id="outlined-multiline-flexible"
               label="Budget"
               multiline
-              maxRows={4}
+              // maxRows={4}
               color="secondary"
               helperText="required*"
             />
@@ -379,7 +391,7 @@ const emailsend = ()=>{
             />
           </div>
         </Box>
-
+<div className="selectrr">
         <select
           className="selecthere"
           onChange={(e) => {
@@ -394,19 +406,31 @@ const emailsend = ()=>{
           }}
         >
           {state.majority.map((majority, i) => {
-            if (majority.majorityname === "All") {
+            if (majority.majorityname === "All"|| majority.majorityname ==="not selected") {
             } else {
               return <option>{majority.majorityname}</option>;
             }
           })}
         </select>
-
-        <FileUploader
+        </div>
+<div className ="upload">
+        <FileUploader  style={{width: '100%'}}
           handleChange={handleChange}
           name="file"
           types={fileTypes}
         />
-        <h4>Uploaded {progres}%</h4>
+        {/* <p>Uploaded {progres}%</p> */}
+        
+        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+      <Box sx={{ width: '100%', mr: 1 }}>
+        <LinearProgress variant="determinate"/>
+      </Box>
+      <Box sx={{ minWidth: 35 }}>
+        <Typography variant="body2" color="text.secondary">{`${Math.round(
+          progres,
+        )}%`}</Typography>
+      </Box>
+    </Box>
 
         {urlfile && typOffile === "image/jpeg" && <img src={urlfile} />}
         {urlfile && typOffile === "application/pdf" && (
@@ -418,9 +442,10 @@ const emailsend = ()=>{
             />
           </a>
         )}
+        </div>
         {/* <form ref={form} onSubmit={sendEmail}> */}
           <React.Fragment>
-            <Button type="submit" value="Send" onClick={handleOpen}>
+            <Button  type="submit" value="Send" onClick={handleOpen}>
               Add Project
             </Button>
             {/* <input type="submit" value="Send" /> */}
@@ -430,9 +455,8 @@ const emailsend = ()=>{
               aria-labelledby="child-modal-title"
               aria-describedby="child-modal-description"
             >
-              <Box sx={{ ...style, width: 400, height: 400 }}>
-                <h2 id="child-modal-title">Your project added successfully </h2>
-                <svg
+              <Box sx={{ ...style, width: 400, height: 200 }}>
+                <h2 id="child-modal-title">Your project added successfully    <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="30"
                   height="30"
@@ -442,7 +466,8 @@ const emailsend = ()=>{
                 >
                   <path d="M3 14.5A1.5 1.5 0 0 1 1.5 13V3A1.5 1.5 0 0 1 3 1.5h8a.5.5 0 0 1 0 1H3a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5V8a.5.5 0 0 1 1 0v5a1.5 1.5 0 0 1-1.5 1.5H3z" />
                   <path d="m8.354 10.354 7-7a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0z" />
-                </svg>
+                </svg></h2>
+             
                 <p id="child-modal-description">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -454,7 +479,7 @@ const emailsend = ()=>{
                   >
                     <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2z" />
                   </svg>{" "}
-                  can you invite your freelanser to apply his offer
+                  You can invite your freelancers to apply offers
                 </p>
                 <Button onClick={handleClose}>Invite </Button>
               </Box>
@@ -462,20 +487,81 @@ const emailsend = ()=>{
           </React.Fragment>
         {/* </form> */}
       </div>
+      
+    {/* <hr className="lineee"></hr> */}
+      <div className="saidvideo">
+   
+  
+<Popup style={{width:"500px", height:"500px"}} trigger={<button className="button-6">Learn How can you add project</button>} position="left"> 
+<iframe class="embed-responsive-item" width="100%" height="100%" src="./assets/SnapSave.io-Freelance Worldwide, LLC Promo Video-(1080p).mp4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+  </Popup>
 
-      <div class="vertical">
-        {/* <form ref={form} onSubmit={sendEmail}> */}
-        {/* <label>Name</label> */}
-        {/* <input type="text" name="user_name" /> */}
-        {/* <label>Email</label> */}
-        {/* <input type="email" name="user_email" /> */}
-        {/* <label>Message</label> */}
-        {/* <textarea name="message" /> */}
-        {/* <input type="submit" value="Send" /> */}
-        {/* </form> */}
+
+
+
+<div className="dispcc">
+
+{/* <h2>Learn How can you add project</h2> */}
+<h3>Start your project</h3>
+<p>You can complete your project as you want through a freelancer. Enter the project details, budget, and expected duration to be reviewed and published for free. After that, it will appear to the freelancers on the projects page and submit their offers on it. You choose the most suitable offer for you and the freelancer starts implementing the project.
+</p>
+<h3>An independent site that guarantees your rights</h3>
+<p>An independent site plays the role of mediator between you and the freelancer you hire to implement your project. Only after the freelancer completes the implementation of the project is the amount transferred to his account.
+</p>
+
+<h3>Tips for a successful business</h3>
+<ul>
+  <li>
+  Clarify all the details and tasks to be accomplished
+  </li>
+  <li>Break large projects and tasks into several small phases</li>
+  <li>Fill in all fields and provide examples of what you want to do</li>
+</ul>
+
+<h3>An independent site that beehive your rights</h3>
+<p>An independent site plays the role of mediator between you and the freelancer you hire to implement your project. Only after the freelancer completes the implementation of the project is the amount transferred to his account.
+
+An independent site plays the role of mediator between you and the freelancer you hire to implement your project. Only after the freelancer completes the implementation of the project is the amount transferred to his account.
+</p>
+</div>
       </div>
+  
     </div>
   );
 }
 
 export default Addproject;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

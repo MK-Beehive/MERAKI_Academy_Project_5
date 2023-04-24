@@ -3,7 +3,7 @@ const nodemailer = require('nodemailer');
 
 const creatEmail = (req,res)=>{
 
-    const {user, info, subject,massege} = req.body
+    const {info, subject,massege} = req.body
     console.log(req.body)
 
     const transporter = nodemailer.createTransport({

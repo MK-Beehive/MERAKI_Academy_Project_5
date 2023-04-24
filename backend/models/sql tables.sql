@@ -140,3 +140,25 @@ CREATE TABLE notification(
   PRIMARY KEY (id)
 );
 
+CREATE TABLE chat(
+  id SERIAL NOT NULL,
+  Messages VARCHAR(255),
+  sender_id INT,
+  room_id INT,
+  created_at TIMESTAMP default now()
+  FOREIGN KEY (sender_id) REFERENCES users(id),
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE chatnotification(
+  id SERIAL NOT NULL,
+  chatnotification VARCHAR(255),
+  user_id INT,
+  room_id INT, 
+  sender_id INT, 
+  FOREIGN KEY (user_id) REFERENCES users(id),
+  FOREIGN KEY (sender_id) REFERENCES users(id),
+  PRIMARY KEY (id)
+);
+
+

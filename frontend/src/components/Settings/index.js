@@ -53,7 +53,7 @@ const Settings = () => {
       console.log("UPDATET FN",updatedFirstname);
       console.log("UPDATET LN",updatedLastname);
       console.log("UPDATET EMAIL",updatedEmail);
-      console.log("UPDATED EXPERIANCE ID", updatedExperianceId);
+      // console.log("UPDATED EXPERIANCE ID", updatedExperianceId);
 
       const response = await axios.put(
         `http://localhost:5000/users/${userId}`,
