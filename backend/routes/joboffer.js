@@ -11,3 +11,4 @@ jobOfferRouter.delete("/:id", deleteoffer)
 jobOfferRouter.get("/user/:id",getofferByUser)
 
 module.exports = jobOfferRouter;
+
