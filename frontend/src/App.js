@@ -13,6 +13,8 @@ import Freelancer from "./components/Freelancer";
 import ProjectInside from "./components/ProjectInside";
 
 import Chatsocket from "./components/socket/Chatsocket"
+import Sucsses from "./components/Sucsses";
+import ProfileSecond from "./components/ProfileSecond";
 
 
 
@@ -37,11 +39,17 @@ function App() {
 <Route path="/Join" element={<Login/>}/>
  <Route path="/Register" element={<Register/>} />
  <Route path="/ProjectInside" element={<ProjectInside/>} />
+
 <Route path = "/chat" element={<Chatsocket/>}/>
  
 
+ <Route path="/Sucsses" element={<Sucsses/>} />
+
+ <Route path="/ProjectInside" element={<ProjectInside/>} />
+
 
    <Route path="/profile" element={<Profile/>} />
+   <Route path="/ProfileSecond" element={<ProfileSecond/>} />
 
 
 

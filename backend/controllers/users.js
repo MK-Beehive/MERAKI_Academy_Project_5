@@ -369,7 +369,40 @@ const members =(req,res) =>{
       });
   };
 
+  const   getOneUserByID  =(req,res) =>{
+    const {id} = req.params;
 
+    console.log("==============================",id)
+
+    const query = `SELECT * FROM users WHERE id = $1 AND is_deleted = 0`;
+   
+    pool
+      .query(query, [id])
+      .then((result) => {
+  console.log("==============================",id,result.rows)
+        if (result.rows.length) {
+                 res.status(200).json({
+                  success: true,
+                  result:result.rows[0],
+                 
+                });
+              } else {
+                res.status(200).json({
+                  success: true,
+                  result:"no user",
+              })
+            }
+
+          })
+      .catch((err) => {
+        res.status(403).json({
+          success: false,
+          message:
+            "The email doesn’t exist ",
+          err,
+        });
+      });
+  };
   const getuserbyrole = (req,res)=>{
 
     pool.query(`SELECT users.*, information.*, experiance.experianceName, majority.majorityName  FROM users INNER JOIN information ON users.id=information.user_id INNER JOIN experiance ON 
@@ -450,8 +483,12 @@ const getmessagenotification  = (req,res)=>{
     members,getuserbyrole,
     postnotification,
     getnotieficationBYuserId,
+
     sendMessagenotification,
     getmessagenotification,
   
+
+    getOneUserByID
+
 
   };

@@ -6,6 +6,7 @@ import Stack from "@mui/material/Stack";
 import {AiFillWechat} from "react-icons/ai"
 import Typography from "@mui/material/Typography";
 import Pagination from "@mui/material/Pagination";
+import {setselectetUserProfile  , setselectedoffer_id} from "../redux/reducers/selected/index"
 
 import { useSelector, useDispatch } from "react-redux";
 import { setMajority } from "../redux/project/projectSlice";
@@ -106,11 +107,13 @@ const Freelancer = () => {
   const freelancersinfo = resultinfo.map((freelancer) => {
     return (
       <div className="freelancerinfo" key={freelancer.id} onClick={()=>{
-        Navigate("/profile")
+        dispatch(setselectetUserProfile(freelancer.user_id))
+console.log(";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;",freelancer.id)
+        Navigate("/ProfileSecond")
       }}>
         <div className="freelancerinfo1">
          <AiFillWechat  className="chat"  onClick={()=>{
-        Navigate("/profile")
+        // Navigate("/profile")
       }} />
           <div className="img" >
             <img src={freelancer.image}></img>
