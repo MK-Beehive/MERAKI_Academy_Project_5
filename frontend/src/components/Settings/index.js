@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import SettingBar from "../SettingBar";
 import "./style.css";
@@ -199,3 +200,4 @@ console.log(userinfo.firstname);
 };
 
 export default Settings;
+

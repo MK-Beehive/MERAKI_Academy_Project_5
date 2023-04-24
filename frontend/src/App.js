@@ -13,9 +13,16 @@ import Freelancer from "./components/Freelancer";
 import ProjectInside from "./components/ProjectInside";
 import BioAndSkills from "./components/BioAndSkills";
 import Chatsocket from "./components/socket/Chatsocket"
+
 import ChangePassword from "./components/ChangePassword"
 import BalanceManagement from "./components/BalanceManagement";
 import WorkSamples from "./components/WorkSamples";
+
+import Sucsses from "./components/Sucsses";
+import ProfileSecond from "./components/ProfileSecond";
+
+
+
 
 function App() {
 
@@ -44,10 +51,16 @@ function App() {
  <Route path="/Register" element={<Register/>} />
  <Route path="/ProjectInside" element={<ProjectInside/>} />
 
+<Route path = "/chat" element={<Chatsocket/>}/>
  
+
+ <Route path="/Sucsses" element={<Sucsses/>} />
+
+ <Route path="/ProjectInside" element={<ProjectInside/>} />
 
 
    <Route path="/profile" element={<Profile/>} />
+   <Route path="/ProfileSecond" element={<ProfileSecond/>} />
 
 
 

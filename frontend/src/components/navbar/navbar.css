@@ -121,3 +121,25 @@ a button {
     cursor: pointer;
     margin-top: 10px;
 }
+
+.billbutton{
+    background-color: transparent;
+    border: none;
+    margin-top: 10px;
+    cursor: pointer;
+    inline-size: 50px;
+    
+}
+
+.mesagebutton{
+background-color: transparent;
+border: none;
+cursor: pointer;
+margin-top: 10px;
+inline-size: 50px;
+}
+.imgprofile{
+    width:35% ;
+    margin-bottom: 5px;
+    inline-size: 50px;
+}

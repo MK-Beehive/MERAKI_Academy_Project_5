@@ -369,7 +369,40 @@ const members =(req,res) =>{
       });
   };
 
+  const   getOneUserByID  =(req,res) =>{
+    const {id} = req.params;
 
+    console.log("==============================",id)
+
+    const query = `SELECT * FROM users WHERE id = $1 AND is_deleted = 0`;
+   
+    pool
+      .query(query, [id])
+      .then((result) => {
+  console.log("==============================",id,result.rows)
+        if (result.rows.length) {
+                 res.status(200).json({
+                  success: true,
+                  result:result.rows[0],
+                 
+                });
+              } else {
+                res.status(200).json({
+                  success: true,
+                  result:"no user",
+              })
+            }
+
+          })
+      .catch((err) => {
+        res.status(403).json({
+          success: false,
+          message:
+            "The email doesn’t exist ",
+          err,
+        });
+      });
+  };
   const getuserbyrole = (req,res)=>{
 
     pool.query(`SELECT users.*, information.*, experiance.experianceName, majority.majorityName  FROM users INNER JOIN information ON users.id=information.user_id INNER JOIN experiance ON 
@@ -395,15 +428,49 @@ pool.query(`INSERT INTO notification (notificationMessage,project_id,user_id) VA
 })
   }
 
+
+const sendMessagenotification = (req,res)=>{
+  const {chatnotification,room_id,user_id,sender_id} = req.body
+  const placholder = [chatnotification,room_id,user_id,sender_id]
+  pool.query(`INSERT INTO chatnotification (chatnotification,room_id,user_id,sender_id) VALUES ($1,$2,$3,$4) RETURNING * `,placholder).then((result)=>{
+    console.log(result.rows)
+    res.json(result.rows)
+  }).catch((err)=>{
+    console.log(err)
+    res.json(err)
+  })
+}
+
+
   const getnotieficationBYuserId  = (req,res)=>{
     const userId = req.params.id
 pool.query(`SELECT * FROM notification WHERE user_id =${userId}`).then((result)=>{
-  console.log(result.rows)
   res.json(result.rows)
 }).catch((err)=>{
   res.json(err)
 })
   }
+
+
+  // console.log(result.rows)
+  // if(result.rows.length===0){
+  //   pool.query(`SELECT * FROM notification WHERE sender_id =${userId}`).then((result)=>{
+  //     res.json(result.rows)
+  //   }).catch((err)=>{
+  //     res.json(err)
+  //   })
+  // }
+
+
+const getmessagenotification  = (req,res)=>{
+  const userId = req.params.id
+  pool.query(`SELECT * FROM chatnotification WHERE user_id =${userId} ORDER BY id DESC`).then((result)=>{
+    console.log(result.rows)
+    res.json(result.rows)
+  }).catch((err)=>{
+    res.json(err)
+  })
+}
 
   module.exports = {
     register,
@@ -415,6 +482,13 @@ pool.query(`SELECT * FROM notification WHERE user_id =${userId}`).then((result)=
     tokenjwt,
     members,getuserbyrole,
     postnotification,
-    getnotieficationBYuserId
+    getnotieficationBYuserId,
+
+    sendMessagenotification,
+    getmessagenotification,
+  
+
+    getOneUserByID
+
 
   };

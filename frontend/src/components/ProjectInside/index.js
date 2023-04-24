@@ -1,6 +1,11 @@
 import {Elements} from '@stripe/react-stripe-js';
 import {loadStripe} from '@stripe/stripe-js';
-import {setselectetUserProfile } from "../redux/reducers/selected/index"
+
+
+import {setinfouserOfoffer} from "../redux/offers/offerSlice"
+
+import {setselectetUserProfile  , setselectedoffer_id} from "../redux/reducers/selected/index"
+
 import React, { useEffect, useState ,useRef} from "react";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
@@ -17,7 +22,7 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 import InputAdornment from '@mui/material/InputAdornment';
 
-import { Routes, Route, Link, useParams, useNavigate } from "react-router-dom";
+import { Routes, Route, Link, useParams, useNavigate, Outlet } from "react-router-dom";
 import "./projectInside.css";
 
 import Box from '@mui/material/Box';
@@ -32,9 +37,6 @@ const { Meta } = Card;
 
 
 
-// Make sure to call `loadStripe` outside of a component’s render to avoid
-// recreating the `Stripe` object on every render.
-const stripePromise = loadStripe('pk_test_51Mxn4uFKzpLJBNgHJFMTYVZ78koOA4onNYIcivNeibi2YRNfcaL6pnqgv2f75zycmx3ftAG4u20qx0QtY5yBduSl00aEBwQACh');
 
 
 
@@ -43,11 +45,6 @@ const ProjectInside = () => {
 
 
 
-  
-    // const options = {
-    //     // passing the client secret obtained from the server
-    //     clientSecret:'sk_test_51Mxn4uFKzpLJBNgH0BiwJtieg7qcKxI5npgFT2PdhBZlesBaBKenJboyAfIWmbCLrD871z9oD0hQ5VZGnjEQQsAr00bN61uYyi',
-    //   };
       
     const radioInput = useRef(null); //===refernce to reach redio input 
 
@@ -95,7 +92,7 @@ function ChildModal() {
         >
           <Box sx={{ ...style, width: 200 }}>
             <h2 id="child-modal-title">Text in a child modal</h2>
-               <Paymant/>
+               <Paymant  cartItems={{offer_id:SelectedOffer,project_id:state.selectedProject ,projecttitle:projecttitle ,selectedofferdata: selectedofferdata}}/>
             <Button onClick={handleClose}>Close Child Modal</Button>
           </Box>
         </Modal>
@@ -126,6 +123,8 @@ const [workday, setworkday] = useState(0)
 const [jobOfferDescription, setjobOfferDescription] = useState("")
 const [setAdd, setsetAdd] = useState(false)
 const [SelectedOffer, setSelectedOffer] = useState(0)
+const [projecttitle, setprojecttitle] = useState("")
+const [selectedofferdata, setselectedofferdata] = useState({})
 
 const [rate, setrate] = useState(0)
 
@@ -148,7 +147,7 @@ const [rate, setrate] = useState(0)
         console.log("selectedProjectdata.data_________________", data.data);
 
         setselectedProjectdata(data.data.result[0]);
-
+        setprojecttitle(data.data.result[0].title)
         const create_timestamp = data.data.result[0].created_at;
         const createdAt = new Date(create_timestamp);
         setcreatedDate(createdAt.toLocaleDateString("en-US"));
@@ -189,14 +188,14 @@ const [rate, setrate] = useState(0)
   }
 // options={options}
   return (
-    <Elements stripe={stripePromise}  > 
+    // <Elements stripe={stripePromise}  > 
     <div>
       <div className="project_inside">
         <div className="project_user">
           <div className="projectInsidefilterside" onClick={()=>{
                console.log(",,,,,,,,,,,,,",selectedProjectdata)
             dispatch(setselectetUserProfile(selectedProjectdata.user_id))
-            Navigate("/profile")
+            Navigate("/ProfileSecond")
           }}>
 
 
@@ -264,11 +263,12 @@ const [rate, setrate] = useState(0)
               <div>
                 <span>
                   {" "}
-                  <button onClick={()=>{}}>Invite Freelancers </button>
-                  <button   onClick={()=>{
+            { state.auth.userId == selectedProjectdata.user_id &&   <button onClick={()=>{}}>Invite Freelancers </button>}
+            {state.auth.userId != selectedProjectdata.user_id &&     <button   onClick={()=>{
 
                     setAddOffer(true)
-                   }}> ADD Offer </button>{" "}
+                   }}> ADD Offer </button>}
+                   {" "}
                 </span>
               </div>
             </div>
@@ -281,21 +281,24 @@ const [rate, setrate] = useState(0)
             {    selectedProjecOffers.map((ProjecOffer)=>{
                return <div key={ProjecOffer.id}  className="project_inside_offer_one">
 
-    <input className="input-radio" type="radio"    ref={radioInput}    name="selectedOffer" value={
-       { id : ProjecOffer.id , name : ProjecOffer.firstname } }  onChange={(e)=>{
+  {state.auth.userId == selectedProjectdata.user_id &&   <input className="input-radio" type="radio"    ref={radioInput}    name="selectedOffer" value= {  ProjecOffer.id  }  onChange={(e)=>{
         console.log(e.target.value ,ProjecOffer.id)
         setSelectedOffer(e.target.value)
+       dispatch( setselectedoffer_id(ProjecOffer.id))
+       setselectedofferdata(ProjecOffer)
         handleOpen()
-    }}/>
+    }}/>}
 
         <div className="offer_info">
          <AiFillWechat  className="chat_offer"  onClick={()=>{
-        // Navigate("/profile")
+          console.log(ProjecOffer)
+          dispatch(setinfouserOfoffer(ProjecOffer))
+           Navigate("/chat")
       }} />
           <div className="imguser" onClick={()=>{
                   console.log(".....................",ProjecOffer)
             dispatch(setselectetUserProfile(ProjecOffer.user_id))
-            Navigate("/profile")
+            Navigate("/ProfileSecond")
           }}  >
             <img src={ProjecOffer.image}></img>
           </div>
@@ -339,7 +342,7 @@ const [rate, setrate] = useState(0)
         <Box sx={{ ...style, width: 400 }}>
           <h2 id="parent-modal-title">Select Offer</h2>
           <p id="parent-modal-description">
-            Press Continue to confirm { SelectedOffer.name }'s offer 
+            Press Continue to confirm the offer 
           </p>
           <Button onClick={()=>{handleClose()
              radioInput.current.checked =false
@@ -444,7 +447,7 @@ const [rate, setrate] = useState(0)
             }}> Add </button>
             </div>}
 
-
+{/* <Outlet  cartItems={{offer_id:SelectedOffer,project_id:state.selectedProject  }}/> */}
 
 
             </div>
@@ -452,7 +455,7 @@ const [rate, setrate] = useState(0)
         </div>
       </div>
     </div>
-</Elements>
+// </Elements>
   );
 };
 
