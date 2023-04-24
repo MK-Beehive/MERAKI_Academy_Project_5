@@ -10,6 +10,10 @@ import {
   setexperiances,
   setExperianceforUser,
 } from "../redux/reducers/experiances";
+import {Button } from "antd";
+import {SaveOutlined } from "@ant-design/icons";
+
+import "./style.css"
 
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
@@ -17,8 +21,8 @@ import NativeSelect from "@mui/material/NativeSelect";
 import Box from "@mui/material/Box";
 import { Input } from "antd";
 const { TextArea } = Input;
-
 const BioAndSkills = () => {
+
   const dispatch = useDispatch();
   const { skill, userId, userSkills, userinfo, userdata, experiances } =
     useSelector((state) => {
@@ -31,6 +35,8 @@ const BioAndSkills = () => {
         experiances: state.experiances.experiances,
       };
     });
+  const [size, setSize] = useState("large"); // default is 'middle'
+
   const [selectedSkills, setSelectedSkills] = useState(
     JSON.parse(localStorage.getItem("selectedSkills")) || []
   );
@@ -199,7 +205,7 @@ const BioAndSkills = () => {
   }, []);
 
   return (
-    <div className="setting-container">
+    <div className="bioandskills">
       <div className="setting">
         <SettingBar />
       </div>
@@ -232,9 +238,23 @@ const BioAndSkills = () => {
             </Select>
           </Space>
           <div className="save button">
-          <button type="submit" onClick={handleSaveSkills}>
+          <Button
+                    type="primary"
+                    icon={<SaveOutlined />}
+                    style={{
+                      // backgroundColor: "#fadb14",
+                      // borderColor: "yellow",
+                    }}
+                    size={size}
+                    onClick={
+                      handleSaveSkills
+                    }
+                  >
+                    Save Skills Changes
+                  </Button>
+          {/* <button type="submit" onClick={handleSaveSkills}>
             Save Skills Changes
-          </button>
+          </button> */}
         </div>
         </div>
         )}
@@ -251,10 +271,24 @@ const BioAndSkills = () => {
             placeholder="bio"
           />
         </div>
-        <div className="bio button">
-          <button type="submit" onClick={handleBioSaveChanges}>
+        <div className="bio-button">
+        <Button
+                    type="primary"
+                    icon={<SaveOutlined />}
+                    style={{
+                      // backgroundColor: "#fadb14",
+                      // borderColor: "yellow",
+                    }}
+                    size={size}
+                    onClick={
+                      handleBioSaveChanges
+                    }
+                  >
+                    Save Bio Changes
+                  </Button>
+          {/* <button type="submit" onClick={handleBioSaveChanges}>
             Save Bio Changes
-          </button>
+          </button> */}
         </div>
         {userdata.role_id == 2 && (
           <>
@@ -292,10 +326,23 @@ const BioAndSkills = () => {
                 </FormControl>
               </Box>
             </div>
-
-            <button type="submit" onClick={handleExperianceSaveChanges}>
+            <Button
+                    type="primary"
+                    icon={<SaveOutlined />}
+                    style={{
+                      // backgroundColor: "#fadb14",
+                      // borderColor: "yellow",
+                    }}
+                    size={size}
+                    onClick={
+                      handleExperianceSaveChanges
+                    }
+                  >
+                    Save Experiance Changes
+                  </Button>
+            {/* <button type="submit" onClick={handleExperianceSaveChanges}>
               Save Experiance Changes
-            </button>
+            </button> */}
           </>
         )}
       </div>

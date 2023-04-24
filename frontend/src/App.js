@@ -15,7 +15,7 @@ import BioAndSkills from "./components/BioAndSkills";
 import Chatsocket from "./components/socket/Chatsocket"
 import ChangePassword from "./components/ChangePassword"
 import BalanceManagement from "./components/BalanceManagement";
-
+import WorkSamples from "./components/WorkSamples";
 
 function App() {
 
@@ -37,6 +37,7 @@ function App() {
 <Route path="/settings/personaldata" element={<Settings/>}/>
 <Route path="/settings/bioandskills" element={<BioAndSkills/>}/>
 <Route path="/settings/changepassword" element={<ChangePassword/>}/>
+<Route path="/settings/worksamples" element={<WorkSamples/>}/>
 <Route path="/settings/balancemanagement" element={<BalanceManagement/>}/>
 
 <Route path="/Join" element={<Login/>}/>
@@ -55,7 +56,7 @@ function App() {
     
 
 </Routes>
-<Chatsocket/>
+{/* <Chatsocket/> */}
 {/* <Footer className="footer"/> */}
     </div>
 

@@ -9,10 +9,11 @@ import FormControl from "@mui/material/FormControl";
 import NativeSelect from "@mui/material/NativeSelect";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { UserOutlined } from "@ant-design/icons";
+import { UserOutlined,MailOutlined,SaveOutlined } from "@ant-design/icons";
 import { Input } from "antd";
 import {useNavigate,useLocation} from "react-router-dom"
 import Box from "@mui/material/Box";
+import {Button } from "antd";
 
 const Settings = () => {
   const dispatch = useDispatch();
@@ -24,6 +25,7 @@ const Settings = () => {
       experiances: state.experiances.experiances,
     };
   });
+  const [size, setSize] = useState("large"); // default is 'middle'
 
   const [updatedFirstname, setUpdatedFirstname] = useState(userdata.firstname);
   const [updatedLastname, setUpdatedLastname] = useState(userdata.lastname);
@@ -158,7 +160,7 @@ console.log(userinfo.firstname);
             <Input
               size="40vw"
               placeholder="email"
-              prefix={<UserOutlined />}
+              prefix={<MailOutlined />}
               value={updatedEmail}
               onChange={(e) => setUpdatedEmail(e.target.value)}
             />
@@ -171,9 +173,23 @@ console.log(userinfo.firstname);
 
         {/* <img src={userinfo} /> */}
         <div>
-          <button type="submit" onClick={handleSaveChanges}>
+        <Button
+                    type="primary"
+                    icon={<SaveOutlined />}
+                    style={{
+                      // backgroundColor: "#fadb14",
+                      // borderColor: "yellow",
+                    }}
+                    size={size}
+                    onClick={
+                      handleSaveChanges
+                    }
+                  >
+                    Save Changes
+                  </Button>
+          {/* <button type="submit" onClick={handleSaveChanges}>
             Save Changes
-          </button>
+          </button> */}
         </div>
       </div>
 

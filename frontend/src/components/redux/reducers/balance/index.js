@@ -8,7 +8,7 @@ export const balanceSlice = createSlice({
     },
     reducers:{
         setBalance:(state, action)=>{ 
-            state.experiances = action.payload;
+            state.balance = action.payload;
             console.log('balace Redux',action.payload)
         },
       

@@ -4,12 +4,14 @@ import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import { Button, Input, Space } from 'antd';
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
+import {SaveOutlined } from "@ant-design/icons";
 
 
 const ChangePassword = () => {
   const [passwordVisible, setPasswordVisible] = React.useState(false);
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("")
+  const [size, setSize] = useState("large"); // default is 'middle'
 
   const [error, setError] = useState(null);
   const dispatch = useDispatch();
@@ -67,7 +69,21 @@ const ChangePassword = () => {
      
     </Space>
     <div class="col-lg-offset-3-col-lg-8">
-                <button
+    <Button
+                    type="primary"
+                    icon={<SaveOutlined />}
+                    style={{
+                      // backgroundColor: "#fadb14",
+                      // borderColor: "yellow",
+                    }}
+                    size={size}
+                    onClick={
+                      handleEditPassword
+                    }
+                  >
+                    Save Changes
+                  </Button>
+                {/* <button
                   mtarginTop="2vh"
                   type="submit"
                   onClick={
@@ -75,7 +91,7 @@ const ChangePassword = () => {
                   }
                 >
                   Save Changes
-                </button>
+                </button> */}
               </div>
       </div>
 

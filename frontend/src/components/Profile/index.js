@@ -6,8 +6,9 @@ import StarIcon from "@mui/icons-material/Star";
 
 import Typography from "@mui/material/Typography";
 import { useNavigate, Link } from "react-router-dom";
+import { FilePdfOutlined } from "@ant-design/icons";
 
-import { setUserInfo, setLogin } from "../redux/reducers/auth";
+import { setUserInfo, setLogin, googleUser} from "../redux/reducers/auth";
 import axios from "axios";
 import Rating from "@mui/material/Rating";
 // import { Card } from "antd";
@@ -16,10 +17,9 @@ import { setOfferByUser } from "../redux/offers/offerSlice";
 import { setSkillByUser } from "../redux/skills/skillsSlice";
 import {setExperiance} from  "../redux/reducers/experiances"
 import Chip from "@mui/material/Chip";
-import { SettingOutlined } from "@ant-design/icons";
-
-// import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
+import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
 import { Avatar, Card, Button, Divider, Radio, Space, Row, Col } from "antd";
+
 import { useInternalMessage } from "antd/es/message/useMessage";
 const { Meta } = Card;
 
@@ -35,7 +35,8 @@ const Profile = () => {
         skill: state.skill.skill,
         offer: state.offer.offer,
         isLoggedIn: state.auth.isLoggedIn,
-        experiances:state.experiances.experiances
+        experiances:state.experiances.experiances,
+        isgoogleUser:state.auth.isgoogleUser
       };
     });
 
@@ -157,6 +158,7 @@ console.log("firstname",userinfo.firstname);
     <div className="main">
       <div className="left">
         <div class="card-container">
+        
           <Card
             style={{
               width: 300,
@@ -169,8 +171,8 @@ console.log("firstname",userinfo.firstname);
                     type="primary"
                     icon={<SettingOutlined />}
                     style={{
-                      backgroundColor: "#fadb14",
-                      borderColor: "yellow",
+                      // backgroundColor: "#fadb14",
+                      // borderColor: "yellow",
                     }}
                     size={size}
                     onClick={() => {
@@ -184,7 +186,8 @@ console.log("firstname",userinfo.firstname);
             ]}
           >
             <Meta
-              title={`${userinfo.firstname} ${userinfo.lastname}`}
+            
+              title={`${userdata.firstname} ${userdata.lastname}`}
               description="  "
             />
 
@@ -193,6 +196,7 @@ console.log("firstname",userinfo.firstname);
               precision={0.1}
               value={value}
               readOnly
+              style={{color: "#651fff"}}
               emptyIcon={
                 <StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />
               }
@@ -226,7 +230,7 @@ console.log("firstname",userinfo.firstname);
             <>
               <Row gutter={4}>
                 <Col span={8}>
-                  <Card title={`Completed Projects`} bordered={true}>
+                  <Card title={`Completed Projects`} bordered={true}  >
                     <p>{completedProjects.length}</p>
                   </Card>
                 </Col>
@@ -253,12 +257,12 @@ console.log("firstname",userinfo.firstname);
                   </Card>
                 </Col>
 
-                <Col>
+                <Col span={8}>
                   <Card title={`Accepted Offers`} bordered={true}>
                     <p> {acceptedOffers.length}</p>
                   </Card>
                 </Col>
-                <Col>
+                <Col span={8}>
                   <Card title={`Rejected Offers`} bordered={true}>
                     <p>{rejectedOffers.length}</p>
                   </Card>
@@ -280,8 +284,13 @@ console.log("firstname",userinfo.firstname);
         {userdata.role_id !== 1 && (
           <div className="sample">
             <Card title="My work Samples" bordered={true}>
-              {skill.length > 0 ? (
-                <p>hi every one</p>
+              {userinfo.cv !="" ? (
+               <>
+               <FilePdfOutlined style={{ marginRight: "8px" }} />
+      <a href={userinfo.cv} target="_blank">
+        {userinfo.firstname} cv
+      </a>
+               </>
               ) : (
                 <p>No work samples available</p>
               )}

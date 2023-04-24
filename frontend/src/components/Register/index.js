@@ -124,19 +124,46 @@ const Register = () => {
             // user_id: userId,
             majority_id: 5,
             rate: 0,
+            experiance_id:1
           }
         );
         if (infoResult.data.success) {
         console.log(",,,,,,,,,,,,,,,,,,,,,",infoResult.data.success)
 
-          setStatus(true);
-          setMessage("Registration successful");
-          dispatch(setUserInfo(infoResult.data.result[0]));
-          localStorage.setItem(
-            "userinfo",
-            JSON.stringify(infoResult.data.result[0])
-          );
-         console.log("iiii---->",infoResult.data.result);
+        axios.get(`http://localhost:5000/infouser/${userId}`)
+        .then((resultinfo) => {
+
+            console.log("resultinfo.data_________________", resultinfo.data.info[0]);
+
+            // console.log("resultdata.data________________", resultdata.data);
+    
+             
+          
+            dispatch(setUserInfo(resultinfo.data.info[0]))
+
+            setStatus(true);
+            setMessage("Registration successful");
+     
+            localStorage.setItem(
+              "userinfo",
+              JSON.stringify((resultinfo.data.info[0]))
+            );
+      
+          
+ 
+       
+    })
+    .catch((err) => {
+        console.log("error", err);
+        //  setresult(true)
+    });
+
+
+
+
+
+
+       
           const loginResult = await axios.post(
             "http://localhost:5000/users/login",
             {

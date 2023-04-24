@@ -1,35 +1,92 @@
-import { MailOutlined, SettingOutlined, AppstoreOutlined } from '@ant-design/icons';
-import { Menu } from 'antd';
-import { useNavigate, useLocation } from 'react-router-dom';
+import React from "react";
+import { setUserdata } from "../redux/reducers/auth";
+
+import {
+  MailOutlined,
+  SettingOutlined,
+  AppstoreOutlined,
+  UserOutlined,
+  FormOutlined,
+  LockOutlined,
+  CalculatorOutlined,
+  FileProtectOutlined
+} from "@ant-design/icons";
+
+import { Menu } from "antd";
+import { useNavigate, useLocation } from "react-router-dom";
+
+import { useDispatch, useSelector } from "react-redux";
 
 const SettingBar = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  function getItem(label, key, icon, children, type, onClick) {
-    const isSelected = location.pathname === `/settings/${key}`;
+  const { userdata } = useSelector((state) => {
     return {
-      key,
-      icon,
-      children,
-      label,
-      type,
-      onClick,
-      isSelected,
+      userdata: state.auth.userdata,
     };
-  }
+  });
 
   const items = [
-    getItem('Personal Data', 'personalData', <MailOutlined />, null, null, () => navigate('/settings/personalData')),
-    getItem('Description', 'bioandskills', <AppstoreOutlined />, null, null, () => navigate('/settings/bioandskills')),
-    getItem('Change Your Password', 'changepassword', <SettingOutlined />, null, null, () => navigate('/settings/changepassword')),
-    getItem('Balance Management', 'balancemanagement', <SettingOutlined />, null, null, () => navigate('/settings/balancemanagement')),
+    {
+      key: "personalData",
+      icon: <UserOutlined />,
+      children: null,
+      label: "Personal Data",
+      type: null,
+      onClick: () => navigate("/settings/personalData"),
+      isSelected: location.pathname === "/settings/personalData",
+    },
+    {
+      key: "bioandskills",
+      icon: <FormOutlined />,
+      children: null,
+      label: "Description",
+      type: null,
+      onClick: () => navigate("/settings/bioandskills"),
+      isSelected: location.pathname === "/settings/bioandskills",
+    },
+    {
+      key: "changepassword",
+      icon: <LockOutlined />,
+      children: null,
+      label: "Change Your Password",
+      type: null,
+      onClick: () => navigate("/settings/changepassword"),
+      isSelected: location.pathname === "/settings/changepassword",
+    },
+    {
+      key: "balancemanagement",
+      icon: <CalculatorOutlined />,
+      children: null,
+      label: "Balance Management",
+      type: null,
+      onClick: () => navigate("/settings/balancemanagement"),
+      isSelected: location.pathname === "/settings/balancemanagement",
+    },
   ];
 
-  const selectedKeys = items.filter((item) => item.isSelected).map((item) => item.key);
+  if (userdata.role_id === 2) {
+    items.push({
+      key: "worksamples",
+      icon: <FileProtectOutlined />,
+      children: null,
+      label: "Work Samples",
+      type: null,
+      onClick: () => navigate("/settings/worksamples"),
+      isSelected: location.pathname === "/settings/worksamples",
+    });
+  }
+
+  const selectedKeys = items
+    .filter((item) => item.isSelected)
+    .map((item) => item.key);
 
   return (
-    <div className='settingbar' style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+    <div
+      className="settingbar"
+      style={{ display: "flex", flexDirection: "column", height: "100%" }}
+    >
       <Menu
         style={{
           width: 256,
