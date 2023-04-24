@@ -1,4 +1,4 @@
-.setting-container {
+.bioandskills {
     display: grid;
     grid-template-columns: 2fr 6fr 2fr;
     grid-template-areas: "a b c";
@@ -15,10 +15,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 50%;
-    margin-top: 2vw;
-    margin-left: 10vw;
-    width: 20%;
+   
     height: 100%; /* Set the height of the center column to take up the full height of the container */
     gap:4vh;
   }
@@ -27,12 +24,11 @@
     grid-area: c;
     height: 100%; /* Set the height of the right column to take up the full height of the container */
   }
-  
-  .first-last-name{
+  .choose-skills{
     display: flex;
     flex-direction: column;
     gap:2vh;
   }
-  .email{
+  .bio-button{
     margin-top: 2vh;
   }

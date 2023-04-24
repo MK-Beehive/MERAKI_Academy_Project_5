@@ -55,6 +55,7 @@ const updateInfo = (req, res) => {
     cv,
     majority_id,
     skills_id,
+    experiance_id
   } = req.body;
   const placeholder = [
     informationdescription || null,
@@ -63,21 +64,37 @@ const updateInfo = (req, res) => {
       "https://static.vecteezy.com/system/resources/thumbnails/009/734/564/small/default-avatar-profile-icon-of-social-media-user-vector.jpg",
     cv || null,
     majority_id || null,
+    experiance_id||null
   ];
   pool
     .query(
-      `UPDATE information SET informationdescription=COALESCE($1,informationdescription),jobTitle=COALESCE($2,jobTitle),image=COALESCE($3,image),cv=COALESCE($4,cv),majority_id=COALESCE($5,majority_id) WHERE id =${iduser} RETURNING *;`,
+      `UPDATE information SET informationdescription=COALESCE($1,informationdescription),jobTitle=COALESCE($2,jobTitle),image=COALESCE($3,image),cv=COALESCE($4,cv),majority_id=COALESCE($5,majority_id),experiance_id=COALESCE($6,experiance_id) WHERE user_id =${iduser} RETURNING *;`,
       placeholder
     )
     .then((result) => {
-      res
-        .json({
-          success: true,
-          message: "information updated successfully",
-          info: result.rows,
+      if (result.rows.length > 0) 
+      {
+        pool.query(
+          `SELECT information.*,majority.majorityName,users.firstName,users.lastName ,experiance.experiancename FROM information INNER JOIN majority ON information.majority_id = majority.id INNER JOIN users ON information.user_id = users.id  INNER JOIN experiance ON information.experiance_id = experiance.id  WHERE information.user_id = ${iduser} AND users.is_deleted=0`
+        )
+        .then((result) => {
+          res.status(200).json({
+            success: true,
+            message: "all info is loaded",
+            info: result.rows,
+          });
+          console.log(result);
         })
-        .status(200);
+      }
+      // res
+      //   .json({
+      //     success: true,
+      //     message: "information updated successfully",
+      //     info: result.rows,
+      //   })
+      //   .status(200);
     })
+
     .catch((err) => {
       res
         .json({ success: false, massage: "Server error", err: err })

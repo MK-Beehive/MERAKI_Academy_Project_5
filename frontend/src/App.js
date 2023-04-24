@@ -11,10 +11,16 @@ import Profile from "./components/Profile";
 import Addproject from "./components/addproject/Addproject";
 import Freelancer from "./components/Freelancer";
 import ProjectInside from "./components/ProjectInside";
-
+import BioAndSkills from "./components/BioAndSkills";
 import Chatsocket from "./components/socket/Chatsocket"
+
+import ChangePassword from "./components/ChangePassword"
+import BalanceManagement from "./components/BalanceManagement";
+import WorkSamples from "./components/WorkSamples";
+
 import Sucsses from "./components/Sucsses";
 import ProfileSecond from "./components/ProfileSecond";
+
 
 
 
@@ -36,6 +42,11 @@ function App() {
 <Route path="/projects" element={<Projects/>}/>
 <Route path="/freelancer" element={<Freelancer/>}/>
 <Route path="/settings/personaldata" element={<Settings/>}/>
+<Route path="/settings/bioandskills" element={<BioAndSkills/>}/>
+<Route path="/settings/changepassword" element={<ChangePassword/>}/>
+<Route path="/settings/worksamples" element={<WorkSamples/>}/>
+<Route path="/settings/balancemanagement" element={<BalanceManagement/>}/>
+
 <Route path="/Join" element={<Login/>}/>
  <Route path="/Register" element={<Register/>} />
  <Route path="/ProjectInside" element={<ProjectInside/>} />

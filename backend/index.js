@@ -25,7 +25,8 @@ app.use("/skills",skillsRouter);
 const majoritesRouter = require("./routes/majorites")
 app.use("/majorites",majoritesRouter);
 //==================== sahar projectRouts FreelancerProjects ===========
-
+const balanceRouter = require("./routes/balance")
+app.use("/balance",balanceRouter);
 const projectsRouter = require("./routes/projects");
 const experianceRouter = require("./routes/experiance");
 
