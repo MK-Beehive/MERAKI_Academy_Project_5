@@ -228,23 +228,23 @@ console.log("firstname",userinfo.firstname);
         <div className="pr">
           {userdata.role_id === 1 && (
             <>
-              <Row gutter={4}>
-                <Col span={8}>
-                  <Card title={`Completed Projects`} bordered={true}  >
+              {/* <Row gutter={4}>
+                <Col span={8}> */}
+                  <Card className="card-1" title={`Completed Projects`} bordered={true} style={{maxWidth:"15vw"}}  >
                     <p>{completedProjects.length}</p>
                   </Card>
-                </Col>
-                <Col span={8}>
-                  <Card title={`Open Projects`} bordered={true}>
+                {/* </Col>
+                <Col span={8}> */}
+                  <Card title={`Open Projects`} bordered={true} style={{maxWidth:"15vw"}}>
                     <p>{openProjects.length}</p>
                   </Card>
-                </Col>
-                <Col span={8}>
+                {/* </Col>
+                <Col span={8}> */}
                   <Card title={`Rejected Projects`} bordered={true}>
                     <p>{rejectedProjects.length}</p>
                   </Card>
-                </Col>
-              </Row>
+                {/* </Col> */}
+              {/* </Row> */}
             </>
           )}
 
