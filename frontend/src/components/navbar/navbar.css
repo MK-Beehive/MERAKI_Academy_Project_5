@@ -1,145 +1,214 @@
-.navbarall{
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 10px;
-}
-.navbar{
+.navbar {
+    background: linear-gradient(90deg, rgb(59, 66, 132) 0%, rgb(156, 149, 149) 100%);
+    height: 10vh;
     display: flex;
     justify-content: space-between;
-    flex-direction: row;
-    background-color: rgb(255, 255, 255);
-    /* width: 100%; */
-    height: 55px;
- 
-   /* border: inset; */
-   
-}
-.logo{
+    /* align-items: center; */
+    font-size: 1.2rem;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    /* border: 4px solid rgb(153, 0, 255); */
+  }
+  
+  .navbar-container {
     display: flex;
-    flex-direction: row;
-    margin-left: 10px;
-    font-size: 20px;
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    margin-bottom: 10px;
-}
-.beehive{
-    margin-top: 15px;
-}
-.picofLogo{
-height: 35px;
-margin-right: 10px;
-}
-.billwithnot{
+    align-items: center;
+    justify-content: space-between;
+    /* align-self: flex-start; */
+    height: 100%;
+    width: 100%;
+    /* max-width: 1500vw; */
+    /* border: 4px solid red; */
+  }
+  
+  .logoimg{
+    margin-top: 0.5vh;
+    width:10vw;
+    height: 15vh;
+  }
+  
+  .nav-menu {
     display: flex;
-    flex-direction: row;
-
-}
-.bill{
-    background-color: transparent;
-    border: none;
-    margin-top: 7px;
- cursor: pointer;
-}
-.bill :hover{
-    color: rgb(0, 0, 0);
-    fill:rgb(255, 217, 0);
-}
-.notificationNumber{
-    border-radius: 50%;
-    background-color: rgb(255, 217, 0);
-    height: 15px;
-    width: 15px;
-    margin-top: 5px;
-  font-size: 10px;
-  color: rgb(0, 0, 0);
-}
-
-.searchbar{
-width: 400px;
-margin-left: 30px;
-height: 30px;
-margin-top: 5px;
-background-color: transparent;
-border: 1px solid rgb(0, 0, 0);
-border-radius: 10px;
-color: rgb(0, 0, 0);
-font-size: 15px;
-font-family:'Times New Roman', Times, serif;
-}
-
-.search{
-    background-color: transparent;
-    border: none;
-    margin-top: 10px;
-    cursor: pointer;
-}
-.Links{
-
+    align-items: center;
+    list-style: none;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    width: 40vw;
+    justify-content: flex-start;
+    /* border: 4px solid blue; */
+  }
+  
+  /* .nav-item {
+    height: 80vh;
+  } */
+  
+  .nav-links {
+    color: #fff;
     display: flex;
-    flex-direction: row;
-justify-content: center;
-align-items: center;
-padding: 1rem;
-
-
-
-}
-.projectlink{
+    align-items: center;
     text-decoration: none;
-    /* margin-left: 60px; */
-    font-size: 20px;
-    /* margin-top: 15Px; */
-    color: rgb(0, 0, 0);
-  font-family:'Times New Roman', Times, serif;
-  margin: 1rem;
-}
-
-.projectlink:hover{
-    color: rgb(255, 217, 0);   
-}
-a button {
-    background: none;
-}
-
-
-.notication1{
-    inline-size: 100px;
-}
-
-.listnotifacrion{
-    inline-size: 350px;  
-}
-
-.noticationnav{
+    padding: 0 0.5rem ;
+    height: 100%;
+    /* border: 5px solid orangered; */
+  }
+  
+  .nav-links:hover {
+    border-bottom: 4px solid #fff;
+    transition: all 0.2s ease-out;
+  }
+  
+  .fa-bars {
+    color: #fff;
+  }
+  
+  .menu-icon {
+    position: relative;
+    display: none;
+  }
+  
+  .mesagebutton {
+    margin-left: 10px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+  }
+  
+  .billbutton {
+    background-color: transparent;
+    border: none;
+    outline: none;
+  }
+  
+  .prfile {
+    margin-left: 10px;
+  }
+  
+  .imgprofile {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+  }
+  
+  .buttonnotifaction {
+    border: none;
+    color: rgb(225, 222, 10);
+    font-size: 16px;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  
+  .popupsection {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .popupsection h1 {
+    margin-bottom: 20px;
+  }
+  
+  .popupsection img {
+    height: 100px;
+    margin-bottom: 20px;
+  }
+  
+  .popupsection p {
+    margin-bottom: 20px;
+  }
+  
+ @media screen and (max-width: 960px) {
+   
+    .navbar-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        /* align-self: flex-start; */
+        height: 100%;
+        width: 90%;
+        /* max-width: 1500vw; */
+        /* border: 4px solid red; */
+      }
+  .nav-menu {
     display: flex;
     flex-direction: column;
+    width: 100%;
+    height: 50vh;
+    position: absolute;
+    top: 10vh;
+    left: -100%;
+    opacity: 1;
+    transition: all 0.5s ease;
+  }
 
-}
-.buttonnotifaction{
-    background-color: transparent;
-    border: none;
+  .nav-menu.active {
+    background: #242222;
+    left: 0;
+    opacity: 1;
+    transition: all 0.5s ease;
+    z-index: 1;
+    height: 60vh;
+  }
+
+  .nav-links {
+    text-align: center;
+    padding: 1rem;
+    width: 100%;
+    display: table;
+    height: auto;
+  }
+
+  .nav-links:hover {
+    background-color: #fff;
+    color: #242424;
+    border-radius: 0;
+  }
+
+  .logoimg {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .menu-icon {
+    display: block;
+    position: absolute;
+    /* top: 0; */
+    right: 0;
+    /* margin-left: 1vw; */
+    margin-bottom: 8vh;
+    transform: translate(-100%, 60%);
+    font-size: 1.8rem;
     cursor: pointer;
-    margin-top: 10px;
-}
+    /* border: 4px solid black; */
+  }
 
-.billbutton{
+  .fa-times {
+    color: #fff;
+    font-size: 2rem;
+  }
+
+  .nav-links-mobile {
+    display: block;
+    text-align: center;
+    margin: 2rem auto;
+    border-radius: 4px;
+    width: 100%;
+    text-decoration: none;
+    font-size: 1.5rem;
     background-color: transparent;
-    border: none;
-    margin-top: 10px;
-    cursor: pointer;
-    inline-size: 50px;
-    
-}
+    color: #fff;
+    padding: 14px 20px;
+    border: 1px solid #fff;
+    transition: all 0.3s ease-out;
+  }
 
-.mesagebutton{
-background-color: transparent;
-border: none;
-cursor: pointer;
-margin-top: 10px;
-inline-size: 50px;
-}
-.imgprofile{
-    width:35% ;
-    margin-bottom: 5px;
-    inline-size: 50px;
+  .nav-links-mobile:hover {
+    background: #fff;
+    color: #242424;
+    transition: 250ms;
+  }
 }
