@@ -5,6 +5,8 @@
   "dependencies": {
     "@chakra-ui/card": "^2.1.6",
     "@emailjs/browser": "^3.11.0",
+    "@fortawesome/free-regular-svg-icons": "^6.4.0",
+    "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@mui/base": "^5.0.0-alpha.125",
     "@mui/icons-material": "^5.11.16",
     "@mui/joy": "^5.0.0-alpha.74",
