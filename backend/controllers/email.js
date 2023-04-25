@@ -5,7 +5,7 @@ const creatEmail = (req,res)=>{
 
 
     const {info, subject,massege} = req.body
-
+console.log(",,,,,,,,,,,,,,,,,,.........................!!!!!!!!!!!11",info)
     console.log(req.body)
 
     const transporter = nodemailer.createTransport({
