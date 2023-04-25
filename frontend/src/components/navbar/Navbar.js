@@ -118,7 +118,7 @@ const defaultProps = {
 // const flatProps = {
 //   options: allfreelancerhere.map((option) => option.firstname),
 // };
-// const [value, setValue] = React.useState(null);
+const [value, setValue] = React.useState(null);
 
 
 
@@ -143,7 +143,7 @@ const  getallmessagenotification = ()=>{
   axios.get(`http://localhost:5000/users/chatnotification/${state.userId}`).then((result)=>{
 if(result.data.length===0){
   console.log('there is no message')
-
+  dispatch(setmessagenotification(result.data))
   setmessagelistOn("there is no message")
 }else{
   console.log(result.data)  
@@ -173,43 +173,6 @@ console.log(checkon)
 
  
 
-
-
-  
-  <Popover
-      content={<a onClick={hide}>Close</a>}
-    
-      title={state.notification.length===0? <h1>No notification</h1>   :state.notification.map((noti)=>{
-
-        return<div className='noticationnav'><button  className='buttonnotifaction' onClick={()=>{
-          Navigate("/projects")
-        }}>{noti.notificationmessage}</button></div> 
-      })}
-      trigger="click"
-      open={open}
-      onOpenChange={handleOpenChange}
-    >
-      <Button type="primary">Click me</Button>
-    </Popover>
-
-
-<div>
-<input className="searchbar" placeholder="search" />
-    <button className="search">
-    <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="25"
-        height="20"
-        fill="black"
-        class="bi bi-search"
-        viewBox="0 0 16 16"
-      >
-        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-      </svg>
-    </button>
-    </div>
-
-
     <div className='Links'> 
   
      <Link className="projectlink" to="/projects">Projects</Link>
@@ -235,10 +198,9 @@ console.log(checkon)
         id="disable-close-on-select"
         disableCloseOnSelect
         renderInput={(params) => (
-          <TextField {...params} label="search" variant="standard" />
+          <TextField {...params} label="search" variant="standard"/>
         )}
       />
-  
     </Stack>
 
     <div>
@@ -259,7 +221,7 @@ console.log(checkon)
             ref={descriptionElementRef}
             tabIndex={-1}
           >
-            {state.messagenotification.length===0?<h1>No message</h1>:state.messagenotification.map((noti)=>{
+            {state.messagenotification.length===0?<h1>No message</h1>:state.messagenotification?.map((noti)=>{
 console.log(noti)
         return<div className='noticationnav'><button  className='buttonnotifaction' onClick={()=>{
           console.log(noti.room_id)
