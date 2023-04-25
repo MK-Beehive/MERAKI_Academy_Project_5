@@ -1,76 +1,87 @@
-import React, { useRef } from 'react';
-import emailjs from '@emailjs/browser';
-import 'react-slideshow-image/dist/styles.css'
-import { Fade } from 'react-slideshow-image';
+import React from "react";
+import { NavButtons } from "../NavButtons";
+import { NavButtonsSec } from "../NavButtonsSec";
+// import '../App.css';
+import "./home.css";
 
-const fadeImages = [
- 
-       'https://thumbs.dreamstime.com/b/businessman-working-laptop-light-background-copy-space-business-remote-work-connect-online-banking-shopping-concept-121794982.jpg',
-   
-    ,
-    
-      'https://thumbs.dreamstime.com/b/hand-touching-icon-businessman-success-leadership-social-network-digital-matketing-human-resources-management-recruitment-154741969.jpg',
-  
-    ,
-    
-       'https://thumbs.dreamstime.com/b/young-woman-freelancer-indoors-home-office-concept-winter-atmosphere-blurred-background-writing-planner-smiling-young-female-108814295.jpg',
- 
-    ,
-  ];
-
-
-const Home = () => {
-  const form = useRef();
-
-
-  const sendEmail = (e) => {
-    e.preventDefault();
-
-    emailjs.sendForm('service_izy9qws', 'template_nisndqp', form.current, 'qsWx1Nn--di_P6Z59')
-      .then((result) => {
-          console.log(result.text);
-      }, (error) => {
-          console.log(error.text);
-      });
-  };
-
-
+function Home() {
   return (
-    <div>
-        
-        <Fade>
-        {fadeImages.map((fadeImage, index) => (
-          <div key={index}>
-            <img style={{ width: '90%' , height:'500px'}} src={fadeImage}></img>
-     
+    <div className="homepage">
+      <div className="hero-container">
+        <video src={"../assets/work.mp4"} autoPlay loop muted />
+        <h1>Projects Are Waiting</h1>
+        <div className="hero-btns">
+          <div className="one">
+            <p>If you have project and want to make it done </p>
+            <NavButtons
+              className="btns"
+              buttonStyle="btn--outline"
+              buttonSize="btn--large"
+            >
+              Create Project
+            </NavButtons>
           </div>
-        ))}
-      </Fade>
+          <br />
+          <div className="two">
+            <p>If you are a freelancer and wants help </p>
+            <NavButtonsSec
+              className="btns"
+              buttonStyle="btn--outline"
+              buttonSize="btn--large"
+            >
+              View Projects{" "}
+            </NavButtonsSec>
+          </div>
+        </div>
+      </div>
+      <div className="second-sec">
+      <h1>How BeeHive helps you do your business</h1>
+      <div className="cards-a">
+        <div className="achieve-fast">
+          <img src={"../assets/achievefaster.png"}></img>
+          <p>publish your project and let the rest to our best freelancers </p>
+        </div>
 
+        <div className="hire-best">
+          <img src={"../assets/hirebest.png"}></img>
+          <p>Explore our freelancers` profiles , see their skills, work, and customer ratings, and choose the most suitable one </p>
+        </div>
 
-      <div class="vertical">
-        <form ref={form} onSubmit={sendEmail}>
-          <br></br>
-        <label>Name</label>
-        <br></br>
-        <input type="text" name="from_name" />
-        <br></br>
-        <label>Email</label>
-        <br></br>
-        <input type="email" name="user_email" />
-        <br></br>
-        <label>Message</label>
-        <br></br>
-        <textarea name="message" />
-        <br></br>
-        <input type="submit" value="Send" />
-        </form>
+        <div className="less-cost">
+          <img src={"../assets/lesscost.png"}></img>
+          <p>Determine a budget for your project and choose  the best freelancers to work on it</p>
+        </div>
+
+      </div>
+      <div className="cards-b">
+        <div className="secure-pay">
+          <img src={"../assets/securepayment.png"}></img>
+          <p>Pay the value of the required work with a secure payment methods with full guarantee of your financial rights </p>
+        </div>
+
+        <div className="cover-skills">
+          <img src={"../assets/skills.png"}></img>
+          <p>Hire experts in different fields to implement the projects you need</p>
+        </div>
+
+        <div className="rights">
+          <img src={"../assets/rights.png"}></img>
+          <p>Preserve your rights. BeeHive plays the role of mediator between you and the freelancer</p>
+        </div>
+
+      </div>
       </div>
 
+      <div className="third-sec">
+      <h1>Do you have work you want to get done?</h1>
+      <div className="vedio-third">
+        
+      </div>
 
+      </div>
 
     </div>
-  )
+  );
 }
 
-export default Home
+export default Home;
