@@ -54,51 +54,68 @@ const Sucsses = () => {
     
               console.log("projects/status________________", resultinfo2.data.project[0].title);
 
-            //   axios.get(`http://localhost:5000/projects/status/${state.selectedProject}`)
-            //   .then((userinfo) => {
-        
-            //       console.log("projects/status________________", resultinfo2.data.project[0].title);
-            // ${state.userdata.firstname} ${state.userdata.lastname}
-     let obj = { info: 'saharalomari9@gmail.com', subject:"Offer acepted",massege:
-      `Hello sahar ,your Offer on project  ${resultinfo2.data.project[0].title } with the following details :-
-      Price : ${ resultinfo.data.info[0].budget} $  and  Workdays :${ resultinfo.data.info[0].workday
-    } Days,
-      acepted suseccfully, you can follow up with the Clinet  by clike on this link http://localhost:3000/projects.
-    
-      beehive.com
-      beehive@gmail.com
-      +962 787878787878
-      ` 
-    }
-      axios.post(`http://localhost:5000/email`, obj).then((result)=>{
-        console.log(result)
-      }).then((err)=>{
-        console.log(err)
-      })
+              const getUserData = async () => {
+                try {
+                  const result = await axios.get(
+                    `http://localhost:5000/users/user/${ resultinfo2.data.project[0].user_id }`
+                  );
+                    console.log("rate.................",result.data.result);
+            
+                    //====create balance=========
 
+                    axios.post(`http://localhost:5000/balance`,{ 
 
+                    initialBalance : resultinfo.data.info[0].budget,
+                    ourBalance  :resultinfo.data.info[0].budget * .2,
+                    FreeLancerBalance : resultinfo.data.info[0].budget - (resultinfo.data.info[0].budget * .2) ,
+                    freelancerUser:result.data.result.id,
+                    clientUser:resultinfo2.data.project[0].user_id,
+                    status_id:8,
+                    project_id:resultinfo2.data.project[0].id,
 
-
-
-
+                      })
+                    .then((balance) => {
+                  
+                    console.log("%%%%%%%%%%%%",balance.rows)
               
-    
-        //   })
-        //   .catch((err) => {
-        //       console.log("error", err);
-       
-        //   });
-    
+                      
+              })
+              .catch((err) => {
+                console.log("error", err);
+              
+              })
+
+
+                    //============================
+     let obj = { info: result.data.result, subject:"Offer acepted",massege:
+     `Hello ${result.data.result.firstname} ${result.data.result.lastname} ,your Offer on project  ${resultinfo2.data.project[0].title } with the following details :-
+     Price : ${ resultinfo.data.info[0].budget} $  and  Workdays :${ resultinfo.data.info[0].workday
+   } Days,
+     acepted suseccfully, you can follow up with the Clinet  by clike on this link http://localhost:3000/projects.
+   
+     beehive.com
+     beehive@gmail.com
+     +962 787878787878
+     ` 
+   }
+     axios.post(`http://localhost:5000/email`, obj).then((result)=>{
+       console.log(result)
+
+
+     }).catch((err)=>{
+       console.log(err)
+     })
 
 
 
 
+                } catch (error) {
+                  console.log(error);
+                }
+              };
 
 
-
-
-
-          
+          getUserData ()        
 
       })
       .catch((err) => {
@@ -130,7 +147,9 @@ const Sucsses = () => {
       If you have any questions, please email{`  `}
       <a href="hivebeefreelancer@gmail.com"> hivebeefreelancer@gmail.com</a>.
     </p>
-    <button onClick={()=>{}} >Home</button>
+    <button onClick={()=>{
+        
+    }} >Home</button>
     </div>
   );
 }

@@ -41,8 +41,33 @@ const { Meta } = Card;
 
 
 const ProjectInside = () => {
+let balanceid ;
+ const projectTermination = ()=>{
+  axios.put(`http://localhost:5000/projects/status/${state.selectedProject}`,{status_id:3})
+  .then((resultinfo2) => {
 
+      console.log("projects/status__________Done______", resultinfo2.data.project[0].title);
 
+      axios.put(`http://localhost:5000/balance/${balanceid}`,{balanceid:3})
+      .then((balance) => {
+    
+      
+
+        
+})
+.catch((err) => {
+  console.log("error", err);
+
+})
+
+})
+.catch((err) => {
+  console.log("error", err);
+
+})
+  
+
+ }
 
 
       
@@ -263,7 +288,20 @@ const [rate, setrate] = useState(0)
               <div>
                 <span>
                   {" "}
-            { state.auth.userId == selectedProjectdata.user_id &&   <button onClick={()=>{}}>Invite Freelancers </button>}
+            { state.auth.userId == selectedProjectdata.user_id &&   <button onClick={()=>{
+
+ console.log("________________________________________________",selectedProjectdata)
+
+            }}>Invite Freelancers </button>}
+            { state.auth.userId == selectedProjectdata.user_id && selectedProjectdata.status_id == 2   && <button onClick={()=>{
+
+projectTermination()
+
+
+            }}> Project Termination </button>}
+
+
+
             {state.auth.userId != selectedProjectdata.user_id &&     <button   onClick={()=>{
 
                     setAddOffer(true)

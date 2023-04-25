@@ -143,7 +143,7 @@ const  getallmessagenotification = ()=>{
   axios.get(`http://localhost:5000/users/chatnotification/${state.userId}`).then((result)=>{
 if(result.data.length===0){
   console.log('there is no message')
-
+  dispatch(setmessagenotification(result.data))
   setmessagelistOn("there is no message")
 }else{
   console.log(result.data)  
@@ -189,7 +189,7 @@ console.log(checkon)
       open={open}
       onOpenChange={handleOpenChange}
     >
-      <Button type="primary">Click me</Button>
+      {/* <Button type="primary">Click me</Button> */}
     </Popover>
 
 

@@ -157,7 +157,7 @@ CREATE TABLE chat(
   Messages VARCHAR(255),
   sender_id INT,
   room_id INT,
-  created_at TIMESTAMP default now()
+  created_at TIMESTAMP default now(),
   FOREIGN KEY (sender_id) REFERENCES users(id),
   PRIMARY KEY (id)
 );

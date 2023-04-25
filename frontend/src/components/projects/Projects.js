@@ -238,7 +238,7 @@ More than 1 month
                       {project.statusname}
                     </button>
                   )} */}
-                  {project.status_id === 5 && (
+                  {project.status_id === 3 && (
                     <button
                       className="statusproj"
                       style={{ background: "rgb(24, 99, 170)" }}
