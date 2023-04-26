@@ -290,6 +290,25 @@ function Socket(props) {
     <div className="continaerchatishere">
       {isloggin && (
         <div className="sidechat">
+        <img style={{width:"50%", height:"20%",marginTop:"10%"}} src="./assets/chat.png" />
+        <h3>Chat privetly with BeeHive</h3>
+       <p>At BeeHive we take chat privecy sereccly. We use end-to-end encryption to ensure that only the sender and reciepent can read the messages exchanged. we dont store any chat loges on our server</p>
+       <ul>
+        <li>Full Protection on Personal Information</li>
+        <li>High Data integrity</li>
+        <li>Data Protection Across Multiple Devices</li>
+        <li>User control</li>
+       </ul>
+       <p>Well, encryption is the process where the text data is converted into a cipher (a non-readable content), which maintains and protects the chat privacy from any third party. </p>
+  
+        </div>
+      )}
+      {isloggin ? (
+        <div className="continaerchat">
+          {/* <div className="allchat">
+            <div className="inputwithsend"></div>
+          </div> */}
+          <div className="topof">
           <button className="buttondowm" onClick={focusInput}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -309,15 +328,6 @@ function Socket(props) {
               />
             </svg>
           </button>
-        </div>
-      )}
-      {isloggin ? (
-        <div className="continaerchat">
-          <div className="allchat">
-            <div className="inputwithsend"></div>
-          </div>
-          <div className="topof">
-         
           <button
             className="buttondowm2"
             onClick={() => {
