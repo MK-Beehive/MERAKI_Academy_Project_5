@@ -117,59 +117,6 @@ const Navbar = () => {
       .catch((err) => {
         console.log(err);
       });
-
-}
-
-
-const defaultProps = {
-  options: allfreelancerhere,
-  getOptionLabel: (option) =><label> {<img style={{width:"50px", height:"50px",borderRadius:50}} src={option.image} />} {option.firstname} {option.lastname}</label> 
-};
-
-const [value, setValue] = React.useState(null);
-
-
-
-//=======================================================================
-const getAllnotifcation =()=>{
-  axios.get(`http://localhost:5000/users/notifcation/${state.userId}`).then((result)=>{
-if(result.data.length===0){
-  console.log('there is no notifction')
-  setcheckon("there is no notifction")
-}else{
-  console.log(result.data)  
-    dispatch(setnotification(result.data))
-}
-
-  }).catch((err)=>{
-console.log(err)
-  })
-}
-
-const  getallmessagenotification = ()=>{
-  console.log(state.userId)
-  axios.get(`http://localhost:5000/users/chatnotification/${state.userId}`).then((result)=>{
-if(result.data.length===0){
-  console.log('there is no message')
-  dispatch(setmessagenotification(result.data))
-  setmessagelistOn("there is no message")
-}else{
-  console.log(result.data)  
-    dispatch(setmessagenotification(result.data))
-}
-
-  }).catch((err)=>{
-console.log(err)
-  })
-}
-
-
-useEffect(() => {
-  getAllnotifcation() 
-  getallmessagenotification()
-  getfreeelancerrole2()
-},[])
-
   };
 
   const defaultProps = {
@@ -187,13 +134,48 @@ useEffect(() => {
       </label>
     ),
   };
-
+  // const flatProps = {
+  //   options: allfreelancerhere.map((option) => option.firstname),
+  // };
+  // const [value, setValue] = React.useState(null);
 
   //=======================================================================
+  const getAllnotifcation = () => {
+    axios
+      .get(`http://localhost:5000/users/notifcation/${state.userId}`)
+      .then((result) => {
+        if (result.data.length === 0) {
+          console.log("there is no notifction");
+          setcheckon("there is no notifction");
+        } else {
+          console.log(result.data);
+          dispatch(setnotification(result.data));
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
-
-
-
+  const getallmessagenotification = () => {
+    console.log(state.userId);
+    axios
+      .get(`http://localhost:5000/users/chatnotification/${state.userId}`)
+      .then((result) => {
+        if (result.data.length === 0) {
+          console.log("there is no message");
+          dispatch(setmessagenotification(result.data));
+          setmessagelistOn("there is no message");
+        } else {
+          console.log(result.data);
+          dispatch(setmessagenotification(result.data));
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  ///
   const [clicks, setClicks] = useState(false);
   const handleClick = () => setClicks(!clicks);
   const closeMobileMenu = () => setClicks(false);
@@ -219,103 +201,6 @@ useEffect(() => {
   // defineElement(lottie.loadAnimation);
   console.log("vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv", state.notification.length);
   return (
-
-    <div className='navbarall'>
-<div className='navbar'>
-  <div className='logo'><h3 className='beehive' style={{color:'rgb(255, 217, 0)'}}>BEE <span style={{color:'black'}}>HIVE</span>  </h3><img className='picofLogo'  src='https://media.istockphoto.com/id/1338079809/vector/bee-cute-character-with-big-eyes-cartoon-happy-bee.jpg?s=612x612&w=0&k=20&c=C9PNLseWKMZPD6KMpQOa3pkOogGUftOTQAtMfYm4GU8='/>  
-  </div>
-
- 
-
-
-
-
-  
-  <Popover
-      content={<a onClick={hide}>Close</a>}
-    
-      title={state.notification.length===0? <h1>No notification</h1>   :state.notification.map((noti)=>{
-
-        return<div className='noticationnav'><button  className='buttonnotifaction' onClick={()=>{
-          Navigate("/projects")
-        }}>{noti.notificationmessage}</button></div> 
-      })}
-      trigger="click"
-      open={open}
-      onOpenChange={handleOpenChange}
-    >
-      {/* <Button type="primary">Click me</Button> */}
-    </Popover>
-
-
-
-
-
-    <div className='Links'> 
-  
-     <Link className="projectlink" to="/projects">Projects</Link>
-       {/* ==sahar==Login==LogOut=== */}
-     <Link className="projectlink" to="/join">Join</Link>
-     <a className="projectlink" ><span  onClick={()=>{
-                dispatch(setLogout())
-                Navigate("/")
-               }
-            }>
-              Logout
-     </span></a>
-     
-
-     <Link className="projectlink" to="/freelancer">Freelancers</Link>
-
-     <Link className="projectlink" to="/addproject">Add Project</Link>
-
-     </div>
-     <Stack spacing={1} sx={{ width: 300 }}>
-      <Autocomplete
-        {...defaultProps}
-        id="disable-close-on-select"
-        disableCloseOnSelect
-        renderInput={(params) => (
-          <TextField {...params} label="search" variant="standard"/>
-        )}
-      />
-    </Stack>
-
-    <div>
-      <Button className='mesagebutton' onClick={handleClickOpen('paper')}>   <Badge badgeContent={state.messagenotification.length} color="primary">
-      <MailIcon color="action" />
-    </Badge></Button>
-      <Dialog
-        open={open2}
-        onClose={handleClose}
-        scroll={scroll}
-        aria-labelledby="scroll-dialog-title"
-        aria-describedby="scroll-dialog-description"
-      >
-        <DialogTitle id="scroll-dialog-title">All Notifcation</DialogTitle>
-        <DialogContent dividers={scroll === 'paper'}>
-          <DialogContentText
-            id="scroll-dialog-description"
-            ref={descriptionElementRef}
-            tabIndex={-1}
-          >
-            {state.messagenotification.length===0?<h1>No message</h1>:state.messagenotification?.map((noti)=>{
-console.log(noti)
-        return<div className='noticationnav'><button  className='buttonnotifaction' onClick={()=>{
-          console.log(noti.room_id)
-          dispatch(setRoomId(noti.room_id))
-          Navigate("/chat")
-          setcheckpopup(!checkpopup)
-        }}>{noti.chatnotification}</button></div> 
-      })}
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          {/* <Button onClick={handleClose}>Subscribe</Button> */}
-        </DialogActions>
-      </Dialog>
-
     <div className="navbar">
       <div className="navbar-container">
         
@@ -486,7 +371,6 @@ console.log(noti)
           )}
         </Link>
       </div>
-
     </div>
   );
 };

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import { useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import axios from "axios";
 import Box from '@mui/material/Box';
@@ -10,6 +11,7 @@ import Button from '@mui/material/Button';
 
 const Sucsses = () => {
 
+    const Navigate = useNavigate();
   const state = useSelector((state) => {
     return {
       project: state.project.project,
@@ -62,7 +64,18 @@ const Sucsses = () => {
                     console.log("rate.................",result.data.result);
             
                     //====create balance=========
+console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@",
+{
+    initialBalance : resultinfo.data.info[0].budget,
+    ourBalance  :resultinfo.data.info[0].budget * .2,
+    FreeLancerBalance : resultinfo.data.info[0].budget - (resultinfo.data.info[0].budget * .2) ,
+    freelancerUser:result.data.result.id,
+    clientUser:resultinfo2.data.project[0].user_id,
+    status_id:8,
+    project_id:resultinfo2.data.project[0].id,
+}
 
+)
                     axios.post(`http://localhost:5000/balance`,{ 
 
                     initialBalance : resultinfo.data.info[0].budget,
@@ -76,7 +89,7 @@ const Sucsses = () => {
                       })
                     .then((balance) => {
                   
-                    console.log("%%%%%%%%%%%%",balance.rows)
+                    console.log("%%%%%%%%%%%%",balance[0])
               
                       
               })
@@ -148,7 +161,7 @@ const Sucsses = () => {
       <a href="hivebeefreelancer@gmail.com"> hivebeefreelancer@gmail.com</a>.
     </p>
     <button onClick={()=>{
-        
+        Navigate("/")
     }} >Home</button>
     </div>
   );
