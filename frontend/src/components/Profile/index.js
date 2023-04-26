@@ -7,6 +7,7 @@ import StarIcon from "@mui/icons-material/Star";
 import Typography from "@mui/material/Typography";
 import { useNavigate, Link } from "react-router-dom";
 import { FilePdfOutlined } from "@ant-design/icons";
+import Footer from "../footer/Footer";
 
 import { setUserInfo, setLogin, googleUser} from "../redux/reducers/auth";
 import axios from "axios";
@@ -19,10 +20,8 @@ import {setExperiance} from  "../redux/reducers/experiances"
 import Chip from "@mui/material/Chip";
 import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
 import { Avatar, Card, Button, Divider, Radio, Space, Row, Col } from "antd";
-
 import { useInternalMessage } from "antd/es/message/useMessage";
 const { Meta } = Card;
-
 const Profile = () => {
   const dispatch = useDispatch();
   const { project, offer, userId, userinfo, userdata, skill,experiances ,isLoggedIn, } = 
@@ -155,7 +154,8 @@ console.log("firstname",userinfo.firstname);
 
 
   return (
-    <div className="main">
+    <>
+    <div className="profile-container">
       <div className="left">
         <div class="card-container">
         
@@ -201,9 +201,9 @@ console.log("firstname",userinfo.firstname);
                 <StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />
               }
             />
-           <Typography>{value}</Typography> 
+           <Typography marginLeft={"7vw"}>{value}</Typography> 
            {userdata.role_id==2&&userinfo.experiance_id && (
-  <Typography>{userinfo.experiancename}</Typography>
+  <Typography marginLeft={"6vw"}>{userinfo.experiancename}</Typography>
 )}
 
           </Card>
@@ -211,7 +211,7 @@ console.log("firstname",userinfo.firstname);
         </div>
         {userdata.role_id === 2 && (
         <div className="skill">
-          <Card title={`Skills`} bordered={true}>
+          <Card title={`Skills`} bordered={true} style={{marginTop:"2vh"}}>
             {uniqueSkills.map((skillName) => (
               <p>
                 {" "}
@@ -228,23 +228,23 @@ console.log("firstname",userinfo.firstname);
         <div className="pr">
           {userdata.role_id === 1 && (
             <>
-              {/* <Row gutter={4}>
-                <Col span={8}> */}
-                  <Card className="card-1" title={`Completed Projects`} bordered={true} style={{maxWidth:"15vw"}}  >
-                    <p>{completedProjects.length}</p>
+              <Row gutter={4}>
+                <Col span={8}>
+                  <Card className="card-1" title={`Completed Projects`} bordered={true}   >
+                    <p style={{textAlign:"center"}}>{completedProjects.length}</p>
                   </Card>
-                {/* </Col>
-                <Col span={8}> */}
-                  <Card title={`Open Projects`} bordered={true} style={{maxWidth:"15vw"}}>
-                    <p>{openProjects.length}</p>
+                </Col>
+                <Col span={8}>
+                  <Card title={`Open Projects`} bordered={true} >
+                    <p style={{textAlign:"center"}}>{openProjects.length}</p>
                   </Card>
-                {/* </Col>
-                <Col span={8}> */}
+                </Col>
+                <Col span={8}>
                   <Card title={`Rejected Projects`} bordered={true}>
-                    <p>{rejectedProjects.length}</p>
+                    <p style={{textAlign:"center"}}>{rejectedProjects.length}</p>
                   </Card>
-                {/* </Col> */}
-              {/* </Row> */}
+                </Col>
+              </Row>
             </>
           )}
 
@@ -253,18 +253,18 @@ console.log("firstname",userinfo.firstname);
               <Row gutter={4}>
                 <Col span={8}>
                   <Card title={`Completed Projects`} bordered={true}>
-                    <p>{completedProjects.length}</p>
+                    <p style={{textAlign:"center"}}>{completedProjects.length}</p>
                   </Card>
                 </Col>
 
                 <Col span={8}>
                   <Card title={`Accepted Offers`} bordered={true}>
-                    <p> {acceptedOffers.length}</p>
+                    <p style={{textAlign:"center"}}> {acceptedOffers.length}</p>
                   </Card>
                 </Col>
                 <Col span={8}>
                   <Card title={`Rejected Offers`} bordered={true}>
-                    <p>{rejectedOffers.length}</p>
+                    <p style={{textAlign:"center"}}>{rejectedOffers.length}</p>
                   </Card>
                 </Col>
               </Row>
@@ -274,7 +274,7 @@ console.log("firstname",userinfo.firstname);
         <div className="desc">
           <Card title="Description" bordered={true}>
             {userinfo.informationdescription ? (
-              <p>{userinfo.informationdescription}</p>
+              <p style={{textAlign:"center"}}>{userinfo.informationdescription}</p>
             ) : (
               <p>No description available</p>
             )}
@@ -299,6 +299,8 @@ console.log("firstname",userinfo.firstname);
         )}
       </div>
     </div>
+    <Footer/>
+    </>
   );
 };
 

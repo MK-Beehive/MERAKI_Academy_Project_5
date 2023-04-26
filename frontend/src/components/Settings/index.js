@@ -2,6 +2,8 @@
 import React, { useState, useEffect } from "react";
 import SettingBar from "../SettingBar";
 import "./style.css";
+import Footer from "../footer/Footer";
+
 import { setUserInfo, setUserdata } from "../redux/reducers/auth";
 import { setexperiances } from "../redux/reducers/experiances";
 import { Select } from "antd";
@@ -119,18 +121,22 @@ console.log(userinfo.firstname);
     }, [location.pathname]);
 
   return (
+    <>
     <div className="setting-container">
-      <div className="setting">
-        <SettingBar selectedKey={selectedKey} onItemClick={handleItemClick} />
+      <div className="leftset">
+      <div className="settingset">
+        <SettingBar  selectedKey={selectedKey} onItemClick={handleItemClick} />
       </div>
-      <div className="center">
+      </div>
+      <div className="centerset">
         <div className="image-container">
           <img
             src={userinfo.image}
             alt="user profile image"
-            style={{ width: "70%", height: "100%", borderRadius: "100%" }}
+            style={{ width: "15vw", height: "40vh", borderRadius: "100%" }}
           />
         </div>
+        <div className="formcontainer">
         <Box
           component="form"
           sx={{
@@ -171,7 +177,7 @@ console.log(userinfo.firstname);
       
           
         </Box>
-
+        </div>
         {/* <img src={userinfo} /> */}
         <div>
         <Button
@@ -194,8 +200,10 @@ console.log(userinfo.firstname);
         </div>
       </div>
 
-      <div className="right"></div>
     </div>
+    <Footer/>
+
+    </>
   );
 };
 

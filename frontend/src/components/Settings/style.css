@@ -1,38 +1,49 @@
-.setting-container {
+.setting-container{
+    /* border: 4px solid blue; */
     display: grid;
-    grid-template-columns: 2fr 6fr 2fr;
-    grid-template-areas: "a b c";
-    height: 100vh; /* Set the container to take up the full height of the viewport */
-  }
-  
-  .left {
-    /* grid-area: a; */
-    height: 100%; /* Set the height of the left column to take up the full height of the container */
-  }
-  
-  .center {
-    grid-area: b;
+    grid-template-columns: 2fr 8fr ;
+    grid-template-areas: "a b ";
+    gap:6vw;
+    background-color: rgba(195, 189, 189, 0.723);
+    margin-top: 0.01vh;
+}
+.leftset{
+    /* border: 4px solid black; */
+    height:100vh;
+
+}
+.settingset{
+    height: 100%;
+}
+.centerset{
+    /* border: 4px solid brown; */
     display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    margin-top: 2vw;
-    margin-left: 10vw;
-    width: 20%;
-    height: 100%; /* Set the height of the center column to take up the full height of the container */
-    gap:4vh;
-  }
-  
-  .right {
-    grid-area: c;
-    height: 100%; /* Set the height of the right column to take up the full height of the container */
-  }
-  
-  .first-last-name{
+  flex-direction: column;
+  width: 95%;
+  height: 100%;
+}
+.image-container{
+    /* border: 4px solid rgb(85, 252, 238); */
+    height: 50%;
+    margin-top: 1vh;
+
+
+
+}
+.formcontainer{
+    /* border: 4px solid rgb(16, 213, 82); */
+    height: 30%;
+    width:70%;
+    align-self: center;
+
+}
+.first-last-name{
+    /* border: 4px solid rgb(210, 213, 16); */
     display: flex;
     flex-direction: column;
     gap:2vh;
-  }
-  .email{
-    margin-top: 2vh;
-  }
+    margin-bottom: 2vh;
+
+}
+
+
