@@ -85,13 +85,17 @@ const SettingBar = () => {
   return (
     <div
       className="settingbar"
-      style={{ display: "flex", flexDirection: "column", height: "100%" }}
+      style={{ height: "100%" , display: "flex", flexDirection: "column",border:"4px solid orange" }}
     >
       <Menu
         style={{
-          width: 256,
+          // width: 256,
           flex: 1,
-        }}
+          border:"4px solid red",
+          height:"100%",
+          // gap:"10vh"
+          
+                  }}
         mode="inline"
         items={items}
         selectedKeys={selectedKeys}

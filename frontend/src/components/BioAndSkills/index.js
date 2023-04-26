@@ -206,15 +206,18 @@ const BioAndSkills = () => {
 
   return (
     <div className="bioandskills">
-      <div className="setting">
+            <div className="leftbio">
+      <div className="settingbio">
         <SettingBar />
       </div>
-      <div className="center">
+      </div>
+
+      <div className="centerbio">
       {userdata.role_id == 2 && (
         <div className="choose-skills">
           <Space
             style={{
-              width: "50vw",
+              width: "40vw",
             }}
             direction="vertical"
           >
@@ -222,7 +225,7 @@ const BioAndSkills = () => {
               mode="multiple"
               allowClear
               style={{
-                width: "50vw",
+                width: "40vw",
               }}
               placeholder="Please select"
               defaultValue={selectedSkills}
@@ -237,7 +240,7 @@ const BioAndSkills = () => {
                 ))}
             </Select>
           </Space>
-          <div className="save button">
+          <div className="save-button">
           <Button
                     type="primary"
                     icon={<SaveOutlined />}
@@ -293,7 +296,7 @@ const BioAndSkills = () => {
         {userdata.role_id == 2 && (
           <>
             <div className="experiance">
-              <Box sx={{ minWidth: 120 }}>
+              <Box sx={{ maxWidth: "100%" }}>
                 <FormControl fullWidth>
                   <InputLabel
                     variant="standard"
@@ -326,6 +329,7 @@ const BioAndSkills = () => {
                 </FormControl>
               </Box>
             </div>
+            <div className="experiancesbutton">
             <Button
                     type="primary"
                     icon={<SaveOutlined />}
@@ -340,6 +344,7 @@ const BioAndSkills = () => {
                   >
                     Save Experiance Changes
                   </Button>
+                  </div>
             {/* <button type="submit" onClick={handleExperianceSaveChanges}>
               Save Experiance Changes
             </button> */}
@@ -347,7 +352,6 @@ const BioAndSkills = () => {
         )}
       </div>
 
-      <div className="right"></div>
     </div>
   );
 };
