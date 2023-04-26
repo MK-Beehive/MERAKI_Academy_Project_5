@@ -31,6 +31,7 @@ import Button from '@mui/material/Button';
 
 import { Card } from 'antd';
 import Paymant from "../Paymant";
+import Confermation from '../Confermation';
 const { Meta } = Card;
 
 
@@ -41,19 +42,20 @@ const { Meta } = Card;
 
 
 const ProjectInside = () => {
-let balanceid ;
+
+const [Confermed, setConfermed] = useState(false)
  const projectTermination = ()=>{
   axios.put(`http://localhost:5000/projects/status/${state.selectedProject}`,{status_id:3})
   .then((resultinfo2) => {
 
       console.log("projects/status__________Done______", resultinfo2.data.project[0].title);
 
-      axios.put(`http://localhost:5000/balance/${balanceid}`,{balanceid:3})
+      axios.put(`http://localhost:5000/balance/${state.selectedProject}`,{status_id:9})
       .then((balance) => {
     
-      
-
-        
+      console.log("!!!!!!!!!!!!!!!!!!!!!",balance)
+   
+        setConfermed(true)
 })
 .catch((err) => {
   console.log("error", err);
@@ -116,9 +118,9 @@ function ChildModal() {
           aria-describedby="child-modal-description"
         >
           <Box sx={{ ...style, width: 200 }}>
-            <h2 id="child-modal-title">Text in a child modal</h2>
+            <h2 id="child-modal-title">Paymant </h2>
                <Paymant  cartItems={{offer_id:SelectedOffer,project_id:state.selectedProject ,projecttitle:projecttitle ,selectedofferdata: selectedofferdata}}/>
-            <Button onClick={handleClose}>Close Child Modal</Button>
+            <Button onClick={handleClose}>cancel</Button>
           </Box>
         </Modal>
       </React.Fragment>
@@ -215,6 +217,8 @@ const [rate, setrate] = useState(0)
   return (
     // <Elements stripe={stripePromise}  > 
     <div>
+
+     {  Confermed  && <Confermation />}
       <div className="project_inside">
         <div className="project_user">
           <div className="projectInsidefilterside" onClick={()=>{
@@ -293,7 +297,8 @@ const [rate, setrate] = useState(0)
  console.log("________________________________________________",selectedProjectdata)
 
             }}>Invite Freelancers </button>}
-            { state.auth.userId == selectedProjectdata.user_id && selectedProjectdata.status_id == 2   && <button onClick={()=>{
+            {/* && selectedProjectdata.status_id == 2 */}
+            { state.auth.userId == selectedProjectdata.user_id    && <button onClick={()=>{
 
 projectTermination()
 

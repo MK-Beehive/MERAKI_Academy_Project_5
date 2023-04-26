@@ -7,7 +7,7 @@ const balanceRouter=express.Router();
 balanceRouter.get("/", getAllBalances);
 balanceRouter.get("/:userId", getBalanceForUser);
 balanceRouter.post("/", creatbalance);
-balanceRouter.put("/:balanceid", updatebalancestatus);
+balanceRouter.put("/:id", updatebalancestatus);
 
 
 

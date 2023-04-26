@@ -29,7 +29,7 @@ console.log("cartItems-------------------------------------------------",cartIte
 
   return (
     <>
-      <button onClick={() => handleCheckout()}>Check out</button>
+      <button onClick={() => handleCheckout()}>Pay Now</button>
     </>
   );
 };

@@ -26,11 +26,12 @@ const getBalanceForUser = async (req, res) => {
 };
 //=============sahar ==================
 const updatebalancestatus = (req, res) => {
-  const balanceid = req.params.id;
+  const project_id = req.params.id;
   const { status_id } = req.body;
+  console.log("OOOOOOOOOOOOOOOOOOOOOOOOOOO",status_id , project_id)
   pool
     .query(
-      `UPDATE balance SET status_id=${status_id} WHERE id =${balanceid} RETURNING *;`
+      `UPDATE balance SET status_id=${status_id} WHERE project_id =${project_id} RETURNING *;`
     )
     .then((result) => {
       res
@@ -49,8 +50,9 @@ const updatebalancestatus = (req, res) => {
 };
 
 const creatbalance = (req, res) => {
-  const idproject = req.params.id;
 
+
+console.log("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", req.body)
   const {
     initialBalance,
     ourBalance,
@@ -72,11 +74,13 @@ const creatbalance = (req, res) => {
   ];
   pool
     .query(
-      `INSERT INTO jobOffer ( initialBalance ,    ourBalance ,       FreeLancerBalance ,       freelancerUser ,
-          clientUser ,       status_id ,     project_id ,)VALUES ($1,$2,$3,$4,$5,$6,$7) RETURNING *;`,
+      `INSERT INTO balance ( initialBalance , ourBalance ,FreeLancerBalance ,freelancerUser ,
+          clientUser , status_id ,project_id )VALUES ($1,$2,$3,$4,$5,$6,$7) RETURNING *;`,
       placeholder
     )
     .then((result) => {
+console.log("XXXXXXXXXXXXXXXXXXXXresultXXXXXXXXXXXXXXXXXXXXX", result.rows)
+
       res
         .json({
           success: true,
