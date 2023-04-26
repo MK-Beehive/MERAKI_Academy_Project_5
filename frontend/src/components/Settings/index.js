@@ -17,6 +17,7 @@ import { Input } from "antd";
 import {useNavigate,useLocation} from "react-router-dom"
 import Box from "@mui/material/Box";
 import {Button } from "antd";
+import { getStorage } from "firebase/storage";
 
 const Settings = () => {
   const dispatch = useDispatch();
@@ -136,7 +137,11 @@ console.log(userinfo.firstname);
             style={{ width: "15vw", height: "40vh", borderRadius: "100%" }}
           />
         </div>
+
         <div className="formcontainer">
+
+        <div><input type="file"  /> <button onClick={console.log("..")}></button></div>
+
         <Box
           component="form"
           sx={{

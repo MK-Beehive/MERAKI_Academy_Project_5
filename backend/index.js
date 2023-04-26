@@ -66,7 +66,7 @@ const stripe = require('stripe')('sk_test_51Mxn4uFKzpLJBNgH0BiwJtieg7qcKxI5npgFT
 
 app.post('/create-checkout-session', async (req, res) => {
   console.log(",,,,,,,,",'/create-checkout-session')
- const{ offer_id,project_id,projecttitle,selectedofferdata}=req.body
+ const{ offer_id,project_id,projecttitle,selectedofferdata}=req.body.cartItems
  console.log("offer_id,project_id,projecttitle,selectedofferdata" ,offer_id,project_id,projecttitle,selectedofferdata)
   const session = await stripe.checkout.sessions.create({
     line_items: [
@@ -74,9 +74,9 @@ app.post('/create-checkout-session', async (req, res) => {
         price_data: {
           currency: 'usd',
           product_data: {
-            name: 'projecttitle',
+            name: projecttitle,
           },
-          unit_amount: 200,
+          unit_amount: selectedofferdata.budget*100,
         },
         quantity: 1,
       },
@@ -86,7 +86,7 @@ app.post('/create-checkout-session', async (req, res) => {
     },
     mode: 'payment',
     success_url: 'http://localhost:3000/Sucsses',
-    cancel_url: 'http://localhost:3000/fail',
+    cancel_url: 'http://localhost:3000/',
   });
   console.log(",,,,,,,,",'session',session)
 
