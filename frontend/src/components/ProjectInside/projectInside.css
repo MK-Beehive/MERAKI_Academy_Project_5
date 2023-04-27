@@ -14,10 +14,10 @@
 
 }
     
-  .project_info{
+  .project_inside-info button{
  
   
-
+ margin: .1rem;
 
  
 
@@ -116,7 +116,7 @@ h2{
     position: relative;
     display: flex;
     flex-direction: column;
-    border: 1px solid black;
+    /* border: 1px solid black; */
     width: 95%;
     /* height: 10rem; */
     color: black;
@@ -136,7 +136,7 @@ font-family: 'Times New Roman', Times, serif;
     position: relative;
     display: flex;
     flex-direction: column;
-    border: 1px solid black;
+    /* border: 1px solid black; */
     width: 90%;
     /* height: 10rem; */
     color: black;

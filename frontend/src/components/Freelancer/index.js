@@ -7,6 +7,7 @@ import {AiFillWechat} from "react-icons/ai"
 import Typography from "@mui/material/Typography";
 import Pagination from "@mui/material/Pagination";
 import {setselectetUserProfile  , setselectedoffer_id} from "../redux/reducers/selected/index"
+import {MdOpenWith} from "react-icons/md"
 
 import { useSelector, useDispatch } from "react-redux";
 import { setMajority } from "../redux/project/projectSlice";
@@ -28,6 +29,8 @@ const Freelancer = () => {
     return {
       majority: state.project.majority,
       experiances: state.experiances.experiances,
+      isLoggedIn: state.auth.isLoggedIn,
+      userdata: state.auth.userdata,
     };
   });
 
@@ -114,17 +117,21 @@ const Freelancer = () => {
 
   const freelancersinfo = resultinfo?.map((freelancer) => {
     return (
-      <div className="freelancerinfo" key={freelancer.id} onClick={()=>{
+      <div className="freelancerinfo" key={freelancer.id} >
+        <div className="freelancerinfo1">
+        {state.isLoggedIn&& state.userdata.role_id===1 && <AiFillWechat  className="chat"  onClick={()=>{
+        Navigate("/addproject")
+      }} />}
+          <div className="img" >
+            <img src={freelancer.image}></img>
+            <div className="imguserfreelance--cover imguserfreelance--cover--blur"> <button onClick={()=>{
         dispatch(setselectetUserProfile(freelancer.user_id))
 console.log(";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;",freelancer.id)
         Navigate("/ProfileSecond")
-      }}>
-        <div className="freelancerinfo1">
-         <AiFillWechat  className="chat"  onClick={()=>{
-        // Navigate("/profile")
-      }} />
-          <div className="img" >
-            <img src={freelancer.image}></img>
+      }}><MdOpenWith className="imguserfreelance--cover--icon" /></button></div>
+        
+
+
           </div>
           <div>
             <div>

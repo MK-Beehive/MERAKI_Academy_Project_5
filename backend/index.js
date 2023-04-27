@@ -56,7 +56,6 @@ const chatRouter  = require("./routes/chat")
 app.use("/infouser",infouserRouter)
 app.use("/joboffer",jobOfferRouter)
 app.use("/email",emailRouter)
-
 app.use("/chat",chatRouter) 
 
 
