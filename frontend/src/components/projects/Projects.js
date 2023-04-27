@@ -113,6 +113,12 @@ console.log(endpoint)
 
 
   return (
+    
+    <div className="headpr">
+      <div className="upperbox">
+      <h1>All Projects</h1>
+
+      </div>
     <div className="projects">
       <div className="filterside">
         <div className="hr1">
@@ -200,8 +206,7 @@ More than 1 month
       </div>
 
       <div lassName="projectcard">
-      
-        <p className="title">All Projects</p> <hr className="hrunder"></hr>
+
         {allproject.map((project, i) => {
           
           if (project.projectprice <= filterprice) {
@@ -297,6 +302,8 @@ More than 1 month
 
       </div>
     </div>
+    </div>
+    
   );
 };
 
