@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import "./style.css";
+import "./style.css";
 // import Avatar from "@mui/material/Avatar";
 import StarIcon from "@mui/icons-material/Star";
 
 import Typography from "@mui/material/Typography";
 import { useNavigate, Link } from "react-router-dom";
+import Footer from "../footer/Footer";
 
 // import { setUserInfo, setLogin } from "../redux/reducers/auth";
 import axios from "axios";
@@ -181,7 +182,8 @@ console.log("firstname",UserData.firstname);
 
 
   return (
-    <div className="main">
+    <>
+    <div className="profile-container">
       <div className="left">
         <div class="card-container">
           <Card
@@ -189,26 +191,7 @@ console.log("firstname",UserData.firstname);
               width: 300,
             }}
             cover={<img alt="user image" src={userinfo.image} />}
-            actions={[
-            //   <div class="buttons">
-            //     {isLoggedIn && userId == userinfo.user_id && (
-            //       <Button
-            //         type="primary"
-            //         icon={<SettingOutlined />}
-            //         style={{
-            //           backgroundColor: "#fadb14",
-            //           borderColor: "yellow",
-            //         }}
-            //         size={size}
-            //         onClick={() => {
-            //           navigate("/settings/personalData");
-            //         }}
-            //       >
-            //         Settings
-            //       </Button>
-            //     )}
-            //   </div>,
-            ]}
+            
           >
             <Meta
               title={`${UserData.firstname} ${UserData.lastname}`}
@@ -226,14 +209,14 @@ console.log("firstname",UserData.firstname);
             />
            <Typography>{value}</Typography> 
            {UserData.role_id==2&&userinfo.experiance_id && (
-  <Typography>{userinfo.experiancename}</Typography>
+  <Typography >{userinfo.experiancename}</Typography>
 )}
 
           </Card>
           
         </div>
         <div className="skill">
-          <Card title={`Skills`} bordered={true}>
+          <Card title={`Skills`} bordered={true} style={{marginTop:"2vh"}}>
             {uniqueSkills.map((skillName) => (
               <p>
                 {" "}
@@ -245,52 +228,7 @@ console.log("firstname",UserData.firstname);
       </div>
 
       <div className="center">
-        <div className="pr">
-          {UserData.role_id === 1 && (
-            <>
-              <Row gutter={4}>
-                <Col span={8}>
-                  <Card title={`Completed Projects`} bordered={true}>
-                    <p>{completedProjects.length}</p>
-                  </Card>
-                </Col>
-                <Col span={8}>
-                  <Card title={`Open Projects`} bordered={true}>
-                    <p>{openProjects.length}</p>
-                  </Card>
-                </Col>
-                <Col span={8}>
-                  <Card title={`Rejected Projects`} bordered={true}>
-                    <p>{rejectedProjects.length}</p>
-                  </Card>
-                </Col>
-              </Row>
-            </>
-          )}
-
-          {UserData.role_id === 2 && (
-            <>
-              <Row gutter={4}>
-                <Col span={8}>
-                  <Card title={`Completed Projects`} bordered={true}>
-                    <p>{completedProjects.length}</p>
-                  </Card>
-                </Col>
-
-                <Col>
-                  <Card title={`Accepted Offers`} bordered={true}>
-                    <p> {acceptedOffers.length}</p>
-                  </Card>
-                </Col>
-                <Col>
-                  <Card title={`Rejected Offers`} bordered={true}>
-                    <p>{rejectedOffers.length}</p>
-                  </Card>
-                </Col>
-              </Row>
-            </>
-          )}
-        </div>
+       
         <div className="desc">
           <Card title="Description" bordered={true}>
             {userinfo.informationdescription ? (
@@ -314,6 +252,9 @@ console.log("firstname",UserData.firstname);
         )}
       </div>
     </div>
+    <Footer/>
+
+    </>
   );
 };
 

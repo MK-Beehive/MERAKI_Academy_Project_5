@@ -119,12 +119,12 @@ console.log(endpoint)
           {" "}
           <p className="title">
             {" "}
-            <p>Search Filter</p>
+            <p style={{color:"black"}}>Search Filter</p>
           </p>{" "}
           <hr></hr>
         </div>
 
-        <p>Filter By Majority</p>
+        <p style={{color:"black"}}>Filter By Majority</p>
 
         <select
           className="list"
@@ -137,7 +137,7 @@ console.log(endpoint)
           })}
         </select>
 
-        <p>Filter By Status</p>
+        <p style={{color:"black"}}>Filter By Status</p>
 
         <select
           className="list"
@@ -151,7 +151,7 @@ console.log(endpoint)
           <option>Inprocess</option>
           <option>canceled</option>
         </select>
-        <p>Filter By Work's Day</p>
+        <p style={{color:"black"}}>Filter By Work's Day</p>
 
         <label>
           <input
@@ -163,7 +163,6 @@ console.log(endpoint)
           />
           Less than 5 days
         </label>
-        <br></br>
 <label>
 <input type="checkbox" onChange={(e) => {
               checkboxhandel2(e.target.checked)
@@ -171,7 +170,6 @@ console.log(endpoint)
             }}  />
 From 2 to 3 weeks
 </label>
-<br></br>
 <label>
 <input type="checkbox" onChange={(e) => {
               console.log(e.target.checked);
@@ -180,11 +178,11 @@ From 2 to 3 weeks
 More than 1 month
 </label>   
 
-        <p className="cath3">
+        <p className="cath3" style={{color:"black"}}>
           Filter By Price{" "}
           <div className="price">
-            <p className="dollar">0$</p>{" "}
-            <p className="dollar">{filterprice}$</p>
+            <p className="dollar" style={{color:"black"}}>0$</p>{" "}
+            <p className="dollar" style={{color:"black"}}>{filterprice}$</p>
           </div>
           <input
             className="inputscale"
@@ -200,8 +198,9 @@ More than 1 month
       </div>
 
       <div lassName="projectcard">
-      
-        <p className="title">All Projects</p> <hr className="hrunder"></hr>
+     <div className="titleofprojects"><h3>All Projects</h3></div>
+ 
+        {/* <p className="title">All Projects</p> <hr className="hrunder"></hr> */}
         {allproject.map((project, i) => {
           
           if (project.projectprice <= filterprice) {
@@ -254,7 +253,7 @@ More than 1 month
                   <button className="projectmajorti">
                     {project.majorityname}
                   </button>
-                  {project.statusname=='open'&& project.role_id== 1 && <button className="addoffer">
+                  {project.statusname=='open project'&& project.role_id== 1 && <button className="addoffer">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="22"
