@@ -113,6 +113,12 @@ console.log(endpoint)
 
 
   return (
+    
+    <div className="headpr">
+      <div className="upperbox">
+      <h1>All Projects</h1>
+
+      </div>
     <div className="projects">
       <div className="filterside">
         <div className="hr1">
@@ -198,7 +204,6 @@ More than 1 month
       </div>
 
       <div lassName="projectcard">
-     <div className="titleofprojects"><h3>All Projects</h3></div>
  
         {/* <p className="title">All Projects</p> <hr className="hrunder"></hr> */}
         {allproject.map((project, i) => {
@@ -296,6 +301,8 @@ More than 1 month
 
       </div>
     </div>
+    </div>
+    
   );
 };
 
