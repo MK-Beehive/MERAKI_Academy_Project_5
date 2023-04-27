@@ -162,7 +162,7 @@ const updateUserById = async (req, res) => {
 
 
 const getallFreelancers = (req, res) => {
-const {filter ,filtervalue} =req.body
+const {filter ,filtervalue,filtervalue2} =req.body
 
   const {limit , offset } = req.query
   console.log("filter ,filtervalue", filter ,filtervalue ,req.body)
@@ -171,6 +171,7 @@ const {filter ,filtervalue} =req.body
   let queryCount;
   const  placholder1 = [limit,offset]
   const  placholder2 =  [limit,offset,filtervalue]
+  const  placholder3 =  [limit,offset,filtervalue,filtervalue2]
 
 
 const  query1 = `select   users.firstName, users.lastName, users.email, users.password, users.role_id ,information.id ,information.informationdescription,    information.jobTitle,    information.image,    information.cv,    information.user_id,    information.majority_id,    information.rate,    information.experiance_id ,experiance.experianceName ,majority.majorityName from users  inner join information  on users.id = information.user_id  
@@ -200,7 +201,7 @@ const query2 = `select   users.firstName, users.lastName, users.email, users.pas
     inner join  majority  on    information.majority_id = majority.id 
    
     where users.is_deleted = 0  and users.role_id = 2  
-    and information.experiance_id=$3
+    and information.experiance_id=$3 and information.majority_id =$4
      limit $1 offset $2 ;`
 
      const queryCount1 = `select  COUNT(*) as countFreelancers from  ( select   users.firstName, users.lastName, users.email, users.password, users.role_id ,information.id ,
@@ -233,7 +234,7 @@ const query2 = `select   users.firstName, users.lastName, users.email, users.pas
        inner join  majority  on    information.majority_id = majority.id 
       
         where users.is_deleted = 0  and users.role_id = 2 
-        and information.experiance_id=${filtervalue}
+        and information.experiance_id=${filtervalue} and information.majority_id =${filtervalue2}
     ) newtable;`;
     
 
@@ -253,7 +254,7 @@ const query2 = `select   users.firstName, users.lastName, users.email, users.pas
   }else if(filter == "experiance"  &&  filtervalue != 0){
        query=query3
  
-      placholder=placholder2
+      placholder=placholder3
       queryCount=queryCount3
     
   }

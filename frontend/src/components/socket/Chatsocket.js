@@ -194,6 +194,10 @@ function Socket(props) {
     socket.on("RECEIVE_MESSAGE", (data) => {
       setmassagelist([...massagelist, data]);
     });
+    return(()=>{
+      socket.close()
+      socket.removeAllListeners()
+    })
   }, []);
 
   console.log(massagelist);
