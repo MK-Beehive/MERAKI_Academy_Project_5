@@ -178,7 +178,7 @@ console.log("firstname",UserData.firstname);
     // getProjectByUser()
     // getSkilltByUser()
     // getOfferByUser()
-     }, []);
+     }, [selectetUserProfile]);
 
 
   return (

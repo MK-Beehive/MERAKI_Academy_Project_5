@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect ,useRef} from "react";
 import "./navbar.css";
 import lottie from "lottie-web";
 import { defineElement } from "lord-icon-element";
@@ -48,8 +48,16 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 ///===========================================================
 //duluzhxuxkjkampr
 
+//-----------sahar---------navegate to the user profile after selected from the search list---------
+import {setselectetUserProfile} from "../redux/reducers/selected/index"
+
+
+
+
 const Navbar = () => {
   //==============================================
+//-----------sahar---------to empty the search---------
+  const valuesetting = useRef(null); 
 
   const [open2, setOpen2] = React.useState(false);
   const [scroll, setScroll] = React.useState("paper");
@@ -86,6 +94,7 @@ const Navbar = () => {
       majority: state.project.majority,
       userId: state.auth.userId,
       userdata: state.auth.userdata,
+      isLoggedIn: state.auth.isLoggedIn,
       project: state.project,
       notification: state.project.notification,
       messagenotification: state.project.messageNotification,
@@ -106,12 +115,13 @@ const Navbar = () => {
     setOpen(newOpen);
   };
   //================searchbar===================================
+
   const [allfreelancerhere, setallfreelancerhere] = useState([]);
   const getfreeelancerrole2 = () => {
     axios
       .get(`http://localhost:5000/users/2`)
       .then((result) => {
-        console.log(result.data);
+        console.log("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^data^^",result.data);
         setallfreelancerhere(result.data);
       })
       .catch((err) => {
@@ -120,19 +130,23 @@ const Navbar = () => {
   };
 
   const defaultProps = {
-    options: allfreelancerhere,
-    getOptionLabel: (option) => (
-      <label>
-        {" "}
-        {
-          <img
-            style={{ width: "50px", height: "50px", borderRadius: 50 }}
-            src={option.image}
-          />
-        }{" "}
-        {option.firstname} {option.lastname}
-      </label>
-    ),
+
+
+    options: allfreelancerhere.map((option) =>{
+      return {label :  option.firstname  +" "+ option.lastname  , id :option.user_id }}),
+    // options: allfreelancerhere,
+    // getOptionLabel: (option) => (
+    //   <label>
+    //     {" "}
+    //     {
+    //       <img
+    //         style={{ width: "50px", height: "50px", borderRadius: 50 }}
+    //         src={option.image}
+    //       />
+    //     }{" "}
+    //     {option.firstname} {option.lastname}
+    //   </label>
+    // ),
   };
   // const flatProps = {
   //   options: allfreelancerhere.map((option) => option.firstname),
@@ -222,12 +236,13 @@ const Navbar = () => {
             </Link>
           </li>
 
-          <li className="nav-item">
-            <Link className="nav-links" to="/join">
+          { ! state.isLoggedIn ? 
+           <li className="nav-item">
+        <Link className="nav-links" to="/join">
               Join
             </Link>
-          </li>
-
+          </li>   : 
+          
           <li className="nav-item">
             <Link
               className="nav-links"
@@ -238,7 +253,9 @@ const Navbar = () => {
             >
               Logout
             </Link>
-          </li>
+          </li>    }
+
+       
 
           <li className="nav-item">
             <Link className="nav-links" to="/freelancer">
@@ -257,12 +274,26 @@ const Navbar = () => {
       
 
         <Stack /*spacing={1}*/ sx={{ width: "30%" }}>
-          <Autocomplete
+          <Autocomplete        
+           onChange={(event, newValue) => {
+       if(newValue){
+             console.log("#####",newValue)
+             dispatch(setselectetUserProfile(newValue.id))
+             console.log(";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;",newValue.id)
+        Navigate("/ProfileSecond")
+        console.log(";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;", valuesetting.current)
+
+           }
+           }}
+          
+       
+
             {...defaultProps}
             id="disable-close-on-select"
-            disableCloseOnSelect
+            // disableCloseOnSelect
             renderInput={(params) => (
-              <TextField {...params} label="search" variant="standard" />
+             <TextField {...params} label="search" variant="standard" ref={valuesetting} />
+         
             )}
           />
         </Stack>
