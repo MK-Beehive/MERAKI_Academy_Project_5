@@ -23,7 +23,7 @@ function Footer() {
       <div className='footer-subscription'>
       <div className="contact">
         <div className="contacttitle">
-          <h1 style={{fontFamily:"'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande','Lucida Sans', Arial, sans-serif"
+          {/* <h1 style={{fontFamily:"'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande','Lucida Sans', Arial, sans-serif"
 }}> Lets Keep in Touch</h1>
         </div>
         <div class="vertical">
@@ -43,20 +43,19 @@ function Footer() {
         <br></br>
         <input type="submit" value="Send" />
         </form>
-      </div>
+      </div> */}
         
       </div>
       </div>
       
         
           <div class='footer-link-items'>
-            <h2 style={{fontFamily:"'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande','Lucida Sans', Arial, sans-serif"}} >About Us</h2>
-            <p>BeeHive is more than just a website.it's a community of talented freelancers and ambitious clients.
-               all working together to bring their projects to life. Just like the busy bees in a hive, our platform is always buzzing with activity as clients post their projects and freelancers compete to take on the task. Whether you're a client looking for help on a project or a freelancer eager to showcase your skills, BeeHive is the perfect place to connect and collaborate. So join the swarm today and see what all the buzz is about! </p>
+            {/* <h2 style={{fontFamily:"'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande','Lucida Sans', Arial, sans-serif"}} >About Us</h2> */}
+            <p>BeeHive All rights reserved 2023 </p>
           </div>
         
         </div>
-        
+        </div>
      
     
   );

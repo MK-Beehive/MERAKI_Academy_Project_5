@@ -218,7 +218,7 @@ const Navbar = () => {
     <div className="navbar">
       <div className="navbar-container">
         
-          <img className="logoimg" src={"../assets/BeeHive.png"} />
+          <img className="logoimg" src={"../assets/bbb.png"} />
         <br />
         <div className="menu-icon" onClick={handleClick}>
           <i className={clicks ? "fas fa-times" : "fas fa-bars"} />
@@ -273,9 +273,8 @@ const Navbar = () => {
 
       
 
-        <Stack /*spacing={1}*/ sx={{ width: "20%" }}>
-          <Autocomplete 
-          
+        <Stack /*spacing={1}*/ sx={{ width: "30%" }}>
+          <Autocomplete        
            onChange={(event, newValue) => {
        if(newValue){
              console.log("#####",newValue)
@@ -288,6 +287,7 @@ const Navbar = () => {
            }}
           
        
+
             {...defaultProps}
             id="disable-close-on-select"
             // disableCloseOnSelect
@@ -402,6 +402,7 @@ const Navbar = () => {
           )}
         </Link>
       </div>
+      {/* <hr/> */}
     </div>
   );
 };
