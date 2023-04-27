@@ -216,10 +216,12 @@ const emailsend = ()=>{
   };
   //==================================================firebase data drag and drop files=========================
   const [progres, setprogres] = useState(0);
+  const [typeoffile, settypeoffile] = useState()
   const [file, setFile] = useState(null);
   const handleChange = (file) => {
     console.log(file);
     setFile(file);
+    settypeoffile(file.type)
     uploadfile(file);
   };
 
@@ -316,11 +318,15 @@ const emailsend = ()=>{
                      
                      </div>
                   );
+                  
                 })}
+              
                 </div>
             </Box>
+            
           </Modal>
-        </div>
+          </div>
+       
 
         <Box
           component="form"
@@ -405,6 +411,7 @@ const emailsend = ()=>{
             });
           }}
         >
+          <option>{"choose--"}</option>
           {state.majority.map((majority, i) => {
             if (majority.majorityname === "All"|| majority.majorityname ==="not selected") {
             } else {
@@ -413,6 +420,20 @@ const emailsend = ()=>{
           })}
         </select>
         </div>
+        <div className="datapic">
+  
+
+  {typeoffile === "image/jpeg" || typeoffile==="image/png"&& <img  style={{width:"20%", height:"60%"}} src={urlfile} />}
+          {typeoffile === "application/pdf" && (
+            <a href={urlfile}>
+              <img  style={{width:"20%", height:"60%"}}
+                src={
+                  "https://play-lh.googleusercontent.com/BkRfMfIRPR9hUnmIYGDgHHKjow-g18-ouP6B2ko__VnyUHSi1spcc78UtZ4sVUtBH4g"
+                }
+              />
+            </a>
+          )}
+  </div>
 <div className ="upload">
         <FileUploader  style={{width: '100%'}}
           handleChange={handleChange}
@@ -431,18 +452,8 @@ const emailsend = ()=>{
         )}%`}</Typography>
       </Box>
     </Box>
-
-        {urlfile && typOffile === "image/jpeg" && <img src={urlfile} />}
-        {urlfile && typOffile === "application/pdf" && (
-          <a href={urlfile}>
-            <img
-              src={
-                "https://play-lh.googleusercontent.com/BkRfMfIRPR9hUnmIYGDgHHKjow-g18-ouP6B2ko__VnyUHSi1spcc78UtZ4sVUtBH4g"
-              }
-            />
-          </a>
-        )}
         </div>
+  
         {/* <form ref={form} onSubmit={sendEmail}> */}
           <React.Fragment>
             <Button  type="submit" value="Send" onClick={handleOpen}>
@@ -495,8 +506,6 @@ const emailsend = ()=>{
 <Popup style={{width:"500px", height:"500px"}} trigger={<button className="button-6">Learn How can you add project</button>} position="left"> 
 <iframe class="embed-responsive-item" width="100%" height="100%" src="./assets/SnapSave.io-Freelance Worldwide, LLC Promo Video-(1080p).mp4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
   </Popup>
-
-
 
 
 <div className="dispcc">

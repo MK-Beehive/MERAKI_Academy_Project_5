@@ -213,6 +213,45 @@ function Home() {
               </p>
             </Panel>
 
+
+        <div className="vedio-third">
+        <video  controls>
+          <source  src={"../assets/officialvedio.mp4"} type="video/mp4" />
+          </video>
+        </div>
+        
+      </div>
+      </div>
+      <div className="qa">
+        <div className="title">
+<h1>Common Questions</h1>
+        </div>
+        <div className="questions"></div>
+      <Collapse accordion style={{width:"90%",marginLeft:"2vw"}}>
+    <Panel header="What is BeeHive?" key="1" style={{fontSize: '18px', fontWeight: 'bold', textAlign: 'left'}}>
+      <p>it is a platform that allows project owners to contract with professional freelancers to carry out their work, and provides professional freelancers a place to find projects to work on and earn through.</p>
+    </Panel>
+    <Panel header="How do I benefit from it?" key="2" style={{fontSize: '18px', fontWeight: 'bold', textAlign: 'left'}}>
+      <p>You can add your project and receive offers from professional freelancers interested in working on it to compare offers and choose the best one, then hire the freelancer with the best offer and follow up with him until the completion of the implementation of your project. You can also search yourself for the best freelancers and offer them your project directly to work on it.</p>
+    </Panel>
+    <Panel header="How does BeeHive  guarantee my rights?" key="3" style={{fontSize: '18px', fontWeight: 'bold', textAlign: 'left'}}>
+      <p>It fully guarantees you your financial right. Be assured when creating any new projects or submitting your offers on the projects presented on the site, as the site plays the role of mediator between the owner of the project and the freelancer and protects the financial rights of both parties.</p>
+    </Panel>
+    <Panel header="What feilds can I hire remote freelancers?" key="4" style={{fontSize: '18px', fontWeight: 'bold', textAlign: 'left'}}>
+      <p>Companies resort to hiring remote workers in various disciplines, including but not limited to workers in the field of programming, text editing, e-marketing, design and advertising, translation, data entry, article writing, some online public relations work, web design and management. Websites, market studies and analyzes, and other disciplines.</p>
+    </Panel>
+  
+  <Panel header="Why is remote hiring via BeeHive the best option for me?" key="5" style={{fontSize: '18px', fontWeight: 'bold', textAlign: 'left'}}>
+      <p>In recent years, the remote employment system has spread globally, as many companies and institutions - as well as individuals - resort to hiring individuals who work remotely from home or anywhere in the world via the Internet.
+Remote hiring does not recognize the existence of geographical borders; You can hire talented and creative freelancers from all over the world, so that each one of them works from his favorite place with complete comfort, and at the times that he sets for himself; Thus, employees will have all the factors driving production, and companies will have advantages, including low cost and saving a large part of money with increased productivity, in addition to physical and psychological comfort.</p>
+    </Panel>
+    </Collapse>
+      </div>
+      {/* <div className="contact">
+        <div className="contacttitle">
+          <h1 style={{fontFamily:"'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande','Lucida Sans', Arial, sans-serif"
+}}> Lets Keep in Touch</h1>
+
             <Panel
               header="Why is remote hiring via BeeHive the best option for me?"
               key="5"
@@ -234,6 +273,7 @@ function Home() {
               </p>
             </Panel>
           </Collapse>
+
         </div>
         <div className="contact">
           <div className="contacttitle">

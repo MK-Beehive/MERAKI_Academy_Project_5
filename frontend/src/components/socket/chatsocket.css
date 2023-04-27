@@ -7,6 +7,7 @@
 .chattttt{
     display: flex;
     flex-direction: column;
+    position: fixed;
     /* border: 4px solid rgb(44, 33, 204);  */
 }
 .catttt2{
@@ -262,4 +263,11 @@ font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
     /* margin-left: 750px; */
     border: none;
     color: rgb(0, 0, 0);
+}
+.navbar8{
+    /* position: relative; */
+    position: sticky;
+}
+.chattttt{
+    position: sticky;
 }
