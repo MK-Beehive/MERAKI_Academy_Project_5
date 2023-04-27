@@ -1,0 +1,35 @@
+.setting-containerbal{
+    /* border: 4px solid blue; */
+    display: grid;
+    grid-template-columns: 2fr 8fr ;
+    grid-template-areas: "a b ";
+    gap:6vw;
+    background-color: rgba(195, 189, 189, 0.723);
+  }
+  
+  .leftbal{
+      /* border: 4px solid black; */
+      height: 100vh;
+      /* margin-left: 2vw; */
+    }
+    .settingbal{
+      /* border: 4px solid rgb(245, 24, 135); */
+  height: 100%;
+    }
+    .centerbal{
+      /* border: 4px solid brown; */
+      display: flex;
+    flex-direction: column;
+    width: 80%;
+    height: 100%;
+    gap:3vh;
+    justify-content: center;
+    margin-left: 6vw;
+    }
+    
+    .Balances{
+        /* border:4px solid yellow; */
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }

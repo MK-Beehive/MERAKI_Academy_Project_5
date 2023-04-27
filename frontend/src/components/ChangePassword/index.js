@@ -5,7 +5,7 @@ import { Button, Input, Space } from 'antd';
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import {SaveOutlined } from "@ant-design/icons";
-
+import "./style.css"
 
 const ChangePassword = () => {
   const [passwordVisible, setPasswordVisible] = React.useState(false);
@@ -51,21 +51,23 @@ const ChangePassword = () => {
   };
 
   return (
-    <div className="setting-container">
-      <div className="setting">
+    <div className="settingpass-container">
+        <div className="leftpass">
+      <div className="settingpass">
         <SettingBar />
       </div>
-      <div className="center">
+      </div>
+      <div className="centerpass">
       <Space direction="vertical">
         
-<div>Your New Password
+<div> <h3>Your New Password</h3>
       <Input.Password placeholder="New Password"  value={newPassword}
                   onChange={(event) => setNewPassword(event.target.value)} />
      </div>
-     <div> Retype your new Password</div>
+     <div> <h3>Retype your new Password</h3>
      <Input.Password placeholder="Retype the new Password"  value={confirmPassword}
                   onChange={(event) => setConfirmPassword(event.target.value)} />
-      
+      </div>
      
     </Space>
     <div class="col-lg-offset-3-col-lg-8">

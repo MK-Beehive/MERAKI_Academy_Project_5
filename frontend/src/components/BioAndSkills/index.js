@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import SettingBar from "../SettingBar";
 import { Select, Space } from "antd";
+import Footer from "../footer/Footer";
 
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
@@ -205,6 +206,7 @@ const BioAndSkills = () => {
   }, []);
 
   return (
+    <>
     <div className="bioandskills">
             <div className="leftbio">
       <div className="settingbio">
@@ -353,6 +355,9 @@ const BioAndSkills = () => {
       </div>
 
     </div>
+    <Footer/>
+
+    </>
   );
 };
 

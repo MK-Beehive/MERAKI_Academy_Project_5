@@ -9,7 +9,7 @@ import {ref, uploadBytesResumable,getDownloadURL} from "@firebase/storage";
 import {Embed } from "antd";
 import { FilePdfOutlined } from "@ant-design/icons";
 import CircularProgress from '@mui/material/CircularProgress';
-
+import "./style.css"
 
 const WorkSamples = () => {
     const dispatch = useDispatch();
@@ -85,18 +85,20 @@ const [updatedCV, setUpdatedCV] = useState(userinfo.cv);
       
 
     return (
-        <div className="setting-container">
-          <div className="setting">
+        <div className="setting-containerwork">
+          <div className="leftwork">
+          <div className="settingwork">
             <SettingBar />
           </div>
-          <div className="center">
+          </div>
+          <div className="centerwork">
           <form onSubmit={formHandler}>
         <input type="file" className="input" />
         <button type="submit">Upload</button>
       </form>
       <hr />
       {fileUrl && (
-    <div>
+    <div >
       <FilePdfOutlined style={{ marginRight: "8px" }} />
       <a href={fileUrl} target="_blank">
         {file?.name}
@@ -104,12 +106,13 @@ const [updatedCV, setUpdatedCV] = useState(userinfo.cv);
     </div>
   )}
   {fileUrl && (
-    <div style={{ marginTop: "16px" }}>
+    <div className="filePdfOutlined"  style={{ marginTop: "1px" }}>
       <embed url={fileUrl} />
     </div>
   )}
+  <div className="circular">
         <CircularProgress variant="determinate" value={progress} />
-
+        </div>
       {/* <h2>Uploading done {progress}%</h2> */}
 
       <div>
@@ -124,7 +127,6 @@ const [updatedCV, setUpdatedCV] = useState(userinfo.cv);
 </div>
           </div>
     
-          <div className="right"></div>
         </div>
       );  
 }

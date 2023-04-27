@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setUserdata,setLogin } from "../redux/reducers/auth";
 import{setBalance} from "../redux/reducers/balance";
 import axios from "axios";
-
+import "./style.css"
 const BalanceManagement = () => {
   const dispatch = useDispatch();
   const { userId, userdata, balance,isLoggedIn } = useSelector((state) => {
@@ -44,11 +44,14 @@ const BalanceManagement = () => {
   }, []);
 
   return (
-    <div className="setting-container">
-      <div className="setting">
-        <SettingBar />
+    <div className="setting-containerbal">
+              <div className="leftbal">
+      <div className="settingbal">
+        <SettingBar/>
       </div>
-      <div className="center">
+      </div>
+      
+      <div className="centerbal">
         <div className="Balances">
           <div className="current-balance">
          
@@ -90,7 +93,6 @@ const BalanceManagement = () => {
         </div>
       </div>
 
-      <div className="right"></div>
     </div>
   );
 };

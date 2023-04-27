@@ -43,6 +43,7 @@ const Freelancer = () => {
   const [resultinfo, setresultinfo] = useState([]);
   const [filter, setfilter] = useState("ALL");
   const [filtervalue, setfiltervalue] = useState(0);
+  const [filtervalue2, setfiltervalue2] = useState(0);
 
   const getMajority = () => {
     axios
@@ -73,12 +74,14 @@ const Freelancer = () => {
     filterExp.current.value = 100;
     setfilter("majority");
     setfiltervalue(filter);
+    setfiltervalue2(filter);
+
   };
   const filterByExperiance = (filter) => {
     setPage(1)
     setOffset(0)
-    console.log("~~~~~~~~~~~~~~", filter);
-    filterMajority.current.value = 100;
+    console.log("~~~~~~~~~~~~~~", filter ,filtervalue2 ,"filtervalue2,,,,");
+    // filterMajority.current.value = 100;
     setfilter("experiance");
     setfiltervalue(filter);
   };
@@ -88,7 +91,7 @@ const Freelancer = () => {
     axios
       .post(
         `http://localhost:5000/users/freelancers?limit=${3}&offset=${Offset}`,
-        { filter: filter, filtervalue: filtervalue }
+        { filter: filter, filtervalue: filtervalue , filtervalue2:filtervalue2}
       )
       .then((resultinfo) => {
         console.log("resultinfo.data_________________", resultinfo.data);
@@ -98,13 +101,18 @@ const Freelancer = () => {
       })
       .catch((err) => {
         console.log("error", err);
+        if( err?.response?.data?.success == false){
+
+          setresultinfo(null);
+        setcountfreelancers(1);
+        }
       });
 
     getMajority();
     getExperiance();
   }, [Offset, filtervalue, filter]);
 
-  const freelancersinfo = resultinfo.map((freelancer) => {
+  const freelancersinfo = resultinfo?.map((freelancer) => {
     return (
       <div className="freelancerinfo" key={freelancer.id} onClick={()=>{
         dispatch(setselectetUserProfile(freelancer.user_id))
@@ -175,6 +183,8 @@ console.log(";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;",freelancer.id)
           <p>Filter By Experiance</p>
 
           <select
+    
+          disabled = {filtervalue2 == 100  || filtervalue2 == 0 }
           ref={filterExp}
             className="list"
             onChange={(e) => {
@@ -197,7 +207,7 @@ console.log(";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;",freelancer.id)
           </select>
         </div>
         <div lassName="freelancercard">
-          <div>{freelancersinfo}</div>
+         {resultinfo ? <div>{freelancersinfo}</div> :<div className="No-free" > No Freelancers</div>}
         </div>
       </div>
       <div className="Pagination">
