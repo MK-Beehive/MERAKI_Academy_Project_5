@@ -28,6 +28,8 @@ const Freelancer = () => {
     return {
       majority: state.project.majority,
       experiances: state.experiances.experiances,
+      isLoggedIn: state.auth.isLoggedIn,
+      userdata: state.auth.userdata,
     };
   });
 
@@ -120,9 +122,9 @@ console.log(";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;",freelancer.id)
         Navigate("/ProfileSecond")
       }}>
         <div className="freelancerinfo1">
-         <AiFillWechat  className="chat"  onClick={()=>{
-        // Navigate("/profile")
-      }} />
+        {state.isLoggedIn&& state.userdata.role_id===1 && <AiFillWechat  className="chat"  onClick={()=>{
+        Navigate("/addproject")
+      }} />}
           <div className="img" >
             <img src={freelancer.image}></img>
           </div>
