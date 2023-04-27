@@ -1,9 +1,9 @@
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect ,useRef } from "react";
 import SettingBar from "../SettingBar";
 import "./style.css";
 import Footer from "../footer/Footer";
-
+import {RiImageAddLine} from "react-icons/ri"
 import { setUserInfo, setUserdata } from "../redux/reducers/auth";
 import { setexperiances } from "../redux/reducers/experiances";
 import { Select } from "antd";
@@ -18,8 +18,82 @@ import {useNavigate,useLocation} from "react-router-dom"
 import Box from "@mui/material/Box";
 import {Button } from "antd";
 import { getStorage } from "firebase/storage";
+import { storage } from "../firebase/Firebase";
+import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
+
+
+
+
+
+import PropTypes from 'prop-types';
+import CircularProgress from '@mui/material/CircularProgress';
+import Typography from '@mui/material/Typography';
+
+function CircularProgressWithLabel(props) {
+  return (
+    <Box sx={{ position: 'relative', display: 'inline-flex' }}>
+      <CircularProgress variant="determinate" {...props} />
+      <Box
+        sx={{
+          top: 0,
+          left: 0,
+          bottom: 0,
+          right: 0,
+          position: 'absolute',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <Typography variant="caption" component="div" color="text.secondary">
+          {`${Math.round(props.value)}%`}
+        </Typography>
+      </Box>
+    </Box>
+  );
+}
 
 const Settings = () => {
+//===============================sahar firebase =====================
+const inputRef = useRef(null);
+const handleChange = (e) => {
+  e.preventDefault()
+  console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$",e.target.files[0]);
+  // setFile(e.target.value);
+  uploadfile(e.target.files[0]);
+};
+  const [progress, setprogres] = useState(0);
+  const [urltrigger, seturltrigger] = useState(false)
+  // const [file, setFile] = useState(null);
+  const [urlfile, seturlfile] = useState("");
+  const uploadfile = (file) => {
+    if (!file){return}
+    let prog;
+    const storgeRef = ref(storage, `/files/${file.name}`);
+    const uploadTask = uploadBytesResumable(storgeRef, file);
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {
+        prog = Math.round(
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        );
+        console.log("......................................................prog",prog,snapshot.bytesTransferred , snapshot.totalBytes)
+        setprogres(prog);
+      },
+      (err) => console.log(err),
+      () => {
+        getDownloadURL(uploadTask.snapshot.ref).then((url) => {
+          console.log(url);
+          seturlfile(url);
+          seturltrigger(true)
+        });
+      }
+    );
+
+    console.log(progress);
+  };
+
+
   const dispatch = useDispatch();
   const { userinfo, userId, userdata, experiances } = useSelector((state) => {
     return {
@@ -131,17 +205,26 @@ console.log(userinfo.firstname);
       </div>
       <div className="centerset">
         <div className="image-container">
-          <img
-            src={userinfo.image}
+          <img 
+            src={ urltrigger? urlfile :userinfo.image}
             alt="user profile image"
-            style={{ width: "15vw", height: "40vh", borderRadius: "100%" }}
+            style={{ width: "16vw", height: "36vh", borderRadius: "100%" }}
           />
-        </div>
+           <div className="image-container--cover image-container--cover--blur"> <button onClick={()=>{
+                      inputRef.current.click();
 
+        }}><RiImageAddLine className="icon" /></button></div>
+          { progress != 0 && progress  != 100 &&  <div  className="image-container--loading ">
+        <CircularProgressWithLabel value={progress} />
+        </div>} 
+     
+        </div>
+       
+         <div><input  ref={inputRef} type="file" style={{'display':'none'}} onChange={handleChange} />  </div>
+       {/* <div>{progress}</div> */}
         <div className="formcontainer">
 
-        <div><input type="file"  /> <button onClick={console.log("..")}></button></div>
-
+       
         <Box
           component="form"
           sx={{

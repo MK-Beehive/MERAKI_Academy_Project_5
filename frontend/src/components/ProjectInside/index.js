@@ -11,12 +11,14 @@ import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import Rating from "@mui/material/Rating";
 import Stack from "@mui/material/Stack";
+//-----------------------icons-------------------------------------------------
 import { AiFillWechat } from "react-icons/ai";
 import { ImAttachment } from "react-icons/im";
-
+import {MdOpenWith} from "react-icons/md"
+//---------------------------------------------------------------------------------
 import TextField from '@mui/material/TextField';
 import FormControl from '@mui/material/FormControl';
-// import {PaymentElement} from '@stripe/react-stripe-js';
+
 
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
@@ -164,6 +166,7 @@ const [rate, setrate] = useState(0)
       selectedProject: state.selected.selectedProject,
       selectetUserProfile : state.selected.selectetUserProfile ,
       auth: state.auth,
+      isLoggedIn: state.auth.isLoggedIn,
     };
   });
 
@@ -279,7 +282,9 @@ const [rate, setrate] = useState(0)
                   }}
                 >
                   {" "}
-                  <ImAttachment className="file" />{" "}
+                  
+                  <a target='_blank' href={selectedProjectdata?.cv}><ImAttachment   className="file" />  </a>
+                  {" "}
                 </button>
               </div>
             </div>
@@ -292,13 +297,14 @@ const [rate, setrate] = useState(0)
               <div>
                 <span>
                   {" "}
-            { state.auth.userId == selectedProjectdata.user_id &&   <button onClick={()=>{
+
+            { state.auth.userId == selectedProjectdata.user_id && state.isLoggedIn && <button onClick={()=>{
 
  console.log("________________________________________________",selectedProjectdata)
 
             }}>Invite Freelancers </button>}
             {/* && selectedProjectdata.status_id == 2 */}
-            { state.auth.userId == selectedProjectdata.user_id    && <button onClick={()=>{
+            { state.auth.userId == selectedProjectdata.user_id    &&  state.isLoggedIn &&  <button onClick={()=>{
 
 projectTermination()
 
@@ -307,7 +313,7 @@ projectTermination()
 
 
 
-            {state.auth.userId != selectedProjectdata.user_id &&     <button   onClick={()=>{
+            {state.auth.userId != selectedProjectdata.user_id &&  state.isLoggedIn &&    <button   onClick={()=>{
 
                     setAddOffer(true)
                    }}> ADD Offer </button>}
@@ -338,12 +344,14 @@ projectTermination()
           dispatch(setinfouserOfoffer(ProjecOffer))
            Navigate("/chat")
       }} />
-          <div className="imguser" onClick={()=>{
-                  console.log(".....................",ProjecOffer)
-            dispatch(setselectetUserProfile(ProjecOffer.user_id))
-            Navigate("/ProfileSecond")
-          }}  >
+          <div className="imguser"  >
             <img src={ProjecOffer.image}></img>
+            <div className="imguser--cover imguser--cover--blur"> <button onClick={()=>{
+                      console.log(".....................",ProjecOffer)
+                      dispatch(setselectetUserProfile(ProjecOffer.user_id))
+                      Navigate("/ProfileSecond")
+
+        }}><MdOpenWith className="imguser--cover--icon" /></button></div>
           </div>
           <div>
   
@@ -358,7 +366,7 @@ projectTermination()
 
           </div>
         </div>
-        <div className=""></div>
+        <div className="project_inside_Line"></div>
         <div className="freelancerinfo2">
           <div>
             <p>{ProjecOffer.jobofferdescription} </p>
