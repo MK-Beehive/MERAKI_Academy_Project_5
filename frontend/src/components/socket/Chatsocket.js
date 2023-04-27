@@ -193,7 +193,12 @@ function Socket(props) {
     socket.connect();
     socket.on("RECEIVE_MESSAGE", (data) => {
       setmassagelist([...massagelist, data]);
+      
     });
+    return(()=>{
+      socket.close()
+      socket.removeAllListeners()
+    })
   }, []);
 
   console.log(massagelist);
@@ -390,7 +395,7 @@ function Socket(props) {
                 </List>
               </Paper>
             </React.Fragment>
-
+            <div className="navbar8" >
             <div className="inputwithsend">
               <input
                 ref={inputElement}
@@ -435,7 +440,7 @@ function Socket(props) {
                 </svg>
               </button>
 
-              <div>
+             
                 <AudioRecorder
                   onRecordingComplete={(blob) => addAudioElement(blob)}
                   recorderControls={recorderControls}

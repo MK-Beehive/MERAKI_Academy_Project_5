@@ -152,7 +152,7 @@ margin-left: 2vw;
   /* border: 4px solid black; */
   width: 40%;
 }
-.vedio-third>embed{
+.vedio-third>video{
   width:100%;
   height: 100%;
 }

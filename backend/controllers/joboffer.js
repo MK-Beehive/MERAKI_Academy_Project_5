@@ -154,6 +154,7 @@ const getofferByUser = (req, res) => {
   INNER JOIN information ON joboffer.user_id = information.user_id 
   INNER JOIN majority ON information.majority_id = majority.id 
   INNER JOIN status ON joboffer.jobofferstatus_id = status.id 
+  INNER
   WHERE joboffer.user_id =$1`;
   pool
     .query(query,[user_id])

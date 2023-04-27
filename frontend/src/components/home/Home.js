@@ -139,7 +139,9 @@ function Home() {
         </div>
 
         <div className="vedio-third">
-          <embed src={"../assets/officialvedio.mp4"} autostart="false" />
+        <video  controls>
+          <source  src={"../assets/officialvedio.mp4"} type="video/mp4" />
+          </video>
         </div>
         
       </div>

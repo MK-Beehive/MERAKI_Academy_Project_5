@@ -255,6 +255,7 @@ const Navbar = () => {
 
 
       
+        <Link  className="prfile" to="/myoffer">Myoffer </Link>
 
         <Stack /*spacing={1}*/ sx={{ width: "20%" }}>
           <Autocomplete
@@ -370,6 +371,8 @@ const Navbar = () => {
             ""
           )}
         </Link>
+
+
       </div>
     </div>
   );
