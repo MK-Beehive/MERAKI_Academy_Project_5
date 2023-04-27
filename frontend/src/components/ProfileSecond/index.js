@@ -189,6 +189,7 @@ console.log("firstname",UserData.firstname);
           <Card
             style={{
               width: 300,
+              
             }}
             cover={<img alt="user image" src={userinfo.image} />}
             

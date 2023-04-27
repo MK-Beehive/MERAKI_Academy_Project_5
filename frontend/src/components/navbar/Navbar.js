@@ -263,19 +263,24 @@ const Navbar = () => {
             </Link>
           </li>
 
-          <li className="nav-item">
+          {  state.isLoggedIn &&  state.userdata.role_id == 1 &&  <li className="nav-item">
             <Link className="nav-links" to="/addproject">
               Add Project
             </Link>
-          </li>
+          </li> }
+
+          {  state.isLoggedIn &&  state.userdata.role_id == 2 &&   <li>
+
+          <Link  className="nav-links" to="/myoffer">Myoffer </Link>
+          </li> }
         </ul>
 
 
       
-        <Link  className="prfile" to="/myoffer">Myoffer </Link>
+        
 
         <Stack /*spacing={1}*/ sx={{ width: "30%" }}>
-          <Autocomplete        
+          <Autocomplete   ref={valuesetting}     
            onChange={(event, newValue) => {
        if(newValue){
              console.log("#####",newValue)
@@ -293,7 +298,7 @@ const Navbar = () => {
             id="disable-close-on-select"
             // disableCloseOnSelect
             renderInput={(params) => (
-             <TextField {...params} label="search" variant="standard" ref={valuesetting} />
+             <TextField {...params} label="search" variant="standard"   />
          
             )}
           />
