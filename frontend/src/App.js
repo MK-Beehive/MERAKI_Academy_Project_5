@@ -21,7 +21,7 @@ import WorkSamples from "./components/WorkSamples";
 import Sucsses from "./components/Sucsses";
 import ProfileSecond from "./components/ProfileSecond";
 import Myoffer from "./components/myoffer/Myoffer";
-
+import Myproject from "./components/myproject/Myproject"
 
 
 
@@ -68,6 +68,7 @@ function App() {
  <Route path="/addproject" element={<Addproject/>}/>
 
     <Route path="/myoffer" element={<Myoffer/>}/>
+    <Route path="/myproject" element={<Myproject/>}/>
 
 </Routes>
 {/* <Chatsocket/> */}

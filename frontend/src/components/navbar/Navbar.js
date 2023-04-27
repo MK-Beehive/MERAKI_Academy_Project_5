@@ -275,9 +275,18 @@ const Navbar = () => {
           </li> }
         </ul>
 
-
+   {  state.isLoggedIn &&  state.userdata.role_id == 1 &&   <li>
+   <Link  className="nav-links" to="/myproject">Myprojects </Link>
+         
+          </li> }
+        </ul>
       
+
         
+
+
+        
+
 
         <Stack /*spacing={1}*/ sx={{ width: "30%" }}>
           <Autocomplete   ref={valuesetting}     

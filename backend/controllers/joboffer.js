@@ -148,13 +148,13 @@ const getofferByUser = (req, res) => {
   console.log(2);
   console.log(user_id);
 
-  const query = `SELECT joboffer.id, joboffer.workday, joboffer.budget, joboffer.jobofferdescription, users.firstName, information.image, majority.majorityName, status.statusName  
+  const query = `SELECT joboffer.id, joboffer.workday, joboffer.budget, joboffer.jobofferdescription, users.firstName, information.image, majority.majorityName, status.statusName ,projects.title ,projects.id as project_id, status.id as status_id
   FROM joboffer 
   INNER JOIN users ON joboffer.user_id = users.id 
   INNER JOIN information ON joboffer.user_id = information.user_id 
   INNER JOIN majority ON information.majority_id = majority.id 
   INNER JOIN status ON joboffer.jobofferstatus_id = status.id 
-  INNER
+  INNER JOIN projects ON joboffer.project_id = projects.id
   WHERE joboffer.user_id =$1`;
   pool
     .query(query,[user_id])
@@ -166,12 +166,14 @@ const getofferByUser = (req, res) => {
           result: result.rows,
         })
         .status(200);
+        console.log(result.rows)
     })
     .catch((err) => {
       console.log(err);
       res
         .json({ success: false, massage: "Server error", err: err })
         .status(500);
+        console.log(err)
     });
 };
 
