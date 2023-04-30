@@ -165,6 +165,7 @@ CREATE TABLE chat(
 CREATE TABLE chatnotification(
   id SERIAL NOT NULL,
   chatnotification VARCHAR(255),
+  imageuser VARCHAR(255),
   user_id INT,
   room_id INT, 
   sender_id INT, 

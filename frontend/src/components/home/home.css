@@ -159,26 +159,35 @@ margin-left: 2vw;
 .keepintouch{
   display: flex;
   flex-direction: row;
+  /* border: 4px solid red; */
+  width: 100%;
   /* justify-content: space-between; */
   /* border:4px solid yellow; */
 
 }
 .keepimg{
-  width:70%;
-  height: 85%;
+  width:60%;
+  /* margin-right: 3vw; */
+  /* height: 80%; */
   /* border:4px solid blue; */
-  margin-left: 17vw;
-  margin-top: 5vh;
+  /* margin-left: 27vw; */
+  margin-top: 0vh;
   border-radius: 5%;
+  padding: 0px;
+  margin-left: 0vw;
+
   /* margin-bottom: 2vh; */
-
-
-
 }
 .vertical{
   /* border:4px solid red; */
-  width:30vw;
-  margin-left: 2vw;
+  width:30%;
+  margin-left: 12vw;
+}
+.keepintouchimg{
+  /* border:4px solid red; */
+  width: 50%;
+  height: 50%;
+margin-left: 2vw;
 }
 
 

@@ -57,6 +57,7 @@ import {setselectetUserProfile} from "../redux/reducers/selected/index"
 const Navbar = () => {
   //==============================================
 //-----------sahar---------to empty the search---------
+const [noyificationstate0, setnoyificationstate0] = useState()
   const valuesetting = useRef(null); 
 
   const [open2, setOpen2] = React.useState(false);
@@ -65,6 +66,7 @@ const Navbar = () => {
   const handleClickOpen = (scrollType) => () => {
     setOpen2(true);
     setScroll(scrollType);
+    setnoyificationstate0(0)
   };
 
   const handleClose = () => {
@@ -179,10 +181,12 @@ const Navbar = () => {
         if (result.data.length === 0) {
           console.log("there is no message");
           dispatch(setmessagenotification(result.data));
+          setnoyificationstate0(result.data.length)
           setmessagelistOn("there is no message");
         } else {
           console.log(result.data);
           dispatch(setmessagenotification(result.data));
+          setnoyificationstate0(result.data.length)
         }
       })
       .catch((err) => {
@@ -236,7 +240,7 @@ const Navbar = () => {
             </Link>
           </li>
 
-          { ! state.isLoggedIn ? 
+  { ! state.isLoggedIn ? 
            <li className="nav-item">
         <Link className="nav-links" to="/join">
               Join
@@ -244,7 +248,7 @@ const Navbar = () => {
           </li>   : 
           
           <li className="nav-item">
-          <Link
+            <Link
               className="nav-links" to="/"
               onClick={() => {
               
@@ -274,6 +278,7 @@ const Navbar = () => {
 
           <Link  className="nav-links" to="/myoffer">Myoffer </Link>
           </li> }
+
 
    {  state.isLoggedIn &&  state.userdata.role_id == 1 &&   <li>
    <Link  className="nav-links" to="/myproject">Myprojects </Link>
@@ -317,7 +322,9 @@ const Navbar = () => {
           <Button className="mesagebutton" onClick={handleClickOpen("paper")}>
             {" "}
             <Badge
-              badgeContent={state.messagenotification.length}
+            // state.messagenotification.length
+           
+              badgeContent={noyificationstate0}
               color="primary"
             >
               <MailIcon color="action" />
@@ -341,7 +348,7 @@ const Navbar = () => {
                   <h3>No message</h3>
                 ) : (
                   state.messagenotification?.map((noti) => {
-                    console.log(noti);
+                    // console.log(noti);
                     return (
                       <div className="noticationnav">
                         <button
@@ -353,7 +360,9 @@ const Navbar = () => {
                             setcheckpopup(!checkpopup);
                           }}
                         >
-                          {noti.chatnotification}
+                          <div  style={{display:"flex", flexDirection:"row"}}><img style={{width: "5vw", height: "8vh"}} src={noti.imageuser} /> 
+                         <p style={{marginTop: "10%", fontSize:"18px"}}>{noti.chatnotification}</p> </div>
+                         
                         </button>
                       </div>
                     );

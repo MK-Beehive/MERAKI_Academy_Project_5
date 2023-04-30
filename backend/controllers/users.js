@@ -102,7 +102,7 @@ const login = (req, res) => {
 
   const getAllUsers = async (req, res) => {
     try {
-      const query = `SELECT * FROM users WHERE is_deleted = 0`;
+      const query = `select roles.id,   users.firstName , users.lastName , users.email, roles.role,  information.jobTitle ,majority.majorityName from users  inner join information  on users.id = information.user_id inner join majority  on information.majority_id = majority.id inner join  roles on roles.id=users.role_id ;`;
       const result = await pool.query(query);
       res.status(200).json(result.rows);
     } catch (error) {
@@ -431,9 +431,9 @@ pool.query(`INSERT INTO notification (notificationMessage,project_id,user_id) VA
 
 
 const sendMessagenotification = (req,res)=>{
-  const {chatnotification,room_id,user_id,sender_id} = req.body
-  const placholder = [chatnotification,room_id,user_id,sender_id]
-  pool.query(`INSERT INTO chatnotification (chatnotification,room_id,user_id,sender_id) VALUES ($1,$2,$3,$4) RETURNING * `,placholder).then((result)=>{
+  const {chatnotification,room_id,user_id,sender_id,imageuser} = req.body
+  const placholder = [chatnotification,room_id,user_id,sender_id,imageuser]
+  pool.query(`INSERT INTO chatnotification (chatnotification,room_id,user_id,sender_id,imageuser) VALUES ($1,$2,$3,$4,$5) RETURNING * `,placholder).then((result)=>{
     console.log(result.rows)
     res.json(result.rows)
   }).catch((err)=>{

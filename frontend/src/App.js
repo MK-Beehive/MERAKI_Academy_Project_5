@@ -23,7 +23,7 @@ import ProfileSecond from "./components/ProfileSecond";
 import Myoffer from "./components/myoffer/Myoffer";
 import Myproject from "./components/myproject/Myproject"
 
-
+// import Chart from './components/chart/Chart'
 
 function App() {
 
@@ -71,9 +71,9 @@ function App() {
     <Route path="/myproject" element={<Myproject/>}/>
 
 </Routes>
-{/* <Chatsocket/> */}
+
 <Footer />
-{/* <Footer className="footer"/> */}
+
     </div>
 
   );
