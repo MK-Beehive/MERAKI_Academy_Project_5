@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import SettingBar from "../SettingBar";
 import { Select, Space } from "antd";
 import Footer from "../footer/Footer";
+import { Card } from 'antd';
 
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
@@ -206,8 +207,12 @@ const BioAndSkills = () => {
   }, []);
 
   return (
-    <>
+    <div className="all-bioandskills-container">
+    <div className="upperboxuserbioandskills">
+      <h1 className="upperboxuserbioandskillsh1">Description</h1>
+    </div>
     <div className="bioandskills">
+      
             <div className="leftbio">
       <div className="settingbio">
         <SettingBar />
@@ -215,11 +220,22 @@ const BioAndSkills = () => {
       </div>
 
       <div className="centerbio">
+        <div className="illustration">
+        <Card style={{ width: "90%", height:"20vh" , marginLeft:"5vh" ,marginTop:"2vh"}}>
+    <p style={{fontFamily:"'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande','Lucida Sans', Arial, sans-serif", fontSize:"large"}}>As a freelancer or customer, you can change a lot of information in this section. As a client, you can simply change your bio, but as a freelancer, you can alter and manipulate a lot more.</p>
+    
+  </Card>
+        </div>
       {userdata.role_id == 2 && (
-        <div className="choose-skills">
+        <div className="choose-skills" style={{
+          bosShadow:"2px 2px 2px 2px rgba(83, 83, 74, 0.459)"
+
+        }}>
           <Space
             style={{
-              width: "40vw",
+              width: "100%",
+              bosShadow:"2px 2px 2px 2px rgba(83, 83, 74, 0.459)"
+
             }}
             direction="vertical"
           >
@@ -227,7 +243,8 @@ const BioAndSkills = () => {
               mode="multiple"
               allowClear
               style={{
-                width: "40vw",
+                width: "100%",
+                bosShadow:"2px 2px 2px 2px rgba(83, 83, 74, 0.459)"
               }}
               placeholder="Please select"
               defaultValue={selectedSkills}
@@ -242,11 +259,18 @@ const BioAndSkills = () => {
                 ))}
             </Select>
           </Space>
-          <div className="save-button">
+          <div className="save-button"  style={{ marginTop:"4vh",
+                    marginBottom: "2vh" 
+
+                      // backgroundColor: "#fadb14",
+                      // borderColor: "yellow",
+                    }}>
           <Button
                     type="primary"
                     icon={<SaveOutlined />}
-                    style={{
+                    style={{ marginTop:"2vh",
+                    marginButtom: "2vh" 
+
                       // backgroundColor: "#fadb14",
                       // borderColor: "yellow",
                     }}
@@ -263,7 +287,7 @@ const BioAndSkills = () => {
         </div>
         </div>
         )}
-        <div className="Bio">
+        <div className="Bio" style={{ width: "90%", height:"20vh" , marginLeft:"1vh" ,marginTop:"2vh"}}>
           <TextArea
             showCount
             maxLength={250}
@@ -281,8 +305,7 @@ const BioAndSkills = () => {
                     type="primary"
                     icon={<SaveOutlined />}
                     style={{
-                      // backgroundColor: "#fadb14",
-                      // borderColor: "yellow",
+                      marginTop:"2vh",
                     }}
                     size={size}
                     onClick={
@@ -297,7 +320,7 @@ const BioAndSkills = () => {
         </div>
         {userdata.role_id == 2 && (
           <>
-            <div className="experiance">
+            <div className="experiance" style={{ width: "90%", height:"20vh" , marginLeft:"1vh" ,marginTop:"2vh"}}>
               <Box sx={{ maxWidth: "100%" }}>
                 <FormControl fullWidth>
                   <InputLabel
@@ -336,8 +359,8 @@ const BioAndSkills = () => {
                     type="primary"
                     icon={<SaveOutlined />}
                     style={{
-                      // backgroundColor: "#fadb14",
-                      // borderColor: "yellow",
+                     
+                    marginButtom: "2vh" 
                     }}
                     size={size}
                     onClick={
@@ -347,17 +370,15 @@ const BioAndSkills = () => {
                     Save Experiance Changes
                   </Button>
                   </div>
-            {/* <button type="submit" onClick={handleExperianceSaveChanges}>
-              Save Experiance Changes
-            </button> */}
+            
           </>
         )}
       </div>
 
     </div>
-    <Footer/>
+    {/* <Footer/> */}
 
-    </>
+    </div>
   );
 };
 

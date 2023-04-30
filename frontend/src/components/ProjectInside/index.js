@@ -1,7 +1,7 @@
 import {Elements} from '@stripe/react-stripe-js';
 import {loadStripe} from '@stripe/stripe-js';
 
-
+import Input from '@mui/material/Input';
 import {setinfouserOfoffer} from "../redux/offers/offerSlice"
 
 import {setselectetUserProfile  , setselectedoffer_id} from "../redux/reducers/selected/index"
@@ -106,7 +106,7 @@ function ChildModal() {
     return (
         
       <React.Fragment>
-        <Button onClick={ ()=>{handleOpen()
+        <Button  className='button' onClick={ ()=>{handleOpen()
         
         
     
@@ -122,7 +122,7 @@ function ChildModal() {
           <Box sx={{ ...style, width: 200 }}>
             <h2 id="child-modal-title">Paymant </h2>
                <Paymant  cartItems={{offer_id:SelectedOffer,project_id:state.selectedProject ,projecttitle:projecttitle ,selectedofferdata: selectedofferdata}}/>
-            <Button onClick={handleClose}>cancel</Button>
+            <Button className='button' onClick={handleClose}>cancel</Button>
           </Box>
         </Modal>
       </React.Fragment>
@@ -220,7 +220,11 @@ const [rate, setrate] = useState(0)
   return (
     // <Elements stripe={stripePromise}  > 
     <div>
+   <div className="upperboxinside">
+      <h1> Project And Offers</h1>
+      {/* <h3>Add offers ,choose  and skills</h3> */}
 
+      </div>
      {  Confermed  && <Confermation />}
       <div className="project_inside">
         <div className="project_user">
@@ -234,7 +238,7 @@ const [rate, setrate] = useState(0)
           <Card
     hoverable
     style={{
-      width: 240,
+      width: "100%",
       
     }}
     cover={<img alt="example" src={selectedProjectdata.image} />}
@@ -290,7 +294,7 @@ const [rate, setrate] = useState(0)
             </div>
           </div>
 
-          <div className="project_inside-info">
+          <div className="project_inside-info-offer">
             <div className=" tag">
               {" "}
               <h2>Offers </h2>{" "}
@@ -298,13 +302,13 @@ const [rate, setrate] = useState(0)
                 <span>
                   {" "}
 
-            { state.auth.userId == selectedProjectdata.user_id && state.isLoggedIn && <button onClick={()=>{
+            { state.auth.userId == selectedProjectdata.user_id && state.isLoggedIn && <button className='button' onClick={()=>{
 
  console.log("________________________________________________",selectedProjectdata)
 
             }}>Invite Freelancers </button>}
-            {/* && selectedProjectdata.status_id == 2 */}
-            { state.auth.userId == selectedProjectdata.user_id    &&  state.isLoggedIn &&  <button onClick={()=>{
+            
+            { state.auth.userId == selectedProjectdata.user_id  && selectedProjectdata.status_id == 2  &&  state.isLoggedIn &&  <button className='button' onClick={()=>{
 
 projectTermination()
 
@@ -312,10 +316,11 @@ projectTermination()
             }}> Project Termination </button>}
 
 
-
-            {state.auth.userId != selectedProjectdata.user_id &&  state.isLoggedIn &&    <button   onClick={()=>{
+{/* state.auth.userId != selectedProjectdata.user_id && */}
+            {  state.isLoggedIn &&    <button  className='button'  onClick={()=>{
 
                     setAddOffer(true)
+                    setsetAdd(false)
                    }}> ADD Offer </button>}
                    {" "}
                 </span>
@@ -327,7 +332,7 @@ projectTermination()
 
             
 
-            {    selectedProjecOffers.map((ProjecOffer)=>{
+            {  selectedProjecOffers?.length ?  selectedProjecOffers?.map((ProjecOffer)=>{
                return <div key={ProjecOffer.id}  className="project_inside_offer_one">
 
   {state.auth.userId == selectedProjectdata.user_id &&   <input className="input-radio" type="radio"    ref={radioInput}    name="selectedOffer" value= {  ProjecOffer.id  }  onChange={(e)=>{
@@ -339,7 +344,7 @@ projectTermination()
     }}/>}
 
         <div className="offer_info">
-         <AiFillWechat  className="chat_offer"  onClick={()=>{
+         <AiFillWechat style={{color:"#0084CA"}}  className="chat_offer"  onClick={()=>{
           console.log(ProjecOffer)
           dispatch(setinfouserOfoffer(ProjecOffer))
            Navigate("/chat")
@@ -378,7 +383,7 @@ projectTermination()
 
                 </div>
 
-                })   }
+                })  : <p>No Offers </p> }
 
 
 
@@ -395,7 +400,7 @@ projectTermination()
           <p id="parent-modal-description">
             Press Continue to confirm the offer 
           </p>
-          <Button onClick={()=>{handleClose()
+          <Button className='button' onClick={()=>{handleClose()
              radioInput.current.checked =false
         }}>cancel</Button>
           <ChildModal />
@@ -415,7 +420,7 @@ projectTermination()
             <Box className="box"
       component="form"
       sx={{
-        '& .MuiTextField-root': { m: 1, width: '30ch' },
+        '& .MuiTextField-root': { m: 1, width: '38ch' },
       
 
       }}
@@ -441,10 +446,10 @@ projectTermination()
           id="standard-textarea"
           label="Work Days"
           placeholder="Placeholder"
-          multiline
+          // multiline
           variant="standard"
         />
-        <TextField  fullWidth  onChange={(e)=>{
+        {/* <TextField  fullWidth  onChange={(e)=>{
                 console.log("................",e.target.value)
                 setjobOfferDescription (e.target.value )
             }}
@@ -454,14 +459,24 @@ projectTermination()
           multiline
           rows={4}
           variant="standard"
-        />
-            
+        /> */}
+             <FormControl fullWidth sx={{ m: 1 ,width: '80ch' }} variant="standard">
+          <InputLabel htmlFor="standard-adornment-amount">Description</InputLabel>
+          <Input onChange={(e)=>{
+                console.log("................",e.target.value)
+                setjobOfferDescription (e.target.value )
+            }}
+            id="standard-multiline-static"
+            multiline
+            maxRows={4}
+          />
+        </FormControl>
            
             </Box>
    
 
-            <button   onClick={()=>{
-                console.log("................",{  
+            <button   className='button add-offer-but' onClick={()=>{
+                console.log("..........offer add......",{  
 
                     budget: Number(budget),
                     workday :Number(workday),
@@ -473,18 +488,7 @@ projectTermination()
 
                    })
 
-                // setnewOfferData({  
-
-                
-                //     budget: Number(budget),
-                //     workday :Number(workday),
-                //     jobOfferStatus_id:7,
-                //     jobOfferDescription :jobOfferDescription,
-                //     idproject : state.selectedProject ,
-                //     user_id:Number( state.auth.userId)
-
-
-                //    })
+     
           
                    addNewOffer({
                     budget: Number(budget),

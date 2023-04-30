@@ -1,29 +1,55 @@
-.settingpass-container{
-    /* border: 4px solid blue; */
-    display: grid;
-    grid-template-columns: 2fr 8fr ;
-    grid-template-areas: "a b ";
-    gap:6vw;
-    background-color: rgba(195, 189, 189, 0.723);
-  }
-  
-  .leftpass{
-      /* border: 4px solid black; */
-      height: 100vh;
-      /* margin-left: 2vw; */
-    }
-    .settingpass{
-      /* border: 4px solid rgb(245, 24, 135); */
-  height: 100%;
-    }
-    .centerpass{
-      /* border: 4px solid brown; */
-      display: flex;
-    flex-direction: column;
-    width: 80%;
-    height: 100%;
-    gap:3vh;
-    justify-content: center;
-    margin-left: 6vw;
-    }
-    
+.all-pass-container{
+  display:flex;
+  flex-direction: column;
+  /* border:4px solid green; */
+  margin-bottom: 2vh;
+
+}
+
+.upperboxpass{
+  /* border : 4px dotted red; */
+  height: 20vh;
+  background-image: url("../../../public/assets/top.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: left;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande','Lucida Sans', Arial, sans-serif;
+  margin-bottom: 2vh;
+}
+.upperboxpassh1{
+  margin-left: 4vw;
+  margin-top: 4vh;
+} 
+.passcenter{
+  /* border: 4px solid blue; */
+  display: flex;
+  flex-direction: row;
+  gap:6vw;
+  margin-left: 8vw;
+
+}
+.leftpass{
+  /* border: 4px solid black; */
+  height:70vh;
+  width:18vw;
+  box-shadow: 2px 2px 2px 2px rgba(83, 83, 74, 0.459);
+
+}
+.settingpass{
+  /* height: 98%;  */
+   /* border: 4px dashed brown;  */
+  /* box-shadow: 2px 2px 2px 2px rgba(83, 83, 74, 0.459); */
+
+}
+
+.centerpass{
+  /* border: 4px solid brown; */
+  display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: start;
+align-self: center;
+width: 60%;
+gap:3vh;
+box-shadow: 2px 2px 2px 2px rgba(83, 83, 74, 0.459);
+}

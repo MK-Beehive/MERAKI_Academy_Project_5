@@ -30,6 +30,7 @@
     "lord-icon-element": "^4.1.0",
     "lottie-web": "^5.10.2",
     "moment": "^2.29.4",
+    "moment-timezone": "^0.5.43",
     "nodemailer": "^6.9.1",
     "npm": "^9.6.4",
     "paginationjs": "^2.6.0",

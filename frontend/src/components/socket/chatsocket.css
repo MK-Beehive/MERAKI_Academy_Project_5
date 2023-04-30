@@ -1,4 +1,47 @@
-
+.rounded1{
+    /* border:4px solid red; */
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-between; */
+    width: 90%;
+    height: 60vh;
+    margin-bottom: 10vh;
+justify-content: center;
+/* gap: 5vw; */
+    
+}
+.vl {
+    border-left: 1px solid rgb(0, 0, 0);
+    height: 25vh;
+    justify-content: center;
+    margin-top: 19vh;
+  }
+.headpr{
+    display:flex;
+    flex-direction: column;
+    /* border: 4px solid red; */
+}
+.upperbox{
+    /* border : 4px dotted red; */
+    height: 20vh;
+    /* background: linear-gradient(90deg, #F5A825 0%, rgb(235, 219, 219) 100%); */
+    background-image: url("../../../public/assets/top.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-align: left;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande','Lucida Sans', Arial, sans-serif;
+    margin-bottom: 6vh;
+}
+.h1offer{
+    margin-left: 2vw;
+    margin-top: 8vh;;  
+}
+ .h1offer1{
+    
+ }
+.upperbox h3{
+    margin-left: 2vw;
+} 
 .continaerchatishere{
     /* border: 4px solid red; */
 }
@@ -9,6 +52,8 @@
     flex-direction: column;
     position: fixed;
     /* border: 4px solid rgb(44, 33, 204);  */
+    padding: 13px;
+    /* height: 40vh; */
 }
 .catttt2{
     display: flex;
@@ -19,6 +64,9 @@
     flex-direction: row; 
     justify-content: center;
     /* border: 4px solid red; */
+}
+.imgchat{
+    height: 140vh;
 }
 .chatbox{
 display: flex;
@@ -40,63 +88,85 @@ flex-direction: column;
     /* margin: 0 auto; */
     /* margin-left: 190px; */
 }
+.allroom{
+    display: flex;
+    flex-direction: column;
+}
 .chatroom{
     display: flex;
     flex-direction: column;  
-    /* border: 1px solid black; */
-    inline-size: 500px;
-    margin: 0 auto;
-    gap: 5px;
-    /* background-color: blue; */
-    /* height: 400px; */
-    width: 350px;
-    margin-top: 60px;
-    height: 100vh;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background:#F0ECCF;
-  width: 400px;
-  margin: 0 auto 0 auto;
-  padding: 32px;
-  height: 300px;
-  margin-top: 60px;
- 
+    /* border: 4px solid black; */
+    width: 40%;
+    justify-content: center;
+    inline-size:30%;
+    text-align: justify;
+font-family: cursive;
+}
+
+.chatroom>h2{
+    font-family: cursive;
+  inline-size: 55%;
+  /* justify-items: center; */
+  margin-left: 6vw;
+     
+}
+.chatroom>p{
+    font-family: cursive;
+  inline-size: 65%;
+  /* justify-items: center; */
+  margin-left: 6vw;
+     
 }
 .chatroom1{
-    background:#A3BB98;
-    border-radius: 6px;
+    /* border: 4px solid green; */
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 28px;
- width: 350px;
- padding: 32px;
+    width: 30%;
+    justify-content: center;
+  
+    
+  
+    /* align-items: center; */
+    /* gap: 28px; */
+
 }
 .idroom{
-    width: 180px;
+    /* width: 180px; */
     /* height: 50px; */
     margin: 0 auto;
-    padding: 5px;
+    /* padding: 5px; */
     margin-top: 10px;
-    border: 1px solid black;
-    width: 100%;
+    /* border: 4px solid black; */
+    width: 60%;
+    height: 5vh;
     /* padding: 12px; */
-    border-radius: 6px;
-    border: 1px solid rgb(255, 255, 255);
+    border-radius: 2px;
+    border-top: black;
+    border-right: black;
+    border-left: black;
+    /* border: 1px solid rgb(0, 0, 0); */
+    /* box-shadow: 2px 2px 2px 2px rgba(83, 83, 74, 0.178); */
+    background-color: rgba(179, 187, 204, 0.116);
     font-size: 0.9rem;
-    margin: 0 auto;
-    margin-right: 10px;
+    margin-top: 2vh;
+    font-size: 1.1rem;
+    /* margin: 0 auto;
+    margin-right: 10px; */
+}
+.titileroom{
+    border-bottom: 1px solid black;
+    width: 60%;
+    margin-top: 10px;
+    margin-left: 5vw;
 }
 .enterroom{
-    width: 150px;
-    height: 50px;
+    width: 60%;
+    height: 5.5vh;
     margin: 0 auto;
     padding: 5px;
     margin-top: 10px;
-    padding: 14px 14px;
-    border-radius: 6px;
+    /* padding: 14px 14px; */
+    border-radius: 2px;
     font-weight: bold;
     font-size: 1.1rem;
     cursor: pointer;
@@ -104,7 +174,7 @@ flex-direction: column;
 }
 
 .enterroom:hover{
-    background-color: #F0ECCF;;
+    background-color: transparent;
 }
 
 .allchat{
@@ -132,26 +202,46 @@ flex-direction: column;
     
 }
 
+.white{
+    /* height: 60vh; */
+}
 .continaerchat{
     /* padding: 16px 20px 20px 16px; */
     /* padding: 14px; */
   /* margin-right: 16px; */
-  margin-top: 2vh;
-  width: 60%;
+  /* margin-top: 2vh; */
+  width: 50%;
   border-radius: 6px;
+  margin-left: 10vh;
   /* height:60%; */
-  border: 4px solid #755f64;
+  /* border: 4px solid #755f64; */
   font-size: 0.9rem;
   /* margin: 0 auto; */
-  background: linear-gradient(90deg, rgb(185, 202, 202) 0%, rgba(233, 228, 228, 0.829) 100%);
+  background: linear-gradient(90deg, rgb(236, 226, 197) 0%, rgba(156, 156, 152, 0.829) 100%);
+  /* background-image: url("https://i.pinimg.com/564x/40/16/0c/40160cbc1a292d85532585859b9b513c.jpg"); */
+  background-size: 100%;
+  /* position: fixed; */
+  
 }
+
+.continaerchat>video {
+    position: fixed;
+    /* right: 0; */
+    /* bottom: 0; */
+    /* min-width: 5%; */
+    /* min-height: 5%; */
+  }
+ 
 .datamessage{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 white-space: 0;
 }
-
+.continaerchatishere1{
+    display: flex;
+    flex-direction: column; 
+}
 .date{
  
 }
@@ -164,6 +254,7 @@ white-space: 0;
     flex-direction: row;
     justify-content: center;
     gap: 6vw;
+    margin-bottom: 8vh;
 }
 
 .messageonly{
@@ -185,7 +276,7 @@ white-space: 0;
     inline-size: 200px;
     /* margin-top: 15vh; */
     /* height: 100%; */
-    width:25vw;
+    width:20vw;
     background-color:  #98a3bb00;
     /* border: inset; */
     padding: 5px;
@@ -262,7 +353,7 @@ font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
     background-color: transparent;
     /* margin-left: 750px; */
     border: none;
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
 }
 .navbar8{
     /* position: relative; */

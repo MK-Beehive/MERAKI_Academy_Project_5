@@ -72,6 +72,7 @@ function App() {
 
 </Routes>
 {/* <Chatsocket/> */}
+<Footer />
 {/* <Footer className="footer"/> */}
     </div>
 

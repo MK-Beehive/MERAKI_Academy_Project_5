@@ -2,53 +2,15 @@
     text-align: center;
      margin: 0;
     padding: 0;
-    /* font-family: 'Times New Roman', Times, serif; */
     font-family: Cursive;
 
    overflow-x: hidden;
  
-/* color: rgb(255, 230, 10); */
 }
+:root h1 h3{
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande','Lucida Sans', Arial, sans-serif;
 
-button{
-    font-family: Cursive;
-   
-  border: none;
-  border-radius: 8%;
-  font-size: 1rem;
-  transition: transform.4s;
-  cursor: pointer;
 }
-
-button:hover{
-    transform:scale(1.1,1.1);
-  color :#F5A723 ;
-}
-/* button:active{
-    transform: translate(4px);
-    box-shadow: 0px 0px 1px rgba(0,0,0,.2);
-    border-bottom:none;
-}
-
-
-
-   input[type=text]:focus{
-    outline: none;
-
-    
-    }
-    input[type=email]:focus{
-    outline: none;
-        
-    }
-    input[type=password]:focus{
-            outline: none;
-           
-            }
-    input[type=number]:focus{
-    outline: none;
-               
-    } */
 
    
 
