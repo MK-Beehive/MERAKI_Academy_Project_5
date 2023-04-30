@@ -102,7 +102,7 @@ const login = (req, res) => {
 
   const getAllUsers = async (req, res) => {
     try {
-      const query = `SELECT * FROM users WHERE is_deleted = 0`;
+      const query = `select   users.firstName , users.lastName , users.email,roles.id, roles.role,  information.jobTitle ,majority.majorityName from users  inner join information  on users.id = information.user_id   inner join  majority  on    information.majority_id = majority.id inner join  roles on roles.id=users.role_id ;`;
       const result = await pool.query(query);
       res.status(200).json(result.rows);
     } catch (error) {

@@ -374,11 +374,3 @@ const Register = () => {
 export default Register;
 
 
-//https://myaccount.google.com/apppasswords?utm_source=google-account&utm_medium=myaccountsecurity&utm_campaign=tsv-settings&rapt=AEjHL4MX8mHf3EaM8sNSFAMxXjHn33L0inC22JTJ2xtlo1iQ9BQxvJId0byQCWdK8OUB_XYKRuPe9KEfKCMBiixYOKXTgky66w
-// UPDATE majority SET is_deleted= 0 WHERE id=1;
-// UPDATE majority SET is_deleted= 0 WHERE id=2;
-// UPDATE majority SET is_deleted= 0 WHERE id=3;
-// UPDATE majority SET is_deleted= 0 WHERE id=4;
-// UPDATE majority SET is_deleted= 1 WHERE id=5;
-// alter table majority
-//   add column is_deleted INT ;

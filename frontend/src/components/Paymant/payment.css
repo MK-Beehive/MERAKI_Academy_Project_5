@@ -1,0 +1,17 @@
+.button{
+    font-family: Cursive;
+    margin: .5rem;
+    border: none;
+    border-radius: 8%;
+    font-size: 1rem;
+    transition: transform.4s;
+    cursor: pointer;
+    background: none;
+  }
+  
+  .button:hover{
+      transform:scale(1.1,1.1);
+    color :#F5A723 ;
+    background-color: rgb(232, 232, 224);
+
+  }
