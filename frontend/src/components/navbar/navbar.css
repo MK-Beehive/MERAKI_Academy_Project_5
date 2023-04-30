@@ -1,13 +1,13 @@
 .navbar {
-  /* background: linear-gradient(90deg, rgb(185, 202, 202) 0%, rgba(233, 228, 228, 0.829) 100%); */
+  background: white;
       height: 10vh;
     display: flex;
     justify-content: space-between;
     /* align-items: center; */
     font-size: 1.2rem;
-    position: sticky;
+    /* position: sticky;
     top: 0;
-    z-index: 999;
+    z-index: 999; */
     /* border: 4px solid rgb(153, 0, 255); */
   }
   
@@ -43,9 +43,9 @@
     /* border: 4px solid blue; */
   }
   
-  /* .nav-item {
-    height: 80vh;
-  } */
+  .nav-item {
+    font-size: 1.1rem;
+  }
   
   .nav-links {
     color: #000000;
@@ -165,6 +165,7 @@
     width: 100%;
     display: table;
     height: auto;
+    font-size: 3rem;
   }
 
   .nav-links:hover {

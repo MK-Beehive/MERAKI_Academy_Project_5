@@ -17,19 +17,34 @@ import Chatsocket from "./components/socket/Chatsocket"
 import ChangePassword from "./components/ChangePassword"
 import BalanceManagement from "./components/BalanceManagement";
 import WorkSamples from "./components/WorkSamples";
-
+import  DashboardContent from "./components/Admin/Bannel.js"
 import Sucsses from "./components/Sucsses";
 import ProfileSecond from "./components/ProfileSecond";
 import Myoffer from "./components/myoffer/Myoffer";
 import Myproject from "./components/myproject/Myproject"
 
-
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 function App() {
 
-  
+
+
+
+    const { pathname } = useLocation();
+    useEffect(() => {
+        window.scrollTo(0, 0);
+
+
+        window.onbeforeunload = function () {
+          window.scrollTo(0, 0);
+        }
+      }, [pathname]);
+
+
   return (
     <div className="App">
+     
       <header className="App-header">
 
    
@@ -39,6 +54,7 @@ function App() {
       </header>
 
 <Routes>
+<Route path="/admin" element={< DashboardContent />}/>
 <Route path="/" element={<Home/>}/>
 <Route path="/projects" element={<Projects/>}/>
 <Route path="/freelancer" element={<Freelancer/>}/>
@@ -71,8 +87,9 @@ function App() {
     <Route path="/myproject" element={<Myproject/>}/>
 
 </Routes>
-{/* <Chatsocket/> */}
-{/* <Footer className="footer"/> */}
+<div className="footer">
+<Footer/>
+</div>
     </div>
 
   );

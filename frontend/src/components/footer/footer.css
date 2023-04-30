@@ -1,5 +1,5 @@
 .footer-container {
-  background: linear-gradient(90deg, #F5A825 0%, rgb(235, 219, 219) 100%);
+  background: linear-gradient(90deg, #c2bdb4 0%, rgb(204, 200, 200) 100%);
  /* background-color: rgb(201, 197, 194); */
   padding: 3rem 0 2rem 0;
   display: flex;
@@ -8,7 +8,7 @@
   /* align-items: center; */
   border: outset;
   gap:2vh;
-  
+  height: .5vh;
 }
 h2{
   font-family:"'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande','Lucida Sans', Arial, sans-serif"

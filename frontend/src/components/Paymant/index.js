@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useSelector } from "react-redux";
+import "./payment.css"
 // import { url } from "../slices/api";
 
 const Paymant = ({ cartItems }) => {
@@ -29,7 +30,7 @@ console.log("cartItems-------------------------------------------------",cartIte
 
   return (
     <>
-      <button onClick={() => handleCheckout()}>Pay Now</button>
+      <button className="button" onClick={() => handleCheckout()}>Pay Now</button>
     </>
   );
 };

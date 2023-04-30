@@ -86,7 +86,7 @@ const Navbar = () => {
   const [checkpopup, setcheckpopup] = useState(false);
   const [checkon, setcheckon] = useState([]);
   // const [notification, setnotification] = useState([])
-
+const [triggersearch, settriggersearch] = useState(1)
   const [messagelistOn, setmessagelistOn] = useState([]);
 
   const state = useSelector((state) => {
@@ -132,9 +132,10 @@ const Navbar = () => {
   const defaultProps = {
 
 
-    options: allfreelancerhere.map((option) =>{
+    options: allfreelancerhere?.map((option) =>{
       return {label :  option.firstname  +" "+ option.lastname  , id :option.user_id }}),
-    // options: allfreelancerhere,
+    
+      // options: allfreelancerhere,
     // getOptionLabel: (option) => (
     //   <label>
     //     {" "}
@@ -245,10 +246,11 @@ const Navbar = () => {
           
           <li className="nav-item">
             <Link
-              className="nav-links"
+              className="nav-links" to="/"
               onClick={() => {
+              
                 dispatch(setLogout());
-                Navigate("/");
+                
               }}
             >
               Logout
@@ -262,20 +264,20 @@ const Navbar = () => {
               Freelancers
             </Link>
           </li>
-
-          {  state.isLoggedIn &&  state.userdata.role_id == 1 &&  <li className="nav-item">
+{/* state.userdata.role_id == 1 && */}
+          {  state.isLoggedIn &&    <li className="nav-item">
             <Link className="nav-links" to="/addproject">
               Add Project
             </Link>
           </li> }
 
-          {  state.isLoggedIn &&  state.userdata.role_id == 2 &&   <li>
+          {  state.isLoggedIn &&  state.userdata.role_id == 2 &&   <li className="nav-item">
 
           <Link  className="nav-links" to="/myoffer">Myoffer </Link>
           </li> }
-        </ul>
+        
 
-   {  state.isLoggedIn &&  state.userdata.role_id == 1 &&   <li>
+   {  state.isLoggedIn &&  state.userdata.role_id == 1 &&   <li className="nav-item">
    <Link  className="nav-links" to="/myproject">Myprojects </Link>
          
           </li> }
@@ -288,7 +290,7 @@ const Navbar = () => {
         
 
 
-        <Stack /*spacing={1}*/ sx={{ width: "30%" }}>
+   {triggersearch &&    <Stack /*spacing={1}*/ sx={{ width: "30%" }}>
           <Autocomplete   ref={valuesetting}     
            onChange={(event, newValue) => {
        if(newValue){
@@ -296,9 +298,14 @@ const Navbar = () => {
              dispatch(setselectetUserProfile(newValue.id))
              console.log(";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;",newValue.id)
         Navigate("/ProfileSecond")
-        console.log(";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;", valuesetting.current)
-
+        console.log(";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;", event )
+   
+        console.log(";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;", valuesetting.current.childNodes[0].childNodes[0].childNodes[0].value 
+        )
+        valuesetting.current.childNodes[0].childNodes[0].childNodes[0].value =""
+        // event.target.innerText=""
            }
+         
            }}
           
        
@@ -307,11 +314,11 @@ const Navbar = () => {
             id="disable-close-on-select"
             // disableCloseOnSelect
             renderInput={(params) => (
-             <TextField {...params} label="search" variant="standard"   />
+             <TextField {...params}  variant="standard"   />
          
             )}
           />
-        </Stack>
+        </Stack>}
 
         <div>
           <Button className="mesagebutton" onClick={handleClickOpen("paper")}>

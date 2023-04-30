@@ -117,6 +117,7 @@ console.log(endpoint)
     <div className="headpr">
       <div className="upperbox">
       <h1>All Projects</h1>
+      <h3>Browse projects and choose the suitable one for your experiance and skills</h3>
 
       </div>
     <div className="projects">
@@ -169,7 +170,7 @@ console.log(endpoint)
           />
           Less than 5 days
         </label>
-        <br></br>
+        {/* <br></br> */}
 <label>
 <input type="checkbox" onChange={(e) => {
               checkboxhandel2(e.target.checked)
@@ -177,7 +178,7 @@ console.log(endpoint)
             }}  />
 From 2 to 3 weeks
 </label>
-<br></br>
+{/* <br></br> */}
 <label>
 <input type="checkbox" onChange={(e) => {
               console.log(e.target.checked);
@@ -284,19 +285,19 @@ More than 1 month
         })}
   
 
-        <button onClick={()=>{
+        <button className="paginationbutton" onClick={()=>{
           setendpoint(0)
       
         }}>1</button>
-        <button onClick={()=>{
+        <button  className="paginationbutton" onClick={()=>{
           setendpoint(4)
    
         }}>2</button>
-        <button onClick={()=>{
+        <button   className="paginationbutton" onClick={()=>{
             setendpoint(8)
      
         }}>3</button>
-        <button onClick={()=>{
+        <button  className="paginationbutton" onClick={()=>{
             setendpoint(12)
         }}>4</button>
 

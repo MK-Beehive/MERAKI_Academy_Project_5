@@ -90,17 +90,7 @@ CREATE TABLE projects (
   PRIMARY KEY (id)
 );
 
-CREATE TABLE freelancerProjects (
-  id SERIAL NOT NULL,
-  freelancerProjectStatus_id INT NOT NULL,
-  project_id INT,
-  user_id INT,
-  is_deleted SMALLINT DEFAULT 0,
-  FOREIGN KEY (user_id) REFERENCES users(id),
-  FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE,
-  FOREIGN KEY (freelancerProjectStatus_id) REFERENCES status(id),
-  PRIMARY KEY (id)
-);
+
 
 CREATE TABLE jobOffer (
   id SERIAL NOT NULL,
@@ -125,7 +115,9 @@ CREATE TABLE user_skills (
   FOREIGN KEY (user_id) REFERENCES users(id),
   FOREIGN KEY (skill_id) REFERENCES skills(id),
   PRIMARY KEY (id)
-) CREATE TABLE notification(
+)
+
+CREATE TABLE notification(
   id SERIAL NOT NULL,
   notificationMessage VARCHAR(255),
   user_id INT,
@@ -168,6 +160,7 @@ CREATE TABLE chatnotification(
   user_id INT,
   room_id INT, 
   sender_id INT, 
+  imageuser VARCHAR(255),
   FOREIGN KEY (user_id) REFERENCES users(id),
   FOREIGN KEY (sender_id) REFERENCES users(id),
   PRIMARY KEY (id)
