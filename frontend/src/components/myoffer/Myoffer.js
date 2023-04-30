@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route, Link, useParams ,useNavigate, json } from "react-router-dom";
-// import "./projects.css";
+import "./style.css";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import {setofferbyuserId} from "../redux/offers/offerSlice"
@@ -48,21 +48,25 @@ useEffect(() => {
 
     
   return (
-    <div>
-      
+    <div className="rounded">
+        <div className="upperbox">
+        <h1 className="h1offer">My Offers</h1>
+      <h3 className="h1offer1">Browse your offers and follow up the projects</h3>
+      </div>
+      <div className="alloffers1">
 {state.offerId.length===0?  "noOFFER"   :state.offerId.map((offer,i)=>{
 console.log(offer)
-return  (<div className="projectcard1" key={i} onClick={()=>{
+return  (<div className="offercard11" key={i} onClick={()=>{
   
          dispatch(setSelectedProject(offer.project_id ))
          navigate("/ProjectInside")
 
   }}>
-    <div className="statucwithtitle">
-    <button className="titelproj">{offer.title}</button>
+    <div className="statucwithtitleoffer1">
+    <button className="titeloffer">{offer.title}</button>
                   {offer.status_id === 4 && (
                     <button
-                      className="statusproj"
+                      className="statusoffer1"
                       style={{ background: "rgb(0, 90, 173)" }}
                     >
                       {offer.statusname}
@@ -70,18 +74,18 @@ return  (<div className="projectcard1" key={i} onClick={()=>{
                   )}
                   {offer.status_id === 7 && (
                     <button
-                      className="statusproj"
+                      className="statusoffer1"
                       style={{ background: "rgb(33, 235, 67)" }}
                     >
                       {offer.statusname}
                     </button>
                   )}
     </div>
-    <button className="projectDescrption">
+    <button className="offerDescrption1">
       {offer.jobofferdescription}{" "}
     </button>
-    <div className="magortiwithaddoffer">
-      <button className="projectmajorti">
+    <div className="magortiwithaddoffer1">
+      <button className="offermajorti1">
         {offer.majorityname}
       </button>
       
@@ -91,6 +95,7 @@ return  (<div className="projectcard1" key={i} onClick={()=>{
   </div>
 );
 })}
+</div>
     </div>
   )
 }

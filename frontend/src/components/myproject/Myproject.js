@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route, Link, useParams ,useNavigate, json } from "react-router-dom";
-// import "./projects.css";
+import "./style.css";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import {setofferbyuserId} from "../redux/offers/offerSlice"
@@ -52,24 +52,27 @@ function Myproject() {
 
 
   return (
-    <div>
-        
+    <div className="myrounded">
+    <div className="upperbox">
+    <h1 className="myh1offer">My Projects</h1>
+  <h3 className="myh1offer1">Browse your projects and follow up freelances offers</h3>
+  </div>
         <div>
-      
+        <div className="myalloffers1">
       {state.projectid.length===0?  "noPROJECT"   :state.projectid.map((project, i) => {
           
          
             return (
-              <div className="projectcard1" key={i} onClick={()=>{
+              <div className="myprojectcard1" key={i} onClick={()=>{
                      dispatch(setSelectedProject(project.id))
                      navigate("/ProjectInside")
 
               }}>
-                <div className="statucwithtitle">
-                  <button className="titelproj">{project.title}</button>
+                <div className="mystatucwithtitle">
+                  <button className="mytitelproj">{project.title}</button>
                   {project.status_id === 2 && (
                     <button
-                      className="statusproj"
+                      className="mystatusproj"
                       style={{ background: "rgb(0, 90, 173)" }}
                     >
                       {project.statusname}
@@ -77,7 +80,7 @@ function Myproject() {
                   )}
                   {project.status_id === 1 && (
                     <button
-                      className="statusproj"
+                      className="mystatusproj"
                       style={{ background: "rgb(33, 235, 67)" }}
                     >
                       {project.statusname}
@@ -85,7 +88,7 @@ function Myproject() {
                   )}
                   {project.status_id === 3 && (
                     <button
-                      className="statusproj"
+                      className="mystatusproj"
                       style={{ background: "rgb(170, 24, 24)" }}
                     >
                       {project.statusname}
@@ -93,18 +96,18 @@ function Myproject() {
                   )}
                   {project.status_id === 4 && (
                     <button
-                      className="statusproj"
+                      className="mystatusproj"
                       style={{ background: "rgb(24, 99, 170)" }}
                     >
                       {project.statusname}
                     </button>
                   )}
                 </div>
-                <button className="projectDescrption">
+                <button className="myprojectDescrption">
                   {project.projectdescription}{" "}
                 </button>
-                <div className="magortiwithaddoffer">
-                  <button className="projectmajorti">
+                <div className="mymagortiwithaddoffer">
+                  <button className="myprojectmajorti">
                     {project.majorityname}
                   </button>
                
@@ -119,6 +122,7 @@ function Myproject() {
 
         
 
+      </div>
       </div>
     </div>
   )

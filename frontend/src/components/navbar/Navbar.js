@@ -244,11 +244,12 @@ const Navbar = () => {
           </li>   : 
           
           <li className="nav-item">
-            <Link
-              className="nav-links"
+          <Link
+              className="nav-links" to="/"
               onClick={() => {
+              
                 dispatch(setLogout());
-                Navigate("/");
+                
               }}
             >
               Logout
@@ -273,7 +274,6 @@ const Navbar = () => {
 
           <Link  className="nav-links" to="/myoffer">Myoffer </Link>
           </li> }
-        </ul>
 
    {  state.isLoggedIn &&  state.userdata.role_id == 1 &&   <li>
    <Link  className="nav-links" to="/myproject">Myprojects </Link>
@@ -338,7 +338,7 @@ const Navbar = () => {
                 tabIndex={-1}
               >
                 {state.messagenotification.length === 0 ? (
-                  <h1>No message</h1>
+                  <h3>No message</h3>
                 ) : (
                   state.messagenotification?.map((noti) => {
                     console.log(noti);
@@ -372,7 +372,7 @@ const Navbar = () => {
           content={<a onClick={hide}>Close</a>}
           title={
             state.notification.length === 0 ? (
-              <h1>No notification</h1>
+              <h3>No notification</h3>
             ) : (
               state.notification.map((noti) => {
                 return (

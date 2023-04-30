@@ -5,16 +5,31 @@ import axios from "axios";
 import { GoogleLogin } from '@react-oauth/google';
 import { useDispatch, useSelector } from "react-redux";
 import RadioGroup from "@mui/material/RadioGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
+
 import Radio from "@mui/material/Radio";
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
+
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+
+import Paper from '@mui/material/Paper';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Typography from '@mui/material/Typography';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
 
 import { setLogin,setUserId,setLogout ,setUserInfo,
   setUserdata ,googleUser} from "../redux/reducers/auth/index";
 
 const Login = () => {
-
+  const emailRegex =  /^\S+@\S+\.\S+$/; 
   const Navigate = useNavigate();
     
   const dispatch = useDispatch();
@@ -74,24 +89,26 @@ console.log("googleuserdata-inside----------",googleuserdata)
     
           
     
-                   // setisLoggedIn(true)
                   
-                   
-                  
-                    // setresult(false)
                 .catch((err) => {
                     console.log("error", err);
-                    //  setresult(true)
+                
                 });
          
                
             });
             }).then(()=>{
-              Navigate("/")
+              if(state.auth.userdata.role_id == 3){
+                Navigate("/admin")
+              }else{
+                Navigate("/")
+              }
+              
+             
             })
             .catch((err) => {
                 console.log("error", err);
-                //  setresult(true)
+                 setresult(true)
             });
     };
 
@@ -176,68 +193,124 @@ console.log("googleuserdata-inside----------",googleuserdata)
   }
   }, [gotoRegister,gotologin])
   
-    
+  const theme = createTheme();
 
     return (
-      <div  className="loginregister">     
-       {!googleuser &&   <  div className="login-div">
-           
+
         
+      <div className="login-theme-style" > 
+      <ThemeProvider theme={theme}>
+<Grid container component="main" sx={{ height: '90vh',width:'80vw' }}>
+  <CssBaseline />
+  <Grid
+    item
+    xs={false}
+    sm={4}
+    md={7}
+    sx={{
+      backgroundImage: 'url(./assets/login.png)',
+      backgroundRepeat: 'no-repeat',
+      backgroundColor: (t) =>
+        t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+    }}
+  />
+  <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+    <Box
+      sx={{
+        my: 8,
+        mx: 4,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+      }}
+    >
+      <Avatar sx={{ m: 1, bgcolor: 'orange' }}>
+        <LockOutlinedIcon />
+      </Avatar>
+      <Typography component="h1" variant="h5">
+        Sign in
+      </Typography>
+    { ! googleuser &&   <Box component="form" noValidate sx={{ mt: 1 }}>
+        <TextField
+          margin="normal"
+          required
+          fullWidth
+          id="email"
+          label="Email Address"
+          name="email"
+          autoComplete="email"
+          autoFocus
+          onChange={(e) => {
+            setemail(e.target.value);
+        }}
+        />
+         {!isValidemail && <span className="error">Please enter a valid email</span>}
+        <TextField
+          margin="normal"
+          required
+          fullWidth
+          name="password"
+          label="Password"
+          type="password"
+          id="password"
+          autoComplete="current-password"
+          onChange={(e) => {
+            setpassword(e.target.value);
+        }}
+        />
+       {!isValidpass && <span className="error"> password shoud be at least 8 characters</span>}
 
-            <h2> login your detail</h2>
-            <br />
-            <input
-                type="email"
-                placeholder="email"
-                onChange={(e) => {
-                    setemail(e.target.value);
-                }}
-            />
-            {/* {!isValidemail && <span className="error">Please enter a valid email</span>} */}
-            <br />
-            <br />
-            <input
-                type="password"
-                placeholder="enter your email"
-                onChange={(e) => {
-                    setpassword(e.target.value);
-                }}
-            ></input>
-              {/* {!isValidpass && <span className="error"> password shoud be at least 8 characters</span>} */}
-            <br />
-            <br />
-            <button
-                onClick={() => {
+        <FormControlLabel
+          control={<Checkbox value="remember" color="primary" />}
+          label="Remember me"
+        />
+        <Button
+          // type="submit"
+          fullWidth
+          variant="contained"
+          sx={{ mt: 3, mb: 2 ,bgcolor:'orange'}}
+          onClick={() => {
 
-                //    if( emailRegex.test(email)){
-                //       setisValidemail(true)}
-                //     else{setisValidemail(false) }; 
+            if( emailRegex.test(email)){
+               setisValidemail(true)}
+             else{setisValidemail(false) }; 
 
-                //     if(password.length >= 8){
-                //         setisValidpass(true)
-                //         }
-                //         else{
-                //             setisValidpass(false)
-                //         }
+             if(password.length >= 8){
+                 setisValidpass(true)
+                 }
+                 else{
+                     setisValidpass(false)
+                 }
+                 if( emailRegex.test(email) && password.length >= 8){
+                   loginFun()
+                 }
+              
+            console.log("regex------------------",emailRegex.test(email))
 
-                //         isValidpass && isValidemail && loginFun() ;
-                //    console.log("regex------------------",emailRegex.test(email))
-
-                loginFun()
+       
 
 
-                }}
-            >
-                Login
-            </button> <br />
-           { result && <span className="error" > Your details are not correct </span>}
-            <br />
-            <br />
-            <div>Forgot your password?</div>
-         
-            <br />
-            <br/>
-            <GoogleLogin
+         }}
+        >
+          Sign In
+        </Button>
+        { result && <span className="error" > Your details are not correct </span>}
+        <Grid container  sx={{mb:5}}>
+          <Grid item xs>
+            <a href="#" variant="body2">
+              Forgot password?
+            </a>
+          </Grid>
+          <Grid item>
+            <Link to="/register" variant="body2">
+              {"Don't have an account? Sign Up"}
+            </Link>
+          </Grid>
+        </Grid>
+       <div  style={{marginLeft : '7vw'}}>
+        <GoogleLogin 
             onSuccess={credentialResponse => {
               console.log(credentialResponse);
               verifivcationFun(credentialResponse)
@@ -248,8 +321,15 @@ console.log("googleuserdata-inside----------",googleuserdata)
             }}
           
           />
-        </div>}
-       {googleuser && <div className="login-div" >
+          </div>
+
+
+
+
+      </Box> }
+
+      
+       {  googleuser && <div className="login-div" >
         <br/>
         <br/>
 
@@ -284,30 +364,26 @@ console.log("googleuserdata-inside----------",googleuserdata)
                             />
                           </RadioGroup>
                          </FormControl>  
-                         <button onClick={()=>{
+                         <Button 
+                         type="submit"
+                         fullWidth
+                         variant="contained"
+                         sx={{ mt: 3, mb: 2 }}
+                         onClick={()=>{
               console.log("googleuserdata-inside----------",googleuserdata)
                  setgoogleuserdata({...googleuserdata,role_id : selectedRole})
                  setgotoRegister(true)
                             
 
-                         }}>go</button>
+                         }}>go</Button>
                           </div> }
- <div className="changeLoginRegister">
-           
-    <div>   
-        <h3>Don't have an account? </h3>             
-        <button onClick={()=>{
-            Navigate("/register")
-        }}> Creat Account </button><br/>
-        <p><span>*
-Terms & conditions.</span>
-Your privacy and security are important to us. For more information on how we use your data read ourprivacy policy</p>
-      </div>     
-    </div>
+    </Box>
+  </Grid>
+</Grid>
+</ThemeProvider>
 
-  
-
-        </div>
+   
+         </div>
     );
 };
 

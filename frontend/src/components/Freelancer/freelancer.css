@@ -1,14 +1,15 @@
-
+ 
 .freelancerinfo{
     display: flex;
     flex-direction: column;
-    /* border: 1px solid black; */
-    width: 90%;
+    /* border: 4px solid black; */
+    width: 61vw;
     height: 10rem;
     color: black;
     margin:1rem;
+    padding: .5rem;
     margin-left: 20px;
-
+margin-top: 5vh;
     box-shadow: 2px 2px 2px 2px rgba(83, 83, 74, 0.459);
     border-radius: 5px;
     height: 200px;
@@ -23,37 +24,64 @@ font-family: 'Times New Roman', Times, serif;
     display: flex;
     flex-direction: row;
     align-items: center;
-    width: 90%;
+    width: 100%;
+    /* border: 4px solid blue; */
 
-    margin-left: 5%;
+    /* margin-left: 5%; */
 
 }
 .chat{
     position: absolute;
     top:0;
     right: 0;
-    width: 3rem;
-    height: 2rem;
+    width: 3.5rem;
+    height: 3.5rem;
+}
+.half-rating-read{
+    border:4px solid pink;
+}
+.freelancerinfoLine{
+    border-bottom:1px solid black;
+    width:100%;
 }
 
-.freelancerinfo2{
+ .freelancerinfo2{
 
-    width: 90%;
+    width: 97%;
     display: flex;
     flex-direction: row;
     align-items: center;
     font-size: 15px;
-    margin-left: 5%;
-}
+    margin-left: 2%;
+
+} 
+
 .experince{
-    border-radius: 8px;
-    background-color: rgb(255, 255, 130);
+    /* border-radius: 8px; */
+    background-color: rgb(232, 232, 224);
+    /* inline-size: 100px; */
+    /* width:max-content; */
+    width:fit-content;
+    height: fit-content;
+    padding: .5rem;
+    /* margin-top: 20px; */
+    margin-left: .7rem;
+    /* margin-bottom: 10px; */
+    border-radius: 2px;
+    font-size: 15px;
+    font-family: 'Times New Roman', Times, serif;
+    border: none;
+    font-weight:550;
+    /* height: 45px; */
+
+    /* border:4px solid brown; */
 }
 .freelancerOuterDiv{
     display: flex;
     flex-direction: row;
-    gap: 2rem;
-    /* border: .1px solid black; */
+    gap: 2.6rem;
+    margin-left: 4vw;
+    margin-top: 5vh;
     align-content: center;
    
 }
@@ -62,9 +90,6 @@ font-family: 'Times New Roman', Times, serif;
     flex-direction: column; 
     justify-content: center;
     justify-items: center;
-    /* gap: 2rem; */
-    /* border: .1px solid black;
-    align-content: center; */
    
 }
 .Pagination{
@@ -95,13 +120,13 @@ font-family: 'Times New Roman', Times, serif;
     width: 300px;
     box-shadow: 2px 2px 2px 2px rgba(83, 83, 74, 0.459);
     border-radius: 5px;
-    margin-top: 1rem;
+    margin-top: 2rem;
     height: 500px;
     font-size: 20px;
     text-align: left;
     /* padding: 5px; */
     font-family: 'Times New Roman', Times, serif;
-    gap:2.5vh;
+    gap:2.8vh;
 
 
 
@@ -113,25 +138,29 @@ font-family: 'Times New Roman', Times, serif;
 .freelancerinfoLine{
     width: 90%;
     height: .1px;
-    border-bottom: .1px solid black;
+    /* border-bottom: 7px solid black; */
     margin-left: 5%;
 }
 
 .No-free{
 
-    
     font-size:xx-large;
     
 }
 .img{
     width: 6.5rem;
     height: 6.5rem;
+/* border:4px solid red; */
+margin-right: 2vw;
+margin-left: 1vw;
 
     position: relative;
 }
-.img img{
+.img_img{
     width: 6.5rem;
     height: 6.5rem;
+    border: none;
+    border-radius: 100%;
 }
 
 .imguserfreelance--cover{
@@ -153,7 +182,6 @@ font-family: 'Times New Roman', Times, serif;
 }
 
 
-
   
     
 .imguserfreelance--cover--blur{
@@ -173,4 +201,27 @@ font-family: 'Times New Roman', Times, serif;
         width: 2rem;
         height: 2rem;
         color: white;
+    }
+    .upperbox_freelancer{
+        /* border : 4px dotted red; */
+        height: 20vh;
+        /* background: linear-gradient(90deg, #F5A825 0%, rgb(235, 219, 219) 100%); */
+        background-image: url("../../../public/assets/top.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+        text-align: left;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande','Lucida Sans', Arial, sans-serif;
+        margin-bottom: 3vh;
+    }
+    .upperbox_freelancer h1{
+        margin-left: 2vw;
+        margin-top: 4vh;;
+    } 
+    
+    .upperbox_freelancer h3{
+        margin-left: 2vw;
+    } 
+
+    .p-filter-name{
+ font-size: large;
     }

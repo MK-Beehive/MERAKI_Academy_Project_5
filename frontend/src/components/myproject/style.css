@@ -1,3 +1,9 @@
+.myrounded{
+    /* border:4px solid red; */
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+}
 .headpr{
     display:flex;
     flex-direction: column;
@@ -14,22 +20,28 @@
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande','Lucida Sans', Arial, sans-serif;
     margin-bottom: 6vh;
 }
-.upperbox h1{
+.myh1offer{
     margin-left: 2vw;
-    margin-top: 4vh;;
-} 
-
+    margin-top: 8vh;;  
+}
+ .myh1offer1{
+    
+ }
 .upperbox h3{
     margin-left: 2vw;
 } 
 
-.projects{
-    display: grid;
-  grid-template-columns: 2fr 8fr ;
-  grid-template-areas: "a b";
-  gap:4vw;
+.myalloffers1{
+    
+    display: flex;
+    flex-direction: column;
+  width: 80%;
+  gap:2vw;
   margin-bottom: 20vh;
   /* border: 4px solid blue; */
+  align-self: center;
+  margin-left: 10vw;
+  
   /* background-color: rgba(195, 189, 189, 0.723); */
     /* display: flex;
     flex-direction: row;
@@ -38,29 +50,33 @@
 
 
 }
-.projectcard{
+.mystatucwithtitle{
+    /* border: 4px solid #008000; */
     display: flex;
-    flex-direction: column; 
+    flex-direction: row; 
     /* border: 10px solid green; */
+    justify-content: space-between;
     /* margin-top: 4vh; */
+    margin-top: 5vh;
  
 }
-.projectcard1{
+.myprojectcard1{
     display: flex;
     flex-direction: column; 
-    /* border: 4px solid rgb(197, 42, 42); */
-    width: 90%;
+    /* border: 4px solid rgb(210, 24, 135); */
+    width: 100%;
     box-shadow: 2px 2px 2px 2px rgba(83, 83, 74, 0.459);
     border-radius: 5px;
-    margin-bottom: 3vh;
-    height: 21%;
-    margin-top: 6vh;
+    /* margin-bottom: 3vh; */
+    height: 29vh;
+    align-self: center;
+    /* margin-top: 6vh; */
     /* background-color: rgba(199, 192, 192, 0.373); */
     /* margin-top: 20px;
     margin-left: 40px; */
 }
 
-.statucwithtitle{
+.statucwithtitleoffer1{
     display: flex;
     flex-direction: row; 
     justify-content: space-between;
@@ -71,7 +87,7 @@
   
 }
 
-.titelproj{
+.mytitelproj{
     margin-left: 10px;
     font-size: 25px;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
@@ -79,7 +95,7 @@
     border: none;
     
 }
-.statusproj{
+.mystatusproj{
     margin-left: 20px;
     font-size: 15px;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; 
@@ -91,26 +107,27 @@
     /* border:4px solid green; */
 }
 
-.projectDescrption{
+.myprojectDescrption{
 
     background-color: transparent;
     border: none;
     /* margin-right: 400px; */
     margin-bottom: 5vh;
     margin-left: 1vw;
+    margin-top:4vh;
     /* border:4px solid brown; */
     width:100%;
     text-align: left;
        
 }
 
-.magortiwithaddoffer{
+.mymagortiwithaddoffer{
     display: flex;
     flex-direction: row;
     /* border:4px solid blue; */
 
 }
-.projectmajorti{
+.magortiwithaddoffer1{
     inline-size: 100px;
     /* margin-top: 20px; */
     margin-left: 10px;
@@ -178,6 +195,14 @@ font-size: 15px;
 
 
 }
+.offermajorti1{
+    height: 6vh;
+    border: none;
+    background-color: rgb(236, 236, 217);
+    border-radius: 5px;
+    width: 5vw;
+    /* margin-top: 1vh; */
+}
 .hrunder{
     inline-size: 150px; 
 }
@@ -235,3 +260,12 @@ border-radius: 5px;
     background-color: transparent;
 }
 
+.myprojectmajorti{
+    height: 6vh;
+    border: none;
+    background-color: rgb(236, 236, 217);
+    border-radius: 5px;
+    width: 5vw;
+    margin-left: 1vw;
+    /* margin-top: 1vh; */
+}

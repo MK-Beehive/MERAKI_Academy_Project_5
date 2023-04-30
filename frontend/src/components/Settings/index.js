@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect ,useRef } from "react";
 import SettingBar from "../SettingBar";
-import "./style.css";
+import "./stylesetting.css";
 import Footer from "../footer/Footer";
 import {RiImageAddLine} from "react-icons/ri"
 import { setUserInfo, setUserdata } from "../redux/reducers/auth";
@@ -131,6 +131,21 @@ const handleChange = (e) => {
   };
   console.log("updatedFirstname",updatedFirstname);
   console.log("updatedLastname",updatedLastname);
+  // image: response.data.user.image
+  const updataimage = ()=>{
+axios.put(`http://localhost:5000/infouser/${userId}`,{image:urlfile}).then((result)=>{
+console.log(result.data.info[0].image)
+dispatch(
+  setUserInfo({
+    ...userinfo,
+    image: result.data.info[0].image
+ 
+  })
+);
+}).catch((err)=>{
+  console.log(err)
+})
+  }
 
 
   const handleSaveChanges = async () => {
@@ -147,6 +162,7 @@ const handleChange = (e) => {
           firstName: updatedFirstname,
           lastName: updatedLastname,
           email: updatedEmail,
+         
           // password
         }
       );
@@ -161,16 +177,16 @@ const handleChange = (e) => {
         response.data.user.firstname,
         response.data.user.lastname,
         response.data.user.email,
-        
       );
       // Update user info in Redux state
 console.log(userinfo.firstname);
+
       dispatch(
         setUserdata({
           firstname: response.data.user.firstname,
           lastname: response.data.user.lastname,
           email: response.data.user.email,
-          role_id:userdata.role_id
+          role_id:userdata.role_id,
         })
       );
       dispatch(
@@ -178,6 +194,7 @@ console.log(userinfo.firstname);
           ...userinfo,
           firstname: response.data.user.firstname,
           lastname: response.data.user.lastname,
+       
         })
       );
       // Clear updated first name state
@@ -186,8 +203,8 @@ console.log(userinfo.firstname);
       console.log(error);
     }
   };
-  // console.log(userinfo);
 
+//  image:urlfile
   useEffect(() => {
     getAllExperiances();
     const path = location.pathname;
@@ -196,7 +213,10 @@ console.log(userinfo.firstname);
     }, [location.pathname]);
 
   return (
-    <>
+    <div className="all-setting-container">
+      <div className="upperboxuserdata">
+        <h1 className="upperboxuserdatah1">Personal Data</h1>
+      </div>
     <div className="setting-container">
       <div className="leftset">
       <div className="settingset">
@@ -228,7 +248,7 @@ console.log(userinfo.firstname);
         <Box
           component="form"
           sx={{
-            "& .MuiTextField-root": { m: 1, width: "25ch" },
+            "& .MuiTextField-root": { m: 1, width: "25vw" },
           }}
           noValidate
           autoComplete="off"
@@ -251,16 +271,16 @@ console.log(userinfo.firstname);
               onChange={(e) => setUpdatedLastname(e.target.value)}
             />
           </div>
-          <div className="email">
+          <div className="email" >
             <Input
               size="40vw"
               placeholder="email"
               prefix={<MailOutlined />}
               value={updatedEmail}
+              
               onChange={(e) => setUpdatedEmail(e.target.value)}
             />
           </div>
-          <br />
           
       
           
@@ -274,10 +294,15 @@ console.log(userinfo.firstname);
                     style={{
                       // backgroundColor: "#fadb14",
                       // borderColor: "yellow",
+                      marginTop:"3vh",
+                      marginBottom:"4vh"
                     }}
                     size={size}
-                    onClick={
-                      handleSaveChanges
+                    onClick={()=>{
+                      handleSaveChanges()
+                      updataimage()
+                    }
+                      
                     }
                   >
                     Save Changes
@@ -289,9 +314,9 @@ console.log(userinfo.firstname);
       </div>
 
     </div>
-    <Footer/>
+    {/* <Footer/> */}
 
-    </>
+    </div>
   );
 };
 
