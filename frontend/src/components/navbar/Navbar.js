@@ -245,7 +245,9 @@ const [triggersearch, settriggersearch] = useState(1)
           </li>   : 
           
           <li className="nav-item">
+
             <Link
+
               className="nav-links" to="/"
               onClick={() => {
               
@@ -264,8 +266,8 @@ const [triggersearch, settriggersearch] = useState(1)
               Freelancers
             </Link>
           </li>
-{/* state.userdata.role_id == 1 && */}
-          {  state.isLoggedIn &&    <li className="nav-item">
+
+          {  state.isLoggedIn &&  state.userdata.role_id == 1 &&   <li className="nav-item">
             <Link className="nav-links" to="/addproject">
               Add Project
             </Link>
@@ -275,7 +277,7 @@ const [triggersearch, settriggersearch] = useState(1)
 
           <Link  className="nav-links" to="/myoffer">Myoffer </Link>
           </li> }
-        
+
 
    {  state.isLoggedIn &&  state.userdata.role_id == 1 &&   <li className="nav-item">
    <Link  className="nav-links" to="/myproject">Myprojects </Link>
@@ -303,7 +305,7 @@ const [triggersearch, settriggersearch] = useState(1)
         console.log(";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;", valuesetting.current.childNodes[0].childNodes[0].childNodes[0].value 
         )
         valuesetting.current.childNodes[0].childNodes[0].childNodes[0].value =""
-        // event.target.innerText=""
+      
            }
          
            }}
@@ -345,7 +347,7 @@ const [triggersearch, settriggersearch] = useState(1)
                 tabIndex={-1}
               >
                 {state.messagenotification.length === 0 ? (
-                  <h1>No message</h1>
+                  <h3>No message</h3>
                 ) : (
                   state.messagenotification?.map((noti) => {
                     console.log(noti);
@@ -379,7 +381,7 @@ const [triggersearch, settriggersearch] = useState(1)
           content={<a onClick={hide}>Close</a>}
           title={
             state.notification.length === 0 ? (
-              <h1>No notification</h1>
+              <h3>No notification</h3>
             ) : (
               state.notification.map((noti) => {
                 return (

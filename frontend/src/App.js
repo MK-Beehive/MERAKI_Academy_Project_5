@@ -87,9 +87,9 @@ function App() {
     <Route path="/myproject" element={<Myproject/>}/>
 
 </Routes>
-<div className="footer">
+
 <Footer/>
-</div>
+
     </div>
 
   );
