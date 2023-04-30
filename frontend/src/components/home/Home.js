@@ -34,7 +34,7 @@ function Home() {
   return (
     <div className="homepage">
       <div className="hero-container">
-        <video src={"../assets/work.mp4"} autoPlay loop muted />
+        {/* <video src={"../assets/work.mp4"} autoPlay loop muted /> */}
         <h1>Projects Are Waiting</h1>
         <div className="hero-btns">
           <div className="one">
@@ -65,14 +65,14 @@ function Home() {
           <h1>How BeeHive helps you do your business</h1>
           <div className="cards-a">
             <div className="achieve-fast">
-              <img src={"../assets/achievefaster.png"}></img>
+              <img src={"../assets/achivefaster.png"} style={{width:"40%",height:"70%"}}></img>
               <p>
                 publish your project and let the rest to our best freelancers{" "}
               </p>
             </div>
 
             <div className="hire-best">
-              <img src={"../assets/hirebest.png"}></img>
+              <img src={"../assets/hirebest.png"} style={{width:"40%",height:"70%"}}></img>
               <p>
                 Explore our freelancers` profiles , see their skills, work, and
                 customer ratings, and choose the most suitable one{" "}
@@ -80,7 +80,7 @@ function Home() {
             </div>
 
             <div className="less-cost">
-              <img src={"../assets/lesscost.png"}></img>
+              <img src={"../assets/lesscost.png"} style={{width:"50%",height:"70%"}}></img>
               <p>
                 Determine a budget for your project and choose the best
                 freelancers to work on it
@@ -89,7 +89,7 @@ function Home() {
           </div>
           <div className="cards-b">
             <div className="secure-pay">
-              <img src={"../assets/securepayment.png"}></img>
+              <img src={"../assets/securepayment.png"} style={{width:"50%",height:"70%"}}></img>
               <p>
                 Pay the value of the required work with a secure payment methods
                 with full guarantee of your financial rights{" "}
@@ -97,7 +97,7 @@ function Home() {
             </div>
 
             <div className="cover-skills">
-              <img src={"../assets/skills.png"}></img>
+              <img src={"../assets/skills.png"} style={{width:"50%",height:"70%"}}></img>
               <p>
                 Hire experts in different fields to implement the projects you
                 need
@@ -105,7 +105,7 @@ function Home() {
             </div>
 
             <div className="rights">
-              <img src={"../assets/rights.png"}></img>
+              <img src={"../assets/rights.png"} style={{width:"50%",height:"70%"}}></img>
               <p>
                 Preserve your rights. BeeHive plays the role of mediator between
                 you and the freelancer

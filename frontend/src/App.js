@@ -71,9 +71,9 @@ function App() {
     <Route path="/myproject" element={<Myproject/>}/>
 
 </Routes>
-{/* <Chatsocket/> */}
-{/* <Chart/> */}
+
 <Footer />
+
     </div>
 
   );

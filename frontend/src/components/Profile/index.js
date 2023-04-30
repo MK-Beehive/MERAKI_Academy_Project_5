@@ -217,9 +217,11 @@ const Profile = () => {
                   <StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />
                 }
               />
-              <Typography>{value}</Typography>
+
+              <Typography style={{marginLeft:"7.5vw"}}>{value}</Typography>
               {userdata.role_id == 2 && userinfo.experiance_id && (
-                <Typography>{userinfo.experiancename}</Typography>
+                <Typography  style={{marginLeft:"6.5vw"}}>{userinfo.experiancename}</Typography>
+
               )}
             </Card>
           </div>
