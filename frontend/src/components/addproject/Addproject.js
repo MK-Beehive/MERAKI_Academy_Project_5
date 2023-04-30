@@ -254,17 +254,16 @@ const emailsend = ()=>{
 
   //=================================================================================
   return (
+    <div className="roundcreateproject">
+       <div className="upperboxcreateproject">
+        <h1 className="upperboxcreateproject1">Add your Project</h1>
+        <h3 className="upperboxcreateproject3">Add your own projects and wait for offers from freelances </h3>
+      </div>
     <div className="postprojectpage">
       <div className="postproject">
         <div className="background">
           {/* <Button onClick={handleOpen1}>Open modal</Button> */}
-          <div className="under">
-            {" "}
-            <h2>
-              Add Your Project:<hr></hr>
-            </h2>
-          </div>
-
+         
           <Modal className="allcomp"
             open={open1}
             onClose={handleClose1}
@@ -296,6 +295,16 @@ const emailsend = ()=>{
                       
                       <div className="buttoninv"> {checkdone.includes(user.user_id) ? (
                         <button
+                        className="button-22"
+                        onClick={() => {
+                          console.log(user.user_id);
+                          handelnotification(user.user_id);
+                        }}
+                      >
+                        invite
+                      </button>
+                      
+                      ) : ( <button
                         className={changebutton}
                         onClick={() => {
                           console.log(user.user_id);
@@ -304,16 +313,7 @@ const emailsend = ()=>{
                       >
                         invite
                       </button>
-                      ) : (
-                        <button
-                          className="button-22"
-                          onClick={() => {
-                            console.log(user.user_id);
-                            handelnotification(user.user_id);
-                          }}
-                        >
-                          invite
-                        </button>
+                       
                       )}</div>
                      
                      </div>
@@ -331,7 +331,7 @@ const emailsend = ()=>{
         <Box
           component="form"
           sx={{
-            "& .MuiTextField-root": { m: 1, width: "108%" },
+            "& .MuiTextField-root": { m: 1, width: "98%" },
           }}
           noValidate
           autoComplete="off"
@@ -366,7 +366,7 @@ const emailsend = ()=>{
         <Box 
           component="form"
           sx={{
-            "& .MuiTextField-root": { m: 0.5, width: "108%" },
+            "& .MuiTextField-root": { m: 1, width: "65%", border:"4px soild green" },
           }}
           noValidate
           autoComplete="off"
@@ -426,7 +426,7 @@ const emailsend = ()=>{
   {typeoffile === "image/jpeg" || typeoffile==="image/png"&& <img  style={{width:"20%", height:"60%"}} src={urlfile} />}
           {typeoffile === "application/pdf" && (
             <a href={urlfile}>
-              <img  style={{width:"20%", height:"60%"}}
+              <img  style={{width:"20%", height:"80%", marginTop: "2vh", borderRadius:"3%"}}
                 src={
                   "https://play-lh.googleusercontent.com/BkRfMfIRPR9hUnmIYGDgHHKjow-g18-ouP6B2ko__VnyUHSi1spcc78UtZ4sVUtBH4g"
                 }
@@ -444,7 +444,7 @@ const emailsend = ()=>{
         
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
       <Box sx={{ width: '100%', mr: 1 }}>
-        <LinearProgress variant="determinate"/>
+        <LinearProgress variant="determinate" style={{width:"34.6vw"}}/>
       </Box>
       <Box sx={{ minWidth: 35 }}>
         <Typography variant="body2" color="text.secondary">{`${Math.round(
@@ -471,7 +471,7 @@ const emailsend = ()=>{
                   xmlns="http://www.w3.org/2000/svg"
                   width="30"
                   height="30"
-                  fill="green"
+                  fill="orange"
                   class="bi bi-check2-square"
                   viewBox="0 0 16 16"
                 >
@@ -484,7 +484,7 @@ const emailsend = ()=>{
                     xmlns="http://www.w3.org/2000/svg"
                     width="10"
                     height="10"
-                    fill="green"
+                    fill="orange"
                     class="bi bi-square-fill"
                     viewBox="0 0 16 16"
                   >
@@ -534,7 +534,7 @@ An independent site plays the role of mediator between you and the freelancer yo
 </p>
 </div>
       </div>
-  
+      </div>
     </div>
   );
 }

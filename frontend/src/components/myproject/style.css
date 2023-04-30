@@ -1,0 +1,271 @@
+.myrounded{
+    /* border:4px solid red; */
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+}
+.headpr{
+    display:flex;
+    flex-direction: column;
+    /* border: 4px solid red; */
+}
+.upperbox{
+    /* border : 4px dotted red; */
+    height: 20vh;
+    /* background: linear-gradient(90deg, #F5A825 0%, rgb(235, 219, 219) 100%); */
+    background-image: url("../../../public/assets/top.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-align: left;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande','Lucida Sans', Arial, sans-serif;
+    margin-bottom: 6vh;
+}
+.myh1offer{
+    margin-left: 2vw;
+    margin-top: 8vh;;  
+}
+ .myh1offer1{
+    
+ }
+.upperbox h3{
+    margin-left: 2vw;
+} 
+
+.myalloffers1{
+    
+    display: flex;
+    flex-direction: column;
+  width: 80%;
+  gap:2vw;
+  margin-bottom: 20vh;
+  /* border: 4px solid blue; */
+  align-self: center;
+  margin-left: 10vw;
+  
+  /* background-color: rgba(195, 189, 189, 0.723); */
+    /* display: flex;
+    flex-direction: row;
+        
+        gap:30vw */
+
+
+}
+.mystatucwithtitle{
+    /* border: 4px solid #008000; */
+    display: flex;
+    flex-direction: row; 
+    /* border: 10px solid green; */
+    justify-content: space-between;
+    /* margin-top: 4vh; */
+    margin-top: 5vh;
+ 
+}
+.myprojectcard1{
+    display: flex;
+    flex-direction: column; 
+    /* border: 4px solid rgb(210, 24, 135); */
+    width: 100%;
+    box-shadow: 2px 2px 2px 2px rgba(83, 83, 74, 0.459);
+    border-radius: 5px;
+    /* margin-bottom: 3vh; */
+    height: 29vh;
+    align-self: center;
+    /* margin-top: 6vh; */
+    /* background-color: rgba(199, 192, 192, 0.373); */
+    /* margin-top: 20px;
+    margin-left: 40px; */
+}
+
+.statucwithtitleoffer1{
+    display: flex;
+    flex-direction: row; 
+    justify-content: space-between;
+    margin-top: 2vh;
+    margin-bottom: 5vh;
+    
+    /* border: 4px solid yellow; */
+  
+}
+
+.mytitelproj{
+    margin-left: 10px;
+    font-size: 25px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    background-color: transparent;
+    border: none;
+    
+}
+.mystatusproj{
+    margin-left: 20px;
+    font-size: 15px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; 
+    background-color: rgb(71, 172, 71);
+    border-radius: 5px;
+    border: none;
+    font-weight: bold;
+    margin-right: 10px;
+    /* border:4px solid green; */
+}
+
+.myprojectDescrption{
+
+    background-color: transparent;
+    border: none;
+    /* margin-right: 400px; */
+    margin-bottom: 5vh;
+    margin-left: 1vw;
+    margin-top:4vh;
+    /* border:4px solid brown; */
+    width:100%;
+    text-align: left;
+       
+}
+
+.mymagortiwithaddoffer{
+    display: flex;
+    flex-direction: row;
+    /* border:4px solid blue; */
+
+}
+.magortiwithaddoffer1{
+    inline-size: 100px;
+    /* margin-top: 20px; */
+    margin-left: 10px;
+    /* margin-bottom: 10px; */
+    border-radius: 5px;
+    font-size: 15px;
+    font-family: 'Times New Roman', Times, serif;
+    border: none;
+    font-weight:550;
+    height: 45px;
+    /* border:4px solid sienna; */
+}
+
+.addoffer{
+   /* border:4px solid pink; */
+    inline-size: 100px;
+    margin-top: 20px;
+    margin-left: 550px;
+    margin-bottom: 10px;
+      /* background-color: rgb(255, 136, 0); */
+    border-radius: 5px;
+    font-size: 15px;
+    font-family: 'Times New Roman', Times, serif;
+    /* border: none; */
+    /* font-weight:550; */
+    height: 40px; 
+    cursor: pointer;
+    box-shadow: 2px 2px 2px 2px rgba(112, 99, 76, 0.322);
+ 
+}
+.filterside{
+   
+    color: black;
+    margin-left: 5vw;
+    width: 250px;
+    box-shadow: 2px 2px 2px 2px rgba(83, 83, 74, 0.459);
+    border-radius: 5px;
+    margin-top: 6vh;
+    height: 500px;
+    font-size: 20px;
+    text-align: left;
+    padding: 5px;
+      font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande','Lucida Sans', Arial, sans-serif;
+       /* border:4px solid red; */
+     /* background-color: aqua; */
+      display:flex;
+      flex-direction: column;
+      gap:2.3vh;
+      
+
+}
+
+.hr{
+    inline-size: 150px;
+    margin-left: 50px;
+}
+.title{
+    color: black;
+font-family:monospace;
+font-weight: bold;
+font-size: 15px;
+}
+.titleofprojects{
+/* border: 4px solid black; */
+
+
+}
+.offermajorti1{
+    height: 6vh;
+    border: none;
+    background-color: rgb(236, 236, 217);
+    border-radius: 5px;
+    width: 5vw;
+    /* margin-top: 1vh; */
+}
+.hrunder{
+    inline-size: 150px; 
+}
+.hr1{
+    inline-size: 130px;
+    /* border:4px solid blue; */
+
+}
+.list{
+    width: 200px;
+    height: 30px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 1px 1px rgba(83, 83, 74, 0.459);
+    font-size: 15px;
+    font-weight: bold;
+    /* border:4px solid orange; */
+}
+.price{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-left: 5px;
+    margin-right: 10px;
+    gap:9vw;
+    /* border:4px solid yellow; */
+
+}
+.inputscale{
+    inline-size: 230px;
+}
+.dollar{
+font-size: 15px;
+font-weight: bolder;
+}
+.backmore{
+    margin-top: 10px;
+ padding: 5px;
+ margin-left: 8px;
+ box-shadow: 1px 1px 1px 1px rgba(83, 83, 74, 0.459);
+background-color: rgba(106, 106, 112, 0.349);
+border: none;
+cursor: pointer;
+border-radius: 5px;
+}
+.paginationbutton{
+    margin-left: 0.1vw;
+    border-radius: 50%;
+    border: none;
+    height: 5vh;
+    width: 2vw;
+    cursor: pointer;
+
+}
+.paginationbutton:hover{
+    background-color: transparent;
+}
+
+.myprojectmajorti{
+    height: 6vh;
+    border: none;
+    background-color: rgb(236, 236, 217);
+    border-radius: 5px;
+    width: 5vw;
+    margin-left: 1vw;
+    /* margin-top: 1vh; */
+}

@@ -44,6 +44,10 @@ const BalanceManagement = () => {
   }, []);
 
   return (
+    <div className="all-balance-container">
+      <div className="upperboxbalance">
+      <h1 className="upperboxbalanceh1">Manage Your Balance</h1>
+    </div>
     <div className="setting-containerbal">
               <div className="leftbal">
       <div className="settingbal">
@@ -56,14 +60,17 @@ const BalanceManagement = () => {
           <div className="current-balance">
          
             <Card
-              title="Current Balance"
+              title="Available Balance"
               bordered={false}
               style={{
-                width: 300,
+                width: "40vw",
+                height:"20vh",
+                marginTop:"4vh",
+                boxShadow: "2px 2px 2px 2px rgba(83, 83, 74, 0.459)"
               }}
             >
               {isLoggedIn && userId == balance.freelanceruser &&(
-              <p>${balance ? balance.freelancerbalance : "0.0"}</p>
+              <p className="ptry" style={{fontSize:"20px"}}>${balance ? balance.freelancerbalance : "0.0"}</p>
               )}
                {isLoggedIn && userId == balance.clientuser &&(
               <p>${balance ? balance.initialbalance : "0.0"}</p>
@@ -78,7 +85,10 @@ const BalanceManagement = () => {
               title="Pending Balance"
               bordered={false}
               style={{
-                width: 300,
+                width: "40vw",
+                height:"20vh",
+                marginBottom:"4vh",
+                boxShadow: "2px 2px 2px 2px rgba(83, 83, 74, 0.459)"
               }}
             >
              {isLoggedIn && userId == balance.freelanceruser &&(
@@ -93,6 +103,7 @@ const BalanceManagement = () => {
         </div>
       </div>
 
+    </div>
     </div>
   );
 };

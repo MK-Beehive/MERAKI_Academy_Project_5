@@ -51,7 +51,11 @@ const ChangePassword = () => {
   };
 
   return (
-    <div className="settingpass-container">
+    <div className="all-pass-container">
+    <div className="upperboxpass">
+      <h1 className="upperboxpassh1">Change Your Password</h1>
+    </div>
+    <div className="passcenter">
         <div className="leftpass">
       <div className="settingpass">
         <SettingBar />
@@ -70,11 +74,16 @@ const ChangePassword = () => {
       </div>
      
     </Space>
-    <div class="col-lg-offset-3-col-lg-8">
+    <div className="col-lg-offset-3-col-lg-8" style={{
+                      marginBottom:"2vh"
+                      // backgroundColor: "#fadb14",
+                      // borderColor: "yellow",
+                    }}>
     <Button
                     type="primary"
                     icon={<SaveOutlined />}
                     style={{
+                      // marginButtom:"2vh"
                       // backgroundColor: "#fadb14",
                       // borderColor: "yellow",
                     }}
@@ -96,8 +105,7 @@ const ChangePassword = () => {
                 </button> */}
               </div>
       </div>
-
-      <div className="right"></div>
+</div>
     </div>
   );
 };

@@ -268,12 +268,12 @@ function Home() {
               </form>
             </div>
             <div className="keepintouchimg">
-              <img className="keepimg" src="./assets/job.jpg"/>
+              <img className="keepimg" src="./assets/touchimg.jpg"/>
             </div>
           </div>
         </div>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }

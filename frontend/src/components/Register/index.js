@@ -217,49 +217,40 @@ const Register = () => {
 
   return (
     <>
+   
       {!isLoggedIn ? (
         <>
           <div className="reg">
-            <ThemeProvider theme={theme}>
-              <Grid container component="main" sx={{ height: "100vh" }}>
+        
+            <ThemeProvider theme={theme} >
+              <Grid container component="main" sx={{ height: '90vh' ,width:"80vw"}}>
                 <CssBaseline />
-                {/* <Grid
-                item
-                xs={false}
-                sm={4}
-                md={7}
-                sx={{
-                  backgroundImage:
-                    "url(https://i.pinimg.com/564x/e5/b0/57/e5b0572298b46c61cec36807e9650fc3.jpg)",
-                  backgroundRepeat: "no-repeat",
-                  backgroundColor: (t) =>
-                    t.palette.mode === "light"
-                      ? t.palette.grey[50]
-                      : t.palette.grey[900],
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                }}
-              /> */}
+              
                 <Grid
-                  item
-                  xs={12}
-                  sm={8}
-                  md={5}
-                  component={Paper}
-                  elevation={6}
-                  square
-                >
-                  <Box
-                    sx={{
-                      marginTop: 8,
-                      marginLeft: 1,
-                      marginRight: 1,
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "center",
-                    }}
-                  >
-                    <Avatar sx={{ m: 1, bgcolor: "#ffea00" }}>
+          item
+          xs={false}
+          sm={4}
+          md={7}
+          sx={{
+            backgroundImage: 'url(./assets/regmg.png)',
+            backgroundRepeat: 'no-repeat',
+            backgroundColor: (t) =>
+              t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+        />
+        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+          <Box
+            sx={{
+              my: 8,
+              mx: 4,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+            }}
+          >
+                    <Avatar sx={{ m: 1, bgcolor: "orange" }}>
                       <LockOutlinedIcon />
                     </Avatar>
                     <Typography component="h1" variant="h5">
@@ -271,8 +262,8 @@ const Register = () => {
                       onSubmit={addNewUser}
                       sx={{ mt: 3 }}
                     >
-                      <Grid container spacing={2}>
-                        <Grid item xs={12} sm={6}>
+                      <Grid container spacing={2} >
+                        <Grid item xs={12} sm={6} >
                           <TextField
                             autoComplete="given-name"
                             name="firstName"
@@ -343,14 +334,14 @@ const Register = () => {
                         type="submit"
                         fullWidth
                         variant="contained"
-                        sx={{ mt: 3, mb: 2, bgcolor: "#ffea00" }}
+                        sx={{ mt: 3, mb: 2, bgcolor: "orange" }}
                       >
                         Sign Up
                       </Button>
 
                       <Grid container justifyContent="flex-start">
                         <Grid item>
-                          <Link to="/login" variant="body2">
+                          <Link to="/join" variant="body2">
                             Already have an account? Sign in
                           </Link>
                         </Grid>
@@ -358,7 +349,7 @@ const Register = () => {
                     </Box>
                   </Box>
                 </Grid>
-              </Grid>
+              </Grid> 
             </ThemeProvider>
           </div>
           {status
@@ -383,11 +374,3 @@ const Register = () => {
 export default Register;
 
 
-//https://myaccount.google.com/apppasswords?utm_source=google-account&utm_medium=myaccountsecurity&utm_campaign=tsv-settings&rapt=AEjHL4MX8mHf3EaM8sNSFAMxXjHn33L0inC22JTJ2xtlo1iQ9BQxvJId0byQCWdK8OUB_XYKRuPe9KEfKCMBiixYOKXTgky66w
-// UPDATE majority SET is_deleted= 0 WHERE id=1;
-// UPDATE majority SET is_deleted= 0 WHERE id=2;
-// UPDATE majority SET is_deleted= 0 WHERE id=3;
-// UPDATE majority SET is_deleted= 0 WHERE id=4;
-// UPDATE majority SET is_deleted= 1 WHERE id=5;
-// alter table majority
-//   add column is_deleted INT ;

@@ -5,16 +5,21 @@
 }
 .upperbox{
     /* border : 4px dotted red; */
-    height: 15vh;
+    height: 20vh;
     /* background: linear-gradient(90deg, #F5A825 0%, rgb(235, 219, 219) 100%); */
     background-image: url("../../../public/assets/top.png");
     background-repeat: no-repeat;
     background-size: cover;
     text-align: left;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande','Lucida Sans', Arial, sans-serif;
-
+    margin-bottom: 6vh;
 }
 .upperbox h1{
+    margin-left: 2vw;
+    margin-top: 4vh;;
+} 
+
+.upperbox h3{
     margin-left: 2vw;
 } 
 
@@ -22,7 +27,8 @@
     display: grid;
   grid-template-columns: 2fr 8fr ;
   grid-template-areas: "a b";
-  gap:12vw;
+  gap:4vw;
+  margin-bottom: 20vh;
   /* border: 4px solid blue; */
   /* background-color: rgba(195, 189, 189, 0.723); */
     /* display: flex;
@@ -36,19 +42,19 @@
     display: flex;
     flex-direction: column; 
     /* border: 10px solid green; */
-    /* margin-top: 2vh; */
+    /* margin-top: 4vh; */
  
 }
 .projectcard1{
     display: flex;
     flex-direction: column; 
     /* border: 4px solid rgb(197, 42, 42); */
-    width: 85%;
+    width: 90%;
     box-shadow: 2px 2px 2px 2px rgba(83, 83, 74, 0.459);
     border-radius: 5px;
     margin-bottom: 3vh;
-    height: 22%;
-    margin-top: 2vh;
+    height: 21%;
+    margin-top: 6vh;
     /* background-color: rgba(199, 192, 192, 0.373); */
     /* margin-top: 20px;
     margin-left: 40px; */
@@ -57,8 +63,10 @@
 .statucwithtitle{
     display: flex;
     flex-direction: row; 
-    margin-top: 10px;
+    justify-content: space-between;
+    margin-top: 2vh;
     margin-bottom: 5vh;
+    
     /* border: 4px solid yellow; */
   
 }
@@ -79,6 +87,7 @@
     border-radius: 5px;
     border: none;
     font-weight: bold;
+    margin-right: 10px;
     /* border:4px solid green; */
 }
 
@@ -88,6 +97,7 @@
     border: none;
     /* margin-right: 400px; */
     margin-bottom: 5vh;
+    margin-left: 1vw;
     /* border:4px solid brown; */
     width:100%;
     text-align: left;
@@ -98,12 +108,13 @@
     display: flex;
     flex-direction: row;
     /* border:4px solid blue; */
+
 }
 .projectmajorti{
     inline-size: 100px;
-    margin-top: 20px;
+    /* margin-top: 20px; */
     margin-left: 10px;
-    margin-bottom: 10px;
+    /* margin-bottom: 10px; */
     border-radius: 5px;
     font-size: 15px;
     font-family: 'Times New Roman', Times, serif;
@@ -128,16 +139,16 @@
     height: 40px; 
     cursor: pointer;
     box-shadow: 2px 2px 2px 2px rgba(112, 99, 76, 0.322);
- 
+ border: none;
 }
 .filterside{
    
     color: black;
-    margin-left: 20px;
+    margin-left: 5vw;
     width: 250px;
     box-shadow: 2px 2px 2px 2px rgba(83, 83, 74, 0.459);
     border-radius: 5px;
-    margin-top: 70px;
+    margin-top: 6vh;
     height: 500px;
     font-size: 20px;
     text-align: left;
@@ -211,5 +222,16 @@ border: none;
 cursor: pointer;
 border-radius: 5px;
 }
+.paginationbutton{
+    margin-left: 0.1vw;
+    border-radius: 50%;
+    border: none;
+    height: 5vh;
+    width: 2vw;
+    cursor: pointer;
 
+}
+.paginationbutton:hover{
+    background-color: transparent;
+}
 

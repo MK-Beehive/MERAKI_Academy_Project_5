@@ -17,6 +17,11 @@ import Select, { selectClasses } from "@mui/joy/Select";
 import Option from "@mui/joy/Option";
 import KeyboardArrowDown from "@mui/icons-material/KeyboardArrowDown";
 
+
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+
 const Freelancer = () => {
 
   const Navigate = useNavigate();
@@ -118,12 +123,14 @@ const Freelancer = () => {
   const freelancersinfo = resultinfo?.map((freelancer) => {
     return (
       <div className="freelancerinfo" key={freelancer.id} >
+        
         <div className="freelancerinfo1">
-        {state.isLoggedIn&& state.userdata.role_id===1 && <AiFillWechat  className="chat"  onClick={()=>{
+        {/* state.userdata.role_id===1 &&  */}
+        {state.isLoggedIn&& state.userdata.role_id===1 && <AiFillWechat  style={{color:"#0084CA"}} className="chat"  onClick={()=>{
         Navigate("/addproject")
       }} />}
           <div className="img" >
-            <img src={freelancer.image}></img>
+            <img  className="img_img"  src={freelancer.image}></img>
             <div className="imguserfreelance--cover imguserfreelance--cover--blur"> <button onClick={()=>{
         dispatch(setselectetUserProfile(freelancer.user_id))
 console.log(";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;",freelancer.id)
@@ -136,7 +143,7 @@ console.log(";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;",freelancer.id)
           <div>
             <div>
               {freelancer.firstname} {freelancer.lastname}{" "}
-              <span className="experince"> {freelancer.majorityname}</span>{" "}
+            
               <span className="experince"> {freelancer.experiancename}</span>{" "}
             </div>
 
@@ -150,12 +157,18 @@ console.log(";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;",freelancer.id)
             </Stack>
           </div>
         </div>
-        <div className="freelancerinfoLine"></div>
+        <br/>
+
+        {/* <div className="freelancerinfoLine"></div> */}
         <div className="freelancerinfo2">
           <div>
             <p>{freelancer.informationdescription} </p>
           </div>
         </div>
+        <br/>
+       <div> <span className="experince"> {freelancer.majorityname} </span> <span className="experince"> {freelancer.jobtitle}</span> </div>{" "}
+      
+
       </div>
     );
   });
@@ -164,9 +177,14 @@ console.log(";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;",freelancer.id)
 
   return (
     <div className="freelancerOuterDiv0">
+        <div className="upperbox_freelancer">
+      <h1>All Freelancers</h1>
+      <h3>Browse freelancers to work on your project</h3>
+
+      </div>
       <div className="freelancerOuterDiv">
         <div className="freelancerfilterside">
-          <p>Filter By Majority</p>
+          <p className="p-filter-name">Filter By Majority</p>
 
           <select
             ref={filterMajority}
@@ -187,7 +205,7 @@ console.log(";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;",freelancer.id)
             })}
           </select>
 
-          <p>Filter By Experiance</p>
+          <p  className="p-filter-name"> Filter By Experiance</p>
 
           <select
     
@@ -212,6 +230,18 @@ console.log(";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;",freelancer.id)
               );
             })}
           </select>
+
+          <p className="p-filter-name">Filter By Rate</p>
+
+  
+    <FormGroup>
+      <FormControlLabel  checked={false} control={<Checkbox defaultChecked />} label="Rate more than 4 " />
+      <FormControlLabel  control={<Checkbox />} label="Rate more than  3 " />
+      <FormControlLabel  control={<Checkbox />} label="Rate more than  2 " />
+    </FormGroup>
+
+
+          
         </div>
         <div lassName="freelancercard">
          {resultinfo ? <div>{freelancersinfo}</div> :<div className="No-free" > No Freelancers</div>}

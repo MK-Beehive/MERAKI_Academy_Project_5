@@ -98,10 +98,11 @@
   
   .buttonnotifaction {
     border: none;
-    color: rgb(225, 222, 10);
-    font-size: 16px;
-    text-decoration: underline;
+    /* color: rgb(225, 222, 10); */
+    font-size: 18px;
+    /* text-decoration: underline; */
     cursor: pointer;
+    /* justify-content: ; */
   }
   
   .popupsection {
